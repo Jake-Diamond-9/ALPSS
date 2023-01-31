@@ -1,4 +1,4 @@
-# ALPSS
+# ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals
 ## Copyright
 MIT License
 
