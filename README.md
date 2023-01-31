@@ -36,11 +36,11 @@ ALPSS requires the following packages:
 - [watchdog](https://pythonhosted.org/watchdog/)
 
 The simplest way to install these packages is to use the Anaconda interface.
-1. Open Anaconda and navigate to the **Environments** tab on the left hand side underneath **Home**.
-2. Towards the bottom of the window click **Create** to create a new environment.
+1. Open Anaconda and navigate to the **_Environments_** tab on the left hand side underneath **_Home_**.
+2. Towards the bottom of the window click **_Create_** to create a new environment.
 3. Name your new environment ("ALPSS" is recommended) and use the dropdown menu to install the latest version of Python.
-4. In the ALPSS environment click the dropdown menu that says **Installed** and change it to **All**.
-5. In the **Search Packages** bar type "matplotlib". Select the box next to the package with the name **matplotlib** and click the green **Apply** button in the bottom right. In the new package install window click the green **Apply** button.
+4. In the ALPSS environment click the dropdown menu that says **_Installed_** and change it to **_All_**.
+5. In the **_Search Packages_** bar type "matplotlib". Select the box next to the package with the name **_matplotlib_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 
 ## Running ALPSS
 
