@@ -41,5 +41,3 @@ In your ALPSS python environment return to the Anaconda home screen. Locate the 
 ### Running a Single Signal
 
 ### Running Signals with Automatic File Detection
-
-## Example Usage
