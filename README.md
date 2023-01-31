@@ -50,7 +50,7 @@ The simplest way to install these packages is to use the Anaconda interface.
 10. In the **_Search Packages_** bar type "watchdog". Select the box next to the package with the name **_watchdog_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 
 ### Downloading ALPSS Code
-The ALPSS program files can be downloaded from the main page on the repository. Go to the green **_Code_** dropdown menu and select **_Download ZIP_** to download all files in the main branch of the repository. Then move the files to your desired directory.
+The ALPSS program files can be downloaded from the main page of the repository. Go to the green **_Code_** dropdown menu and select **_Download ZIP_** to download all files in the main branch of the repository. Then move the files to your desired directory.
 
 
 ## Running ALPSS
