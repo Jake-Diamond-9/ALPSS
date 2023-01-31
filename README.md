@@ -28,11 +28,19 @@ ALPSS was developed to automate the processing of PDV spall signals. This readme
 It is recommended for users new to python to use [Anaconda](https://www.anaconda.com/).
 
 ALPSS requires the following packages:
-- matplotlib
-- numpy
-- scipy
-- pandas
-- opencv
-- watchdog
+- [matplotlib](https://matplotlib.org/)
+- [numpy](https://numpy.org/)
+- [scipy](https://scipy.org/)
+- [pandas](https://pandas.pydata.org/)
+- [opencv](https://docs.opencv.org/4.x/d7/dbd/group__imgproc.html)
+- [watchdog](https://pythonhosted.org/watchdog/)
+
+The simplest way to install these packages is to use that Anaconda interface.
+1. Open Anaconda and navigate to the *Environments* tab on the left hand side underneath *Home*
+2. Towards the bottom of the window click *Create* to create a new environment
+3. Name your new environment ("ALPSS" is recommended) and use the dropdown menu to install the latest version of Python
+4. 
+
+## Running ALPSS
 
 ## Example Usage
