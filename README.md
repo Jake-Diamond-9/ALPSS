@@ -5,6 +5,9 @@ GNU General Public License v3.0
 ## Overview
 ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;pall <b><i>S</i></b>&#8202;ignals) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository wiki. Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
 
+## Citing
+For use in published works, ALPSS can be citied from its original paper _ALPSS: A program for automated analysis of photonic Doppler velocimetry spall signals, in prep._
+
 ## Installation
 It is recommended for users new to python to use [Anaconda](https://www.anaconda.com/).
 
@@ -33,7 +36,7 @@ The simplest way to install these packages is to use the Anaconda interface.
 The ALPSS program files can be downloaded from the main page of the repository. Go to the green **_Code_** dropdown menu and select **_Download ZIP_** to download all files in the main branch of the repository. Then move the files to your desired directory.
 
 ## Running ALPSS
-In your ALPSS python environment return to the Anaconda home screen. Locate the **_Spyder_** application and click **_Install_**. Once complete, click **_Launch_** to open Spyder. Next click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_.
+In your ALPSS python environment return to the Anaconda home screen. Locate the **_Spyder_** application and click **_Install_**. Once complete, click **_Launch_** to open Spyder. Next click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
 
 ### Running a Single Signal
 
