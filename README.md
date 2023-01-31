@@ -22,8 +22,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Overview
-ALPSS was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to *****INSERT DOCS LINK HERE*****. Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
+ALPSS was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository wiki. Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
 
 ## Installation
+It is recommended for users new to python to use [Anaconda](https://www.anaconda.com/) to install python.
+
+ALPSS requires the following packages:
+1. watchdog
+2. matplotlib
+3. pandas
+4. numpy
+5. scipy
+6. opencv
+
 
 ## Example Usage
