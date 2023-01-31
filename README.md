@@ -23,7 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Overview
-ALPSS (**A**na**L**ysis of **P**hotonic Doppler velocimetry **S**pall **S**ignals) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository wiki. Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
+ALPSS (<b><i>A</i></b>na<b><i>L</i></b>ysis of <b><i>P</i></b>hotonic Doppler velocimetry <b><i>S</i></b>pall <b><i>S</i></b>ignals) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository wiki. Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
 
 ## Installation
 It is recommended for users new to python to use [Anaconda](https://www.anaconda.com/).
