@@ -44,7 +44,13 @@ The simplest way to install these packages is to use the Anaconda interface.
 6. In the **_Search Packages_** bar type "numpy". Select the box next to the package with the name **_numpy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 7. In the **_Search Packages_** bar type "scipy". Select the box next to the package with the name **_scipy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 8. In the **_Search Packages_** bar type "pandas". Select the box next to the package with the name **_pandas_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+9. In the **_Search Packages_** bar type "opencv". Select the 3 boxes next to the packages with the names **_libopencv, opencv, and, py-opencv_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+10. In the **_Search Packages_** bar type "watchdog". Select the box next to the package with the name **_watchdog_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 
 ## Running ALPSS
+
+### Running a Single Signal
+
+### Running Signals with Automatic File Detection
 
 ## Example Usage
