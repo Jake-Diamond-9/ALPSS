@@ -41,6 +41,9 @@ The simplest way to install these packages is to use the Anaconda interface.
 3. Name your new environment ("ALPSS" is recommended) and use the dropdown menu to install the latest version of Python.
 4. In the ALPSS environment click the dropdown menu that says **_Installed_** and change it to **_All_**.
 5. In the **_Search Packages_** bar type "matplotlib". Select the box next to the package with the name **_matplotlib_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+6. In the **_Search Packages_** bar type "numpy". Select the box next to the package with the name **_numpy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+7. In the **_Search Packages_** bar type "scipy". Select the box next to the package with the name **_scipy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+8. In the **_Search Packages_** bar type "pandas". Select the box next to the package with the name **_pandas_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 
 ## Running ALPSS
 
