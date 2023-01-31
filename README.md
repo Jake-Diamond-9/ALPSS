@@ -52,8 +52,8 @@ The simplest way to install these packages is to use the Anaconda interface.
 ### Downloading ALPSS Code
 The ALPSS program files can be downloaded from the main page of the repository. Go to the green **_Code_** dropdown menu and select **_Download ZIP_** to download all files in the main branch of the repository. Then move the files to your desired directory.
 
-
 ## Running ALPSS
+In your ALPSS python environment return to the Anaconda home screen. Locate the **_Spyder_** application and click **_Install_**. Once complete, click **_Launch_** to open Spyder. Next click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_.
 
 ### Running a Single Signal
 
