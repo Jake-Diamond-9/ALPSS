@@ -1,4 +1,5 @@
 # ALPSS
+## Copyright
 MIT License
 
 Copyright (c) 2023 Jacob M. Diamond
