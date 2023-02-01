@@ -29,8 +29,8 @@ The simplest way to install these packages is to use the prepared Anaconda envir
 3. From your local drive, select the file _ALPSS\_env.yml_. Then click the green **_Import_** button. Note this process may take a few minutes as all of the required packages are being downloaded and imported.
 
 ## Running ALPSS
-In your ALPSS python environment return to the Anaconda home screen. Locate the **_Spyder_** application and click **_Install_**. Once complete, click **_Launch_** to open Spyder. Next click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
+With your ALPSS environment selected, return to the Anaconda home screen and launch the Spyder application. Once Spyder opens, click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
 
 ### Running a Single Signal
 
-### Running Signals with Automatic File Detection
+### Running a Signal with Automatic File Detection
