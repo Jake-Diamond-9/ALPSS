@@ -1,6 +1,6 @@
 """
 ALPSS: AnaLysis of Pdv Spall Signals
-Jake Diamond (2022)
+Jake Diamond (2023)
 Johns Hopkins University
 Hopkins Extreme Materials Institute (HEMI)
 Please report any bugs or comments to jdiamo15@jhu.edu
@@ -115,8 +115,8 @@ alpss_main(filename="F2--20211018--00015.txt",
            delta_freq_td=20e6,
            delta_time_c=2.5e-9,
            delta_time_d=2.5e-9,
-           exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Experimental_Data",
-           out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Output_Files",
+           exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
+           out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
            display_plots='yes',
            plot_figsize=(12, 10),
            plot_dpi=300)
