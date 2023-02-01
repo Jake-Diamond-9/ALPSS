@@ -11,6 +11,9 @@ For use in published works, ALPSS can be citied from its original paper _ALPSS: 
 ## Installation
 It is recommended for users new to python to use [Anaconda](https://www.anaconda.com/).
 
+### Downloading ALPSS Code
+The ALPSS program files can be downloaded from the main page of the repository. Go to the green **_Code_** dropdown menu and select **_Download ZIP_** to download all files from the main branch of the repository. Then move the files to your desired directory.
+
 ### Installing Required Packages
 ALPSS requires the following packages:
 - [matplotlib](https://matplotlib.org/)
@@ -20,20 +23,10 @@ ALPSS requires the following packages:
 - [opencv](https://docs.opencv.org/4.x/d7/dbd/group__imgproc.html)
 - [watchdog](https://pythonhosted.org/watchdog/)
 
-The simplest way to install these packages is to use the Anaconda interface.
+The simplest way to install these packages is to use the prepared Anaconda environment in the file _ALPSS\_env.yml_. To do this:
 1. Open Anaconda and navigate to the **_Environments_** tab on the left hand side underneath **_Home_**.
-2. Towards the bottom of the window click **_Create_** to create a new environment.
-3. Name your new environment ("ALPSS" is recommended) and use the dropdown menu to install the latest version of Python.
-4. In the ALPSS environment click the dropdown menu that says **_Installed_** and change it to **_All_**.
-5. In the **_Search Packages_** bar type "matplotlib". Select the box next to the package with the name **_matplotlib_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
-6. In the **_Search Packages_** bar type "numpy". Select the box next to the package with the name **_numpy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
-7. In the **_Search Packages_** bar type "scipy". Select the box next to the package with the name **_scipy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
-8. In the **_Search Packages_** bar type "pandas". Select the box next to the package with the name **_pandas_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
-9. In the **_Search Packages_** bar type "opencv". Select the 3 boxes next to the packages with the names **_libopencv, opencv, and, py-opencv_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
-10. In the **_Search Packages_** bar type "watchdog". Select the box next to the package with the name **_watchdog_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
-
-### Downloading ALPSS Code
-The ALPSS program files can be downloaded from the main page of the repository. Go to the green **_Code_** dropdown menu and select **_Download ZIP_** to download all files in the main branch of the repository. Then move the files to your desired directory.
+2. Towards the bottom of the window click **_Import_**.
+3. From your local drive, select the file _ALPSS\_env.yml_. Then click the green **_Import_** button. Note this process may take a few minutes as all of the required packages are being downloaded and imported.
 
 ## Running ALPSS
 In your ALPSS python environment return to the Anaconda home screen. Locate the **_Spyder_** application and click **_Install_**. Once complete, click **_Launch_** to open Spyder. Next click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
