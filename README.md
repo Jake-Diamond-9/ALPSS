@@ -34,5 +34,10 @@ With your ALPSS environment selected, return to the Anaconda home screen and lau
 A sample file is available for download from the Johns Hopkins OneDrive [Here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt)
 
 ### Running a Single Signal
+Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. If using the sample file provided above, only two input parameters need to be changed from the original repository file. 
+1. _exp\_data\_dir_ should be changed to the directory where you have stored the sample file.
+2. _out\_files_dir_ should be changed to the directory where you would like to save the output files.
+
+Then in the toolbar click _Run -> Run_ and ALPSS will run the sample file. At the conclusion of the run, a figure that shows the sub processes will be displayed in the **Plots** window and a results table will be displayed in the **Console** window. Output files will be saved in the directory specified in _out\_files_dir_. 
 
 ### Running a Signal with Automatic File Detection
