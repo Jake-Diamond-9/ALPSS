@@ -31,7 +31,7 @@ The simplest way to install these packages is to use the prepared Anaconda envir
 ## Running ALPSS
 With your ALPSS environment selected, return to the Anaconda home screen and launch the Spyder application. Once Spyder opens, click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
 
-A sample file is available for download at: <https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt>
+A sample file is available for download from the Johns Hopkins OneDrive [Here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt)
 
 ### Running a Single Signal
 
