@@ -10,7 +10,7 @@ from alpss_main import *
 
 
 class Watcher:
-    DIRECTORY_TO_WATCH = "/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Experimental_Data"
+    DIRECTORY_TO_WATCH = "/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data"
 
     def __init__(self):
         self.observer = Observer()
@@ -41,17 +41,17 @@ class Handler(FileSystemEventHandler):
             print("Received created event - %s." % event.src_path)
             fname = event.src_path[-23:]
             print(f"File Created:  {fname}")
-            alpss_main(filename=fname,
+            alpss_main(filename="F2--20211018--00015.txt",
                        save_data='yes',
                        start_time_user='none',
                        header_lines=5,
                        time_to_skip=50e-6,
                        time_to_take=2e-6,
-                       t_before=10e-9,
-                       t_after=100.1e-9,
+                       t_before=5e-9,
+                       t_after=50e-9,
                        start_time_correction=0e-9,
-                       freq_min=2e9,
-                       freq_max=4.5e9,
+                       freq_min=1.5e9,
+                       freq_max=4e9,
                        smoothing_window=401,
                        smoothing_wid=3,
                        smoothing_amp=1,
@@ -72,7 +72,7 @@ class Handler(FileSystemEventHandler):
                        carrier_band_time=250e-9,
                        cmap='viridis',
                        order=6,
-                       wid=1e8,
+                       wid=5e7,
                        lam=1547.461e-9,
                        C0=4540,
                        density=1730,
@@ -85,8 +85,8 @@ class Handler(FileSystemEventHandler):
                        delta_freq_td=20e6,
                        delta_time_c=2.5e-9,
                        delta_time_d=2.5e-9,
-                       exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Experimental_Data",
-                       out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Output_Files",
+                       exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
+                       out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
                        display_plots='yes',
                        plot_figsize=(12, 10),
                        plot_dpi=300)
