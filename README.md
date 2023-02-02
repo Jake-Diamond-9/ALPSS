@@ -1,4 +1,12 @@
-# ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals
+# <div align="center">ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals</div>
+#### <div align="center">***v1.0***</div>
+
+#### <div align="center">Jacob M. Diamond<sup>1,2</sup>, Samuel Salander<sup>3</sup>, K. T. Ramesh<sup>1,2</sup></div>
+<div align="center"><sup>1</sup> Department of Mechanical Engineering, Johns Hopkins University, Baltimore, MD, USA </div>
+<div align="center"><sup>2</sup> Hopkins Extreme Materials Institute (HEMI), Johns Hopkins University, Baltimore, MD, USA </div>
+<div align="center"><sup>3</sup> Department of Physics and Astronomy, Johns Hopkins University, Baltimore, MD, USA </div>
+
+
 ## Copyright
 GNU General Public License v3.0
 
@@ -47,3 +55,13 @@ Open the file _alpss\_auto\_run.py_. If using the sample file provided above, on
 3. _out\_files_dir_ should be changed to the directory where you would like to save the output files.
 
 To begin, the file you wish to run should _not_ be located in **DIRECTORY_TO_WATCH**, but instead stored in another temporary location. Then in the toolbar click _Run -> Run_ and ALPSS will begin to monitor **DIRECTORY_TO_WATCH** for changes. Next, click and drag your file from the temporary storage location in to **DIRECTORY_TO_WATCH**. The creation of the file will be automatically detected and the analysis will be run. At the conclusion of the run, a figure that shows the sub processes will be displayed in the **Plots** window and a results table will be displayed in the **Console** window. Output files will be saved in the directory specified in _out\_files_dir_. Note, the process is the same for running multiple files. All files can be moved in to the monitored directory at the same time.
+
+## Acknowledgements and Funding
+The authors would like to acknowledge the following people for their many helpful conversations and advice:
+- Dr. Chris DiMarco
+- Dr. Velat Killic
+- Dr. Debjoy Mallcik
+- Dr. Maggie Eminizer
+- Dr. David Elbert
+
+Research was sponsored by the Army Research Laboratory and was accomplished under Cooperative Agreement Number W911NF-22-2-0014. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
