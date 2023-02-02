@@ -41,3 +41,9 @@ Open the file _alpss\_run.py_. In the file there is a docstring that describes t
 In the toolbar click _Run -> Run_ and ALPSS will run the sample file. At the conclusion of the run, a figure that shows the sub processes will be displayed in the **Plots** window and a results table will be displayed in the **Console** window. Output files will be saved in the directory specified in _out\_files_dir_. 
 
 ### Running a Signal with Automatic File Detection
+Open the file _alpss\_auto\_run.py_. If using the sample file provided above, only three changes need to be changed from the original repository file.
+1. In the **Watcher** class, the variable **DIRECTORY_TO_WATCH** should be changed to the directory you would like to monitor for the file.
+2. _exp\_data\_dir_ should be changed to match the directory specified in **DIRECTORY_TO_WATCH**.
+3. _out\_files_dir_ should be changed to the directory where you would like to save the output files.
+
+To begin, the file you wish to run should _not_ be located in **DIRECTORY_TO_WATCH**, but instead stored in another temporary location. Then in the toolbar click _Run -> Run_ and ALPSS will begin to monitor **DIRECTORY_TO_WATCH** for changes. Next, click and drag your file from the temporary storage location in to **DIRECTORY_TO_WATCH**. The creation of the file will be automatically detected and the analysis will be run. At the conclusion of the run, a figure that shows the sub processes will be displayed in the **Plots** window and a results table will be displayed in the **Console** window. Output files will be saved in the directory specified in _out\_files_dir_. Note, the process is the same for running multiple files. All files can be moved in to the monitored directory at the same time.
