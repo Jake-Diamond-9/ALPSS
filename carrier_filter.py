@@ -8,7 +8,7 @@ from scipy import signal
 # function to filter out the carrier frequency
 def carrier_filter(sdf_out, cen, **inputs):
 
-    # unpack values in the dictionary in to individual variables
+    # unpack dictionary values in to individual variables
     time = sdf_out['time']
     voltage = sdf_out['voltage']
     t_start_corrected = sdf_out['t_start_corrected']
@@ -54,6 +54,7 @@ def carrier_filter(sdf_out, cen, **inputs):
     Zxx_filt_doi = Zxx_filt[f_min_idx:f_max_idx, t_doi_start_idx:t_doi_end_idx]
     power_filt_doi = power_filt[f_min_idx:f_max_idx, t_doi_start_idx:t_doi_end_idx]
 
+    # save outputs to a dictionary
     cf_out = {
         'voltage_filt': voltage_filt,
         'f_filt': f_filt,

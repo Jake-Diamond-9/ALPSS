@@ -36,6 +36,7 @@ def alpss_main(**inputs):
         # function to find points of interest on the velocity trace
         sa_out = spall_analysis(vc_out, **inputs)
 
+        # function to calculate uncertainties in the spall strength and strain rate
         fua_out = full_uncertainty_analysis(cen, sa_out, **inputs)
 
         # end the program timer
@@ -61,6 +62,7 @@ def alpss_main(**inputs):
 
         # attempt to plot the voltage signal from the imported data
         try:
+
             # import the desired data. Convert the time to skip and turn into number of rows
             t_step = 1 / inputs['sample_rate']
             rows_to_skip = inputs['header_lines'] + inputs['time_to_skip'] / t_step  # skip the header lines too

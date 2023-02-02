@@ -7,6 +7,7 @@ import cv2 as cv
 
 # function to find the specific domain of interest in the larger signal
 def spall_doi_finder(**inputs):
+
     # import the desired data. Convert the time to skip and turn into number of rows
     t_step = 1 / inputs['sample_rate']
     rows_to_skip = inputs['header_lines'] + inputs['time_to_skip'] / t_step  # skip the 5 header lines too
@@ -24,7 +25,7 @@ def spall_doi_finder(**inputs):
     time = time - time[0]
     voltage = data['Ampl'].to_numpy()
 
-    # calculate the sample rate from the experimental data
+    # calculate the true sample rate from the experimental data
     fs = 1 / np.mean(np.diff(time))
 
     # calculate the short time fourier transform
@@ -43,18 +44,18 @@ def spall_doi_finder(**inputs):
     t_res = np.mean(np.diff(t))
     f_res = np.mean(np.diff(f))
 
-    # find the index of the minimum and maximum frequencies
+    # find the index of the minimum and maximum frequencies as specified in the user inputs
     freq_min_idx = np.argmin(np.abs(f - inputs['freq_min']))
     freq_max_idx = np.argmin(np.abs(f - inputs['freq_max']))
 
-    # cut the power and frequency arrays to smaller ranges
+    # cut the magnitude and frequency arrays to smaller ranges
     mag_cut = mag[freq_min_idx:freq_max_idx, :]
     f_doi = f[freq_min_idx:freq_max_idx]
 
     # calculate spectrogram power
     power_cut = 20 * np.log10(mag_cut ** 2)
 
-    # convert to uint8 for image processing
+    # convert spectrogram powers to uint8 for image processing
     smin = np.min(power_cut)
     smax = np.max(power_cut)
     a = 255 / (smax - smin)
@@ -70,15 +71,19 @@ def spall_doi_finder(**inputs):
 
     # if not using a user input value for the signal start time
     if inputs['start_time_user'] == 'none':
+
         # Find the position/row of the top of the binary spectrogram for each time/column
         col_len = th3.shape[1]  # number of columns
         row_len = th3.shape[0]  # number of columns
         top_line = np.zeros(col_len)  # allocate space to place the indices
         f_doi_top_line = np.zeros(col_len)  # allocate space to place the corresponding frequencies
+
         for col_idx in range(col_len):  # loop over every column
             for row_idx in range(row_len):  # loop over every row
+
                 # moving from the top down, if the pixel is 255 then store the index and break to move to the next column
                 idx_top = row_len - row_idx - 1
+
                 if th3[idx_top, col_idx] == 255:
                     top_line[col_idx] = idx_top
                     f_doi_top_line[col_idx] = f_doi[idx_top]
@@ -100,7 +105,7 @@ def spall_doi_finder(**inputs):
         # find the index in f_doi that is closest in frequency to f_doi_carr_top_avg
         f_doi_carr_top_idx = np.argmin(np.abs(f_doi - f_doi_carr_top_avg))
 
-        # work backwards from the highest point on the top line until it matches or dips below f_doi_carr_top_idx
+        # work backwards from the highest point on the signal top line until it matches or dips below f_doi_carr_top_idx
         highest_idx = np.argmax(f_doi_top_line_clean)
         for check_idx in range(highest_idx):
             cidx = highest_idx - check_idx - 1

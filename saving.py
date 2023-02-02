@@ -3,12 +3,13 @@ import pandas as pd
 import numpy as np
 from IPython.display import display
 
+
 # function for saving all the final outputs
 def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **inputs):
     # change to the output files directory
     os.chdir(inputs['out_files_dir'])
 
-    # save the plot
+    # save the plots
     fig.savefig(fname=(inputs['filename'][0:-4] + '--plots.png'), dpi='figure', format='png', facecolor='w')
 
     # save the function inputs used for this run
@@ -19,7 +20,7 @@ def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **i
     velocity_data = np.stack((vc_out['time_f'], vc_out['velocity_f']), axis=1)
     np.savetxt(inputs['filename'][0:-4] + '--velocity' + '.csv', velocity_data, delimiter=',')
 
-    # save the smooth velocity trace
+    # save the smoothed velocity trace
     velocity_data_smooth = np.stack((vc_out['time_f'], vc_out['velocity_f_smooth']), axis=1)
     np.savetxt(inputs['filename'][0:-4] + '--velocity--smooth' + '.csv', velocity_data_smooth, delimiter=',')
 
@@ -73,9 +74,9 @@ def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **i
 
     # display the final results table in nanoseconds to make it more readable
     # the data in the saved file is still in seconds
-    results_df['Value'][5] = results_df['Value'][5]/1e-9
-    results_df['Value'][7] = results_df['Value'][7]/1e-9
-    results_df['Value'][9] = results_df['Value'][9]/1e-9
-    results_df['Value'][16] = results_df['Value'][16]/1e-9
-    results_df['Value'][19] = results_df['Value'][19]/1e-9
+    results_df['Value'][5] = results_df['Value'][5] / 1e-9
+    results_df['Value'][7] = results_df['Value'][7] / 1e-9
+    results_df['Value'][9] = results_df['Value'][9] / 1e-9
+    results_df['Value'][16] = results_df['Value'][16] / 1e-9
+    results_df['Value'][19] = results_df['Value'][19] / 1e-9
     display(results_df)

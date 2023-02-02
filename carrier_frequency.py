@@ -2,8 +2,8 @@ import numpy as np
 from scipy.fft import (fft, fftfreq)
 
 
-# calculate the carrier frequency as the frequency with the max amplitude
-# within the frequency range of interest
+# calculate the carrier frequency as the frequency with the max amplitude within the frequency range of interest
+# specified in the user inputs
 def carrier_frequency(spall_doi_finder_outputs, **inputs):
 
     # unpack dictionary values in to individual variables
@@ -32,4 +32,5 @@ def carrier_frequency(spall_doi_finder_outputs, **inputs):
     # find the carrier as the frequency with the max amplitude
     cen = freq3[np.argmax(ampl3)]
 
+    # return the carrier frequency
     return cen

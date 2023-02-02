@@ -1,19 +1,19 @@
 import numpy as np
 
-# function to take the numerical derivative of input array phas (central difference with a 9-point stencil)
-# phas is padded so that after smoothing the final velocity trace matches the length of the domain of interest
-# this avoids issues with handling the boundaries in the derivative and later in smoothing
+# function to take the numerical derivative of input array phas (central difference with a 9-point stencil).
+# phas is padded so that after smoothing the final velocity trace matches the length of the domain of interest.
+# this avoids issues with handling the boundaries in the derivative and later in smoothing.
 def num_derivative(phas, window, time_start_idx, time_end_idx, fs):
 
     # calculate how much padding is needed. half_space padding comes from the length of the smoothing window. the 4
-    # comes from the fact that a 9-point stencil is being used
+    # is added to account for the 9-point stencil
     half_space = int(np.floor(window / 2))
     pad = half_space + 4
 
     # get only the section of interest
     phas_pad = phas[time_start_idx - pad:time_end_idx + pad]
 
-    # calculate the derivative
+    # calculate the derivative with the 9-point central difference method
     dpdt_pad = np.zeros(phas_pad.shape)
     for i in range(4, len(dpdt_pad) - 4):
         dpdt_pad[i] = ((1 / 280) * phas_pad[i - 4]

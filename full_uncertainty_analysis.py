@@ -8,7 +8,7 @@ in Thin Metal Foils. Exp Mech 59, 611–628 (2019). https://doi.org/10.1007/s113
 import numpy as np
 
 
-# program to calculate the uncertainty in the spall and strain rate values
+# program to calculate the uncertainty in the spall strength and strain rate
 def full_uncertainty_analysis(cen, sa_out, **inputs):
 
     # unpack dictionary values in to individual variables
@@ -73,6 +73,7 @@ def full_uncertainty_analysis(cen, sa_out, **inputs):
                                 term12 ** 2 +
                                 term13 ** 2)
 
+    # save outputs to a dictionary
     fua_out = {'spall_uncert': delta_spall,
                'strain_rate_uncert': delta_strain_rate}
 

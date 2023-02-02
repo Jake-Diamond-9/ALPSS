@@ -16,7 +16,7 @@ def spall_analysis(vc_out, **inputs):
     C0 = inputs['C0']
     density = inputs['density']
 
-    # get the peak velocity
+    # get the global peak velocity
     peak_velocity = np.max(velocity_f_smooth)
 
     # attempt to get the fist local minimum after the peak velocity to get the pullback

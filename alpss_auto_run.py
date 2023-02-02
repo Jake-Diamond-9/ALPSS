@@ -37,10 +37,13 @@ class Handler(FileSystemEventHandler):
             return None
 
         elif event.event_type == 'created':
+
             # Take any action here when a file is first created.
             print("Received created event - %s." % event.src_path)
+
             fname = event.src_path[-23:]
             print(f"File Created:  {fname}")
+
             alpss_main(filename="F2--20211018--00015.txt",
                        save_data='yes',
                        start_time_user='none',
