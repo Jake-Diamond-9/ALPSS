@@ -9,7 +9,7 @@
  
 <div align="center">
 
-[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/github/license/Jake-Diamond-9/ALPSS) ![GitHub Release Date](https://img.shields.io/github/release-date/Jake-Diamond-9/ALPSS?color=yellow) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=lightgrey)
+[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/github/license/Jake-Diamond-9/ALPSS) ![GitHub Release Date](https://img.shields.io/github/release-date/Jake-Diamond-9/ALPSS) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=lightgrey)
 
 </div>
 
