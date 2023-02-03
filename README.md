@@ -9,7 +9,7 @@
  
 <div align="center">
 
-[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/badge/license-GPL--3.0-orange) ![PyPI - Python Version](https://img.shields.io/badge/python-3.10-brightgreen) ![GitHub Release Date](https://img.shields.io/badge/release%20date-feb%202023-yellow) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=lightgrey)
+[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/github/license/Jake-Diamond-9/ALPSS) ![PyPI - Python Version](https://img.shields.io/badge/python-3.10-brightgreen) ![GitHub Release Date](https://img.shields.io/github/release-date/Jake-Diamond-9/ALPSS?color=yellow) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=lightgrey)
 
 </div>
 
