@@ -6,7 +6,7 @@
 <div align="center"><sup>2</sup> Hopkins Extreme Materials Institute (HEMI), Johns Hopkins University, Baltimore, MD, USA </div>
 <div align="center"><sup>3</sup> Department of Physics and Astronomy, Johns Hopkins University, Baltimore, MD, USA </div>  
 
-[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/badge/license-GPL--3.0-orange)
+[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/badge/license-GPL--3.0-orange) ![PyPI - Python Version](https://img.shields.io/badge/python-3.10-brightgreen) ![GitHub Release Date](https://img.shields.io/badge/release%20date-feb%202023-yellow)
 
 ## Copyright
 GNU General Public License v3.0
