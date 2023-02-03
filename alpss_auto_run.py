@@ -41,10 +41,10 @@ class Handler(FileSystemEventHandler):
             # Take any action here when a file is first created.
             print("Received created event - %s." % event.src_path)
 
-            filename = event.src_path[-23:]
-            print(f"File Created:  {filename}")
+            fname = event.src_path[-23:]
+            print(f"File Created:  {fname}")
 
-            alpss_main(filename=filename,
+            alpss_main(filename=fname,
                        save_data='yes',
                        start_time_user='none',
                        header_lines=5,
