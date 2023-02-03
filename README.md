@@ -47,7 +47,7 @@ The simplest way to install these packages is to use the prepared Anaconda envir
 Alternatively, if the _ALPSS\_env.yml_ install does not work, the packages can be installed individually via the Anaconda Navigator interface.
 1. Open Anaconda and navigate to the **_Environments_** tab on the left hand side underneath **_Home_**.
 2. Towards the bottom of the window click **_Create_** to create a new environment.
-3. Name your new environment ("ALPSS" is recommended) and use the dropdown menu to install the latest version of Python.
+3. Name your new environment ("ALPSS_env" is recommended) and use the dropdown menu to install the latest version of Python.
 4. In the ALPSS environment click the dropdown menu that says **_Installed_** and change it to **_All_**.
 5. In the **_Search Packages_** bar type "matplotlib". Select the box next to the package with the name **_matplotlib_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 6. In the **_Search Packages_** bar type "numpy". Select the box next to the package with the name **_numpy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
