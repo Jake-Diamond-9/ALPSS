@@ -44,7 +44,7 @@ class Handler(FileSystemEventHandler):
             fname = event.src_path[-23:]
             print(f"File Created:  {fname}")
 
-            alpss_main(filename="F2--20211018--00015.txt",
+            alpss_main(filename=fname,
                        save_data='yes',
                        start_time_user='none',
                        header_lines=5,
