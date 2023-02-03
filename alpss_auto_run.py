@@ -82,7 +82,7 @@ class Handler(FileSystemEventHandler):
                        delta_rho=9,
                        delta_C0=23,
                        delta_lam=8e-18,
-                       theta=0.1,
+                       theta=0,
                        delta_theta=2.5,
                        delta_freq_tb=20e6,
                        delta_freq_td=20e6,
