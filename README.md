@@ -59,7 +59,7 @@ Alternatively, if the _ALPSS\_env.yml_ install does not work, the packages can b
 ## Running ALPSS
 With your ALPSS environment selected, return to the Anaconda home screen and launch the Spyder application. Once Spyder opens, click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
 
-A sample file is available for download from the Johns Hopkins OneDrive [here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt). ALPSS has only been tested with input files in the form of a two column _.txt_ file containing the time in column 1 and voltage in column 2.
+A sample file is available for download from the Johns Hopkins OneDrive [here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt). ALPSS has only been tested with input files in the form of a two column _.txt_ file containing the time in column 1 and voltage in column 2 as seen in the sample file. I expect that the import would work fine for a _.csv_, but again, this has not been tested.
 
 ### Running a Single Signal
 Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. If using the sample file provided above, only two input parameters need to be changed from the original repository file. 
