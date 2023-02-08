@@ -96,7 +96,7 @@ def alpss_main(**inputs):
             mag = np.abs(Zxx)
 
             # plotting
-            fig, (ax1, ax2) = plt.subplots(1, 2, num=1, figsize=(11, 4), dpi=300)
+            fig, (ax1, ax2) = plt.subplots(1, 2, num=2, figsize=(11, 4), dpi=300)
             ax1.plot(time / 1e-9, voltage / 1e-3)
             ax1.set_xlabel('Time (ns)')
             ax1.set_ylabel('Voltage (mV)')
