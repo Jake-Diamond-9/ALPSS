@@ -61,6 +61,8 @@ With your ALPSS environment selected, return to the Anaconda home screen and lau
 
 A sample file is available for download from the Johns Hopkins OneDrive [here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt). ALPSS has only been tested with input files in the form of a two column _.txt_ file containing the time in column 1 and voltage in column 2 as seen in the sample file. I expect that the import would work fine for a _.csv_, but again, this has not been tested.
 
+Additional data files are available through the paper by [DiMarco et al.](https://doi.org/10.3390/met13030454) and can be accessed [here](https://craedl.org/pubs?p=6348&t=3&c=187&s=hemi&d=https:%2F%2Ffs.craedl.org#publications).
+
 ### Running a Single Signal
 Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. If using the sample file provided above, only two input parameters need to be changed from the original repository file. 
 1. _exp\_data\_dir_ should be changed to the directory where you have stored the sample file.
