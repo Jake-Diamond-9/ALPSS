@@ -4,7 +4,7 @@ from matplotlib.patches import Rectangle
 import pandas as pd
 
 # function to generate the final figure
-def plotting(sdf_out, cen, cf_out, vc_out, sa_out, fua_out, start_time, end_time, **inputs):
+def plotting(sdf_out, cen, cf_out, vc_out, va_out, start_time, end_time, **inputs):
 
     # create the figure and axes
     fig = plt.figure(num=1, figsize=inputs['plot_figsize'], dpi=inputs['plot_dpi'])
@@ -124,23 +124,15 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, fua_out, start_time, end_time
     plt6.set_clim([np.min(cf_out['power_filt_doi']), np.max(cf_out['power_filt_doi'])])
 
     # plotting the final smoothed velocity trace with spall point markers (if they were found on the signal)
-    ax7.plot((vc_out['time_f'] - sdf_out['t_start_corrected']) / 1e-9,
-             vc_out['velocity_f_smooth'], 'k-', linewidth=2.5)
-    ax7.set_xlabel('Time (ns)')
+    ax7.plot(va_out['position']/1e-6, va_out['vel_position'][1:], 'k-', linewidth=2.5, label='Smoothed Velocity')
+    y_a = np.array([0, vel_lim[-1]])
+    x_a1 = (inputs['spacer_thickness'] - inputs['impact_vel_averaging_dist']/2) * np.ones(y_a.shape)
+    x_a2 = (inputs['spacer_thickness'] + inputs['impact_vel_averaging_dist']/2) * np.ones(y_a.shape)
+    ax7.fill_betweenx(y_a, x_a1/1e-6, x_a2/1e-6, color='red', alpha=0.3, edgecolor=None, label='Averaging Area')
+    ax7.set_ylim([0, np.max(va_out['vel_position'][1:])+100])
+    ax7.legend()
+    ax7.set_xlabel(r'Position ($\mu$m)')
     ax7.set_ylabel('Velocity (m/s)')
-    if not np.isnan(sa_out['t_max_comp']):
-        ax7.plot((sa_out['t_max_comp'] - sdf_out['t_start_corrected']) / 1e-9, sa_out['v_max_comp'], 'bs',
-                 label=f'Velocity at Max Compression: {int(round(sa_out["v_max_comp"]))}')
-    if not np.isnan(sa_out['t_max_ten']):
-        ax7.plot((sa_out['t_max_ten'] - sdf_out['t_start_corrected']) / 1e-9, sa_out['v_max_ten'], 'ro',
-                 label=f'Velocity at Max Tension: {int(round(sa_out["v_max_ten"]))}')
-    if not np.isnan(sa_out['t_rc']):
-        ax7.plot((sa_out['t_rc'] - sdf_out['t_start_corrected']) / 1e-9, sa_out['v_rc'], 'gD',
-                 label=f'Velocity at Recompression: {int(round(sa_out["v_rc"]))}')
-    ax7.set_xlim([-inputs['t_before'] / 1e-9, (vc_out['time_f'][-1] - sdf_out['t_start_corrected']) / 1e-9])
-    ax7.set_title('Free Surface Velocity')
-    if not np.isnan(sa_out['t_max_comp']) or not np.isnan(sa_out['t_max_ten']) or not np.isnan(sa_out['t_rc']):
-        ax7.legend(loc='lower right', fontsize=9)
 
     # table 1 to show general information on the run
     run_data1 = {'Name': ['Date',
@@ -166,14 +158,14 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, fua_out, start_time, end_time
     ax8.axis('off')
 
     # table 2 to show important results from the run
-    run_data2 = {'Name': ['Velocity at Max Compression (m/s)',
-                          'Peak Shock Stress (GPa)',
-                          'Strain Rate (x1e6)',
-                          'Spall Strength (GPa)'],
-                 'Value': [round(sa_out['v_max_comp'], 2),
-                           round((.5 * inputs['density'] * inputs['C0'] * sa_out['v_max_comp']) / 1e9, 6),
-                           f"{round(sa_out['strain_rate_est'] / 1e6, 6)} +- {round(fua_out['strain_rate_uncert'] / 1e6, 6)}",
-                           f"{round(sa_out['spall_strength_est'] / 1e9, 6)} +- {round(fua_out['spall_uncert'] / 1e9, 6)}"]}
+    run_data2 = {'Name': [r'Spacer Thickness ($\mu$m)',
+                          r'Window Width ($\mu$m)',
+                          'Impact Velocity (m/s)',
+                          'Impact Velocity SD (m/s)'],
+                 'Value': [round(inputs['spacer_thickness']/1e-6),
+                           round(inputs['impact_vel_averaging_dist']/1e-6),
+                           round(va_out['impact_vel']),
+                           round(va_out['impact_vel_SD'])]}
 
     df2 = pd.DataFrame(data=run_data2)
     cellLoc2 = 'center'

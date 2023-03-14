@@ -3,13 +3,12 @@ import pandas as pd
 import numpy as np
 from IPython.display import display
 
-
 # function for saving all the final outputs
-def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **inputs):
+def saving(sdf_out, cen, vc_out, va_out, start_time, end_time, fig, **inputs):
     # change to the output files directory
     os.chdir(inputs['out_files_dir'])
 
-    # save the plots
+    # save the plot
     fig.savefig(fname=(inputs['filename'][0:-4] + '--plots.png'), dpi='figure', format='png', facecolor='w')
 
     # save the function inputs used for this run
@@ -20,7 +19,7 @@ def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **i
     velocity_data = np.stack((vc_out['time_f'], vc_out['velocity_f']), axis=1)
     np.savetxt(inputs['filename'][0:-4] + '--velocity' + '.csv', velocity_data, delimiter=',')
 
-    # save the smoothed velocity trace
+    # save the smooth velocity trace
     velocity_data_smooth = np.stack((vc_out['time_f'], vc_out['velocity_f_smooth']), axis=1)
     np.savetxt(inputs['filename'][0:-4] + '--velocity--smooth' + '.csv', velocity_data_smooth, delimiter=',')
 
@@ -33,18 +32,9 @@ def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **i
                                 'Time',
                                 'File Name',
                                 'Run Time',
-                                'Velocity at Max Compression',
-                                'Time at Max Compression',
-                                'Velocity at Max Tension',
-                                'Time at Max Tension',
-                                'Velocity at Recompression',
-                                'Time at Recompression',
                                 'Carrier Frequency',
-                                'Spall Strength',
-                                'Spall Strength Uncertainty',
-                                'Strain Rate',
-                                'Strain Rate Uncertainty',
-                                'Peak Shock Stress',
+                                'Impact Velocity',
+                                'Impact Velocity SD',
                                 'Spect Time Res',
                                 'Spect Freq Res',
                                 'Spect Velocity Res',
@@ -53,18 +43,9 @@ def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **i
                                  start_time.strftime('%I:%M %p'),
                                  inputs['filename'],
                                  (end_time - start_time),
-                                 sa_out['v_max_comp'],
-                                 sa_out['t_max_comp'],
-                                 sa_out['v_max_ten'],
-                                 sa_out['t_max_ten'],
-                                 sa_out['v_rc'],
-                                 sa_out['t_rc'],
                                  cen,
-                                 sa_out['spall_strength_est'],
-                                 fua_out['spall_uncert'],
-                                 sa_out['strain_rate_est'],
-                                 fua_out['strain_rate_uncert'],
-                                 (.5 * inputs['density'] * inputs['C0'] * sa_out['v_max_comp']),
+                                 va_out['impact_vel'],
+                                 va_out['impact_vel_SD'],
                                  sdf_out['t_res'],
                                  sdf_out['f_res'],
                                  0.5 * (inputs['lam'] * sdf_out['f_res']),
@@ -74,9 +55,6 @@ def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **i
 
     # display the final results table in nanoseconds to make it more readable
     # the data in the saved file is still in seconds
-    results_df['Value'][5] = results_df['Value'][5] / 1e-9
-    results_df['Value'][7] = results_df['Value'][7] / 1e-9
-    results_df['Value'][9] = results_df['Value'][9] / 1e-9
-    results_df['Value'][16] = results_df['Value'][16] / 1e-9
-    results_df['Value'][19] = results_df['Value'][19] / 1e-9
+    results_df['Value'][7] = results_df['Value'][7]/1e-9
+    results_df['Value'][10] = results_df['Value'][10]/1e-9
     display(results_df)

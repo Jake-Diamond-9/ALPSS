@@ -10,7 +10,6 @@ def gauss(x, amp, sigma, mu):
 # function for smoothing the padded velocity data; padded data is used so the program can return
 # a smooth velocity over the full domain of interest without running in to issues with the boundaries
 def smoothing(velocity_pad, smoothing_window, smoothing_wid, smoothing_amp, smoothing_sigma, smoothing_mu):
-
     # if the smoothing window is not an odd integer exit the program
     if (smoothing_window % 2 != 1) or (smoothing_window >= len(velocity_pad) / 2):
         raise Exception('Input variable "smoothing_window" must be an odd integer and less than half the length of '
@@ -19,11 +18,11 @@ def smoothing(velocity_pad, smoothing_window, smoothing_wid, smoothing_amp, smoo
     # number of points to either side of the point of interest
     half_space = int(np.floor(smoothing_window / 2))
 
-    # weights to be applied to each sliding window as calculated from a normal distribution
+    # weights to be applied to each sliding window
     weights = gauss(np.linspace(-smoothing_wid, smoothing_wid, smoothing_window),
                     smoothing_amp, smoothing_sigma, smoothing_mu)
 
-    # iterate over the domain and calculate the gaussian weighted moving average
+    # iterate over the domain and calculate the moving gaussian weighted average
     velocity_f_smooth = np.zeros(len(velocity_pad) - smoothing_window + 1)
     for i in range(half_space, len(velocity_f_smooth) + half_space):
         vel_pad_win = velocity_pad[i - half_space:i + half_space + 1]

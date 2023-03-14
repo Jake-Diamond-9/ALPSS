@@ -3,8 +3,7 @@ from plotting import *
 from carrier_frequency import *
 from carrier_filter import *
 from velocity_calculation import *
-from spall_analysis import *
-from full_uncertainty_analysis import *
+from velocity_analysis import *
 from saving import *
 from datetime import datetime
 import traceback
@@ -33,22 +32,18 @@ def alpss_main(**inputs):
         # function to calculate the velocity from the filtered voltage signal
         vc_out = velocity_calculation(sdf_out, cen, cf_out, **inputs)
 
-        # function to find points of interest on the velocity trace
-        sa_out = spall_analysis(vc_out, **inputs)
-
-        # function to calculate uncertainties in the spall strength and strain rate
-        fua_out = full_uncertainty_analysis(cen, sa_out, **inputs)
+        va_out = velocity_analysis(vc_out, **inputs)
 
         # end the program timer
         end_time = datetime.now()
 
         # function to generate the final figure
-        fig = plotting(sdf_out, cen, cf_out, vc_out,
-                       sa_out, fua_out, start_time, end_time, **inputs)
+        fig = plotting(sdf_out, cen, cf_out, vc_out, va_out,
+                       start_time, end_time, **inputs)
                        
         # function to save the output files if desired
         if inputs['save_data'] == 'yes':
-            saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **inputs)
+            saving(sdf_out, cen, vc_out, va_out, start_time, end_time, fig, **inputs)
 
         # end final timer and display full runtime
         end_time2 = datetime.now()
@@ -62,7 +57,6 @@ def alpss_main(**inputs):
 
         # attempt to plot the voltage signal from the imported data
         try:
-
             # import the desired data. Convert the time to skip and turn into number of rows
             t_step = 1 / inputs['sample_rate']
             rows_to_skip = inputs['header_lines'] + inputs['time_to_skip'] / t_step  # skip the header lines too
@@ -96,7 +90,7 @@ def alpss_main(**inputs):
             mag = np.abs(Zxx)
 
             # plotting
-            fig, (ax1, ax2) = plt.subplots(1, 2, num=2, figsize=(11, 4), dpi=300)
+            fig, (ax1, ax2) = plt.subplots(1, 2, num=1, figsize=(11, 4), dpi=300)
             ax1.plot(time / 1e-9, voltage / 1e-3)
             ax1.set_xlabel('Time (ns)')
             ax1.set_ylabel('Voltage (mV)')
