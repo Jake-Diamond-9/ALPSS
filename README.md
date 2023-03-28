@@ -22,7 +22,19 @@ ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#82
 ## Citing ALPSS
 For use in published works, ALPSS can be cited from its original paper _ALPSS: A program for automated analysis of photonic Doppler velocimetry spall signals, in prep._ 
 
-The repository itself can be cited using its DOI: 10.5281/zenodo.7603823 (v1.1 only)
+The repository itself can be cited using its DOI 10.5281/zenodo.7603823 (v1.1 only) or with the bibtex 
+
+~~~
+@software{Diamond_ALPSS_2023,
+  author = {Diamond, Jacob M. and Salander, Samuel and Ramesh, K.T.},
+  doi = {10.5281/zenodo.7603823},
+  month = {02},
+  title = {{ALPSS}},
+  url = {https://github.com/Jake-Diamond-9/ALPSS},
+  version = {1.1},
+  year = {2023}
+}
+~~~
 
 ## Installation
 It is recommended for users new to python to use [Anaconda](https://www.anaconda.com/).
