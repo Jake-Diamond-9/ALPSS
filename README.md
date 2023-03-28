@@ -1,11 +1,17 @@
 # <div align="center">ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals</div>
-#### <div align="center">***v1.0***</div>
+#### <div align="center">***v1.1***</div>
 
 #### <div align="center">Jacob M. Diamond<sup>1,2</sup>, Samuel Salander<sup>3</sup>, K. T. Ramesh<sup>1,2</sup></div>
 <div align="center"><sup>1</sup> Department of Mechanical Engineering, Johns Hopkins University, Baltimore, MD, USA </div>
 <div align="center"><sup>2</sup> Hopkins Extreme Materials Institute (HEMI), Johns Hopkins University, Baltimore, MD, USA </div>
-<div align="center"><sup>3</sup> Department of Physics and Astronomy, Johns Hopkins University, Baltimore, MD, USA </div>
+<div align="center"><sup>3</sup> Department of Physics and Astronomy, Johns Hopkins University, Baltimore, MD, USA </div>  
+ <br>
+ 
+<div align="center">
 
+[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/github/license/Jake-Diamond-9/ALPSS) ![GitHub Release Date](https://img.shields.io/github/release-date/Jake-Diamond-9/ALPSS) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=yellow)
+
+</div>
 
 ## Copyright
 GNU General Public License v3.0
@@ -14,7 +20,9 @@ GNU General Public License v3.0
 ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;pall <b><i>S</i></b>&#8202;ignals) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
 
 ## Citing ALPSS
-For use in published works, ALPSS can be cited from its original paper _ALPSS: A program for automated analysis of photonic Doppler velocimetry spall signals, in prep._
+For use in published works, ALPSS can be cited from its original paper _ALPSS: A program for automated analysis of photonic Doppler velocimetry spall signals, in prep._ 
+
+The repository itself can be cited using its DOI: 10.5281/zenodo.7603823 (v1.1 only)
 
 ## Installation
 It is recommended for users new to python to use [Anaconda](https://www.anaconda.com/).
@@ -36,10 +44,24 @@ The simplest way to install these packages is to use the prepared Anaconda envir
 2. Towards the bottom of the window click **_Import_**.
 3. From your local drive, select the file _ALPSS\_env.yml_. Then click the green **_Import_** button. Note this process may take a few minutes as all the required packages are being imported.
 
+Alternatively, if the _ALPSS\_env.yml_ install does not work, the packages can be installed individually via the Anaconda Navigator interface.
+1. Open Anaconda and navigate to the **_Environments_** tab on the left hand side underneath **_Home_**.
+2. Towards the bottom of the window click **_Create_** to create a new environment.
+3. Name your new environment ("ALPSS_env" is recommended) and use the dropdown menu to install the latest version of Python.
+4. In the ALPSS environment click the dropdown menu that says **_Installed_** and change it to **_All_**.
+5. In the **_Search Packages_** bar type "matplotlib". Select the box next to the package with the name **_matplotlib_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+6. In the **_Search Packages_** bar type "numpy". Select the box next to the package with the name **_numpy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+7. In the **_Search Packages_** bar type "scipy". Select the box next to the package with the name **_scipy_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+8. In the **_Search Packages_** bar type "pandas". Select the box next to the package with the name **_pandas_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+9. In the **_Search Packages_** bar type "opencv". Select the 3 boxes next to the packages with the names **_libopencv, opencv, and, py-opencv_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+10. In the **_Search Packages_** bar type "watchdog". Select the box next to the package with the name **_watchdog_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+
 ## Running ALPSS
 With your ALPSS environment selected, return to the Anaconda home screen and launch the Spyder application. Once Spyder opens, click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
 
-A sample file is available for download from the Johns Hopkins OneDrive [Here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt)
+A sample file is available for download from the Johns Hopkins OneDrive [here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt). ALPSS has only been tested with input files in the form of a two column _.txt_ file containing the time in column 1 and voltage in column 2 as seen in the sample file. I expect that the import would work fine for a _.csv_, but again, this has not been tested.
+
+Additional data files are available through the paper by [DiMarco et al.](https://doi.org/10.3390/met13030454) and can be accessed [here](https://craedl.org/pubs?p=6348&t=3&c=187&s=hemi&d=https:%2F%2Ffs.craedl.org#publications).
 
 ### Running a Single Signal
 Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. If using the sample file provided above, only two input parameters need to be changed from the original repository file. 
