@@ -1,8 +1,10 @@
+import numpy as np
 from scipy.fft import fft
 from scipy.fft import ifft
 from scipy.fftpack import fftshift
-from num_derivative import *
-from smoothing import *
+
+from .num_derivative import num_derivative
+from .smoothing import smoothing
 
 
 # function to calculate the velocity from the filtered voltage signal
