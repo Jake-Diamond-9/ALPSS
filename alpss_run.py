@@ -1,5 +1,5 @@
 """
-ALPSS: AnaLysis of Pdv Spall Signals
+ALPSS
 Jake Diamond (2023)
 Johns Hopkins University
 Hopkins Extreme Materials Institute (HEMI)
