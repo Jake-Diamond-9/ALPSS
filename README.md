@@ -1,10 +1,9 @@
 # <div align="center">ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals</div>
 #### <div align="center">***v1.1***</div>
 
-#### <div align="center">Jacob M. Diamond<sup>1,2</sup>, Samuel Salander<sup>3</sup>, K. T. Ramesh<sup>1,2</sup></div>
+#### <div align="center">Jacob M. Diamond<sup>1,2</sup>, K. T. Ramesh<sup>1,2</sup></div>
 <div align="center"><sup>1</sup> Department of Mechanical Engineering, Johns Hopkins University, Baltimore, MD, USA </div>
 <div align="center"><sup>2</sup> Hopkins Extreme Materials Institute (HEMI), Johns Hopkins University, Baltimore, MD, USA </div>
-<div align="center"><sup>3</sup> Department of Physics and Astronomy, Johns Hopkins University, Baltimore, MD, USA </div>  
  <br>
  
 <div align="center">
@@ -26,7 +25,7 @@ The repository itself can be cited using its DOI 10.5281/zenodo.7603823 (v1.1 on
 
 ~~~
 @software{Diamond_ALPSS_2023,
-  author = {Diamond, Jacob M. and Salander, Samuel and Ramesh, K.T.},
+  author = {Diamond, Jacob M. and Ramesh, K.T.},
   doi = {10.5281/zenodo.7603823},
   month = {02},
   title = {{ALPSS}},
@@ -97,5 +96,6 @@ The authors would like to acknowledge the following people for their many helpfu
 - Dr. Debjoy Mallcik
 - Dr. Maggie Eminizer
 - Dr. David Elbert
+- Samuel Salander
 
 Research was sponsored by the Army Research Laboratory and was accomplished under Cooperative Agreement Number W911NF-22-2-0014. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
