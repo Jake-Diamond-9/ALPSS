@@ -48,7 +48,7 @@ def alpss_main(**inputs):
 
         # function to generate the final figure
         fig = plotting(sdf_out, cen, cf_out, vc_out,
-                       sa_out, fua_out, start_time, end_time, **inputs)
+                       sa_out, iua_out, fua_out, start_time, end_time, **inputs)
                        
         # function to save the output files if desired
         if inputs['save_data'] == 'yes':

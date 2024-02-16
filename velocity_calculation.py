@@ -56,7 +56,9 @@ def velocity_calculation(spall_doi_finder_outputs, cen, carrier_filter_outputs, 
         'velocity_f': velocity_f,
         'velocity_f_smooth': velocity_f_smooth,
         'phasD2_f': dpdt,
-        'voltage_filt': voltage_filt
+        'voltage_filt': voltage_filt,
+        'time_start_idx': time_start_idx,
+        'time_end_idx': time_end_idx
     }
 
     return vc_out
