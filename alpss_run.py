@@ -72,7 +72,7 @@ from alpss_main import *
 
 
 alpss_main(filename="F2--20211018--00015.txt",
-           save_data='yes',
+           save_data='no',
            start_time_user='none',
            header_lines=5,
            time_to_skip=50e-6,
@@ -117,6 +117,6 @@ alpss_main(filename="F2--20211018--00015.txt",
            delta_time_d=2.5e-9,
            exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
            out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
-           display_plots='yes',
+           display_plots='no',
            plot_figsize=(12, 10),
            plot_dpi=300)

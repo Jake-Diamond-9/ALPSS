@@ -4,6 +4,7 @@ from carrier_frequency import *
 from carrier_filter import *
 from velocity_calculation import *
 from spall_analysis import *
+from instantaneous_uncertainty_analysis import *
 from full_uncertainty_analysis import *
 from saving import *
 from datetime import datetime
@@ -36,7 +37,10 @@ def alpss_main(**inputs):
         # function to find points of interest on the velocity trace
         sa_out = spall_analysis(vc_out, **inputs)
 
-        # function to calculate uncertainties in the spall strength and strain rate
+        # function to estimate the instantaneous uncertainty for all points in time
+        iua_out = instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs)
+
+        # function to calculate uncertainties in the spall strength and strain rate due to external uncertainties
         fua_out = full_uncertainty_analysis(cen, sa_out, **inputs)
 
         # end the program timer
