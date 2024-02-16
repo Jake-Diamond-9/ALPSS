@@ -52,10 +52,13 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     smoothing_window = inputs['smoothing_window']
     fs = sdf_out['fs']
     time = sdf_out['time']
+    time_f = vc_out['time_f']
     # voltage = sdf_out['voltage']
     voltage_filt = vc_out['voltage_filt']
-    t_doi_start = sdf_out['t_doi_start']
-    t_doi_end = sdf_out['t_doi_end']
+    time_start_idx = vc_out['time_start_idx']
+    time_end_idx = vc_out['time_end_idx']
+    # t_doi_start = sdf_out['t_doi_start']
+    # t_doi_end = sdf_out['t_doi_end']
     carrier_band_time = inputs['carrier_band_time']
     # t_start_corrected = sdf_out['t_start_corrected']
     # t_before = inputs['t_before']
@@ -71,24 +74,27 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     # get the data for only the beginning section of the signal
     time_cut = time[0:steps_take]
     # voltage_cut = voltage[0:steps_take]
-    voltage_filt_cut = voltage_filt[0:steps_take]
+    voltage_filt_early = voltage_filt[0:steps_take]
 
     # fit a sinusoid to the data
-    popt, pcov = curve_fit(sin_func, time_cut, voltage_filt_cut, p0=[0.1, cen, 0, 0])
+    popt, pcov = curve_fit(sin_func, time_cut, voltage_filt_early, p0=[0.1, cen, 0, 0])
 
     # calculate the fitted curve
     volt_fit = sin_func(time_cut, popt[0], popt[1], popt[2], popt[3])
 
     # calculate the residuals
-    noise = voltage_filt_cut - volt_fit
+    noise = voltage_filt_early - volt_fit
+
+    # get data for only the doi of the voltage
+    voltage_filt_doi = voltage_filt[time_start_idx:time_end_idx]
 
     # calculate the envelope indices of the originally imported voltage data (and now filtered) using the stack
     # overflow code
-    lmin, lmax = hl_envelopes_idx(voltage_filt, dmin=1, dmax=1, split=False)
+    lmin, lmax = hl_envelopes_idx(voltage_filt_doi, dmin=1, dmax=1, split=False)
 
     # interpolate the voltage envelope to every time point
-    env_max_interp = np.interp(time, time[lmax], voltage_filt[lmax])
-    env_min_interp = np.interp(time, time[lmin], voltage_filt[lmin])
+    env_max_interp = np.interp(time_f, time_f[lmax], voltage_filt_doi[lmax])
+    env_min_interp = np.interp(time_f, time_f[lmin], voltage_filt_doi[lmin])
 
     # calculate the estimated amplitude at every time
     inst_amp = env_max_interp - env_min_interp
@@ -98,15 +104,16 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     inst_noise = np.std(noise) / (inst_amp / 2)
 
     # calculate the frequency and velocity uncertainty
-    tau = smoothing_window / fs
+    # tau = smoothing_window / fs
+    tau = 9 / fs  # 9 is the number of points in the differentiation stencil
     freq_uncert_scaling = (1 / np.pi) * (np.sqrt(6 / (fs * (tau ** 3))))
     freq_uncert = inst_noise * freq_uncert_scaling
     vel_uncert = freq_uncert * (lam / 2)
 
     # find max noise on the domain of interest
-    t_doi_start_idx = np.argmin(np.abs(time - t_doi_start))
-    t_doi_end_idx = np.argmin(np.abs(time - t_doi_end))
-    doi_max_noise = np.max(inst_noise[t_doi_start_idx:t_doi_end_idx])
+    # t_doi_start_idx = np.argmin(np.abs(time - t_doi_start))
+    # t_doi_end_idx = np.argmin(np.abs(time - t_doi_end))
+    # doi_max_noise = np.max(inst_noise[t_doi_start_idx:t_doi_end_idx])
 
     # print(inst_noise)
     # print(tau)
@@ -116,7 +123,7 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     '''
     # plotting
     fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, dpi=300)
-    ax1.plot(time_cut / 1e-9, voltage_filt_cut * 1e3, c='tab:blue')
+    ax1.plot(time_cut / 1e-9, voltage_filt_early * 1e3, c='tab:blue')
     ax1.plot(time_cut / 1e-9, volt_fit * 1e3, c='tab:orange')
     ax1.set_xlabel('Time (ns)')
     ax1.set_ylabel('Voltage (mV)')
@@ -125,31 +132,31 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     ax2.set_xlabel('Noise (V)')
     ax2.set_ylabel('Counts')
 
-    ax3.plot(time / 1e-9, voltage_filt * 1e3, c='tab:blue')
-    ax3.plot(time / 1e-9, env_max_interp * 1e3, c='tab:red')
-    ax3.plot(time / 1e-9, env_min_interp * 1e3, c='tab:red')
+    ax3.plot(time_f / 1e-9, voltage_filt_doi * 1e3, c='tab:blue')
+    ax3.plot(time_f / 1e-9, env_max_interp * 1e3, c='tab:red')
+    ax3.plot(time_f / 1e-9, env_min_interp * 1e3, c='tab:red')
     ax3.set_xlabel('Time (ns)')
     ax3.set_ylabel('Voltage (mV)')
-    ax3.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
+    # ax3.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
 
-    ax4.plot(time / 1e-9, inst_noise * 100)
+    ax4.plot(time_f / 1e-9, inst_noise * 100)
     ax4.set_xlabel('Time (ns)')
     ax4.set_ylabel('Noise Fraction (%)')
-    ax4.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
-    ax4.set_ylim([0, doi_max_noise * 110])
+    # ax4.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
+    # ax4.set_ylim([0, doi_max_noise * 110])
     # ax4.set_ylim([0, 100])
 
-    ax5.plot(time / 1e-9, freq_uncert / 1e9)
+    ax5.plot(time_f / 1e-9, freq_uncert / 1e9)
     ax5.set_xlabel('Time (ns)')
     ax5.set_ylabel('Frequency Uncert (GHz)')
-    ax5.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
-    ax5.set_ylim([0, (doi_max_noise * freq_uncert_scaling * 1.1) / 1e9])
+    # ax5.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
+    # ax5.set_ylim([0, (doi_max_noise * freq_uncert_scaling * 1.1) / 1e9])
 
-    ax6.plot(time / 1e-9, vel_uncert)
+    ax6.plot(time_f / 1e-9, vel_uncert)
     ax6.set_xlabel('Time (ns)')
     ax6.set_ylabel('Velocity Uncert (m/s)')
-    ax6.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
-    ax6.set_ylim([0, (doi_max_noise * freq_uncert_scaling * (lam / 2) * 1.1)])
+    # ax6.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
+    # ax6.set_ylim([0, (doi_max_noise * freq_uncert_scaling * (lam / 2) * 1.1)])
 
     plt.tight_layout()
     plt.show()
@@ -166,7 +173,6 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
         'env_min_interp': env_min_interp,
         'inst_amp': inst_amp,
         'inst_noise': inst_noise,
-        'doi_max_noise': doi_max_noise,
         'freq_uncert_scaling': freq_uncert_scaling,
         'freq_uncert': freq_uncert,
         'vel_uncert': vel_uncert

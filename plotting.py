@@ -112,8 +112,8 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
 
 
     ax7.plot(sdf_out['time'] / 1e-9, np.real(vc_out['voltage_filt']) * 1e3, label='Filtered Signal', c='tab:blue')
-    ax7.plot(sdf_out['time'] / 1e-9, iua_out['env_max_interp'] * 1e3, label='Signal Envelope', c='tab:red')
-    ax7.plot(sdf_out['time'] / 1e-9, iua_out['env_min_interp'] * 1e3, c='tab:red')
+    ax7.plot(vc_out['time_f'] / 1e-9, iua_out['env_max_interp'] * 1e3, label='Signal Envelope', c='tab:red')
+    ax7.plot(vc_out['time_f'] / 1e-9, iua_out['env_min_interp'] * 1e3, c='tab:red')
     ax7.set_xlabel('Time (ns)')
     ax7.set_ylabel('Voltage (mV)')
     ax7.set_xlim([sdf_out['t_doi_start'] / 1e-9, sdf_out['t_doi_end'] / 1e-9])
@@ -124,12 +124,12 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
 
     # plotting the velocity and smoothed velocity curves to be overlaid on top of the spectrogram
     ax8.plot((vc_out['time_f']) / 1e-9,
-             vc_out['velocity_f'], '-', c='grey', alpha=0.65, linewidth=3.5, label='Velocity')
+             vc_out['velocity_f'], '-', c='grey', alpha=0.65, linewidth=3, label='Velocity')
     ax8.plot((vc_out['time_f']) / 1e-9,
-             vc_out['velocity_f_smooth'], 'k-', linewidth=2, label='Smoothed Velocity')
+             vc_out['velocity_f_smooth'], 'k-', linewidth=3, label='Smoothed Velocity')
 
-    #ax8.plot(sdf_out['time'] / 1e-9, iua_out['vel_uncert'], 'r-')
-
+    ax8.plot(vc_out['time_f'] / 1e-9, vc_out['velocity_f_smooth'] + iua_out['vel_uncert'], 'r-', alpha=0.5, label=r'$1\sigma$ Uncertainty')
+    ax8.plot(vc_out['time_f'] / 1e-9, vc_out['velocity_f_smooth'] - iua_out['vel_uncert'], 'r-', alpha=0.5)
     ax8.set_xlabel('Time (ns)')
     ax8.set_ylabel('Velocity (m/s)')
     ax8.legend(loc='lower right', fontsize=9, framealpha=1)
@@ -156,8 +156,27 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     plt9.set_clim([np.min(cf_out['power_filt_doi']), np.max(cf_out['power_filt_doi'])])
 
     # plotting the final smoothed velocity trace with spall point markers (if they were found on the signal)
+    ax10.fill_between(
+        (vc_out['time_f'] - sdf_out['t_start_corrected']) / 1e-9,
+        vc_out['velocity_f_smooth'] + 2*iua_out['vel_uncert'],
+        vc_out['velocity_f_smooth'] - 2*iua_out['vel_uncert'],
+        color='mistyrose',
+        label=r'$2\sigma$ Uncertainty'
+    )
+
+    ax10.fill_between(
+        (vc_out['time_f'] - sdf_out['t_start_corrected']) / 1e-9,
+        vc_out['velocity_f_smooth'] + iua_out['vel_uncert'],
+        vc_out['velocity_f_smooth'] - iua_out['vel_uncert'],
+        color='lightcoral',
+        alpha=0.5,
+        ec='none',
+        label=r'$1\sigma$ Uncertainty'
+    )
+
+
     ax10.plot((vc_out['time_f'] - sdf_out['t_start_corrected']) / 1e-9,
-             vc_out['velocity_f_smooth'], 'k-', linewidth=2.5)
+             vc_out['velocity_f_smooth'], 'k-', linewidth=3)
     ax10.set_xlabel('Time (ns)')
     ax10.set_ylabel('Velocity (m/s)')
     if not np.isnan(sa_out['t_max_comp']):
@@ -169,10 +188,12 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     if not np.isnan(sa_out['t_rc']):
         ax10.plot((sa_out['t_rc'] - sdf_out['t_start_corrected']) / 1e-9, sa_out['v_rc'], 'gD',
                  label=f'Velocity at Recompression: {int(round(sa_out["v_rc"]))}')
-    ax10.set_xlim([-inputs['t_before'] / 1e-9, (vc_out['time_f'][-1] - sdf_out['t_start_corrected']) / 1e-9])
     #ax10.set_title('Free Surface Velocity')
     if not np.isnan(sa_out['t_max_comp']) or not np.isnan(sa_out['t_max_ten']) or not np.isnan(sa_out['t_rc']):
         ax10.legend(loc='lower right', fontsize=9)
+
+    ax10.set_xlim([-inputs['t_before'] / 1e-9, (vc_out['time_f'][-1] - sdf_out['t_start_corrected']) / 1e-9])
+    ax10.set_ylim([np.min(vc_out['velocity_f_smooth'])-100, np.max(vc_out['velocity_f_smooth']) + 100])
 
     # # table 1 to show general information on the run
     # run_data1 = {'Name': ['Date',
