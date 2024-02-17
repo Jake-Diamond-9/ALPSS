@@ -9,3 +9,5 @@ dependencies:
   - opencv
   - py-opencv
   - spyder
+
+# TODO also import the findiff package
