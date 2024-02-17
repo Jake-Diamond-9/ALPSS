@@ -4,6 +4,7 @@ import numpy as np
 from scipy import signal
 import cv2 as cv
 
+# TODO replace scipy 'stft' with 'ShortTimeFFT' - 'stft' may be depreciated
 
 # function to find the specific domain of interest in the larger signal
 def spall_doi_finder(**inputs):
