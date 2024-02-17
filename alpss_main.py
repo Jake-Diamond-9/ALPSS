@@ -56,7 +56,7 @@ def alpss_main(**inputs):
 
         # end final timer and display full runtime
         end_time2 = datetime.now()
-        print(f'\nFull program runtime (including plotting and saving):\n{end_time2-start_time}\n')
+        #print(f'\nFull program runtime (including plotting and saving):\n{end_time2-start_time}\n')
 
     # in case the program throws an error
     except Exception:
