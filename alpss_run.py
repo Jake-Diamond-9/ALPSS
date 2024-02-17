@@ -75,7 +75,7 @@ from alpss_main import *
 # TODO run new code version on all the old ECAE data used in the alpss paper
 
 alpss_main(filename="F2--20211018--00015.txt",
-           save_data='no',
+           save_data='yes',
            start_time_user='none',
            header_lines=5,
            time_to_skip=50e-6,
@@ -119,7 +119,7 @@ alpss_main(filename="F2--20211018--00015.txt",
            delta_time_c=2.5e-9,
            delta_time_d=2.5e-9,
            exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
-           out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
+           out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/ECAE_ALPSS_Results_500neighbors_w_uncertainty",
            display_plots='yes',
            plot_figsize=(30, 10),
            plot_dpi=300)

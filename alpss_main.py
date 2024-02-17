@@ -52,7 +52,7 @@ def alpss_main(**inputs):
                        
         # function to save the output files if desired
         if inputs['save_data'] == 'yes':
-            saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **inputs)
+            saving(sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time, fig, **inputs)
 
         # end final timer and display full runtime
         end_time2 = datetime.now()

@@ -3,10 +3,9 @@ import pandas as pd
 import numpy as np
 from IPython.display import display
 
-# TODO save all new data related to the noise and uncertainty calculations
 
 # function for saving all the final outputs
-def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **inputs):
+def saving(sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time, fig, **inputs):
     # change to the output files directory
     os.chdir(inputs['out_files_dir'])
 
@@ -28,6 +27,14 @@ def saving(sdf_out, cen, vc_out, sa_out, fua_out, start_time, end_time, fig, **i
     # save the filtered voltage data
     voltage_data = np.stack((sdf_out['time'], np.real(vc_out['voltage_filt']), np.imag(vc_out['voltage_filt'])), axis=1)
     np.savetxt(inputs['filename'][0:-4] + '--voltage' + '.csv', voltage_data, delimiter=',')
+
+    # save the noise fraction
+    noise_data = np.stack((vc_out['time_f'], iua_out['inst_noise']), axis=1)
+    np.savetxt(inputs['filename'][0:-4] + '--noisefrac' + '.csv', noise_data, delimiter=',')
+
+    # save the velocity uncertainty
+    vel_uncert_data = np.stack((vc_out['time_f'], iua_out['vel_uncert']), axis=1)
+    np.savetxt(inputs['filename'][0:-4] + '--veluncert' + '.csv', vel_uncert_data, delimiter=',')
 
     # save the final results
     results_to_save = {'Name': ['Date',
