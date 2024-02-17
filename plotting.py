@@ -3,6 +3,9 @@ import numpy as np
 from matplotlib.patches import Rectangle
 import pandas as pd
 
+# TODO put a vertical red bar on the voltage signal plot to show the ROI
+# TODO fix the mis-ordered axis numbers (ax10, ax11, ax12)
+
 # function to generate the final figure
 def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time, end_time, **inputs):
 
@@ -17,8 +20,10 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax7 = plt.subplot2grid((3, 5), (0, 2), colspan=2)                  # voltage ROI
     ax8 = plt.subplot2grid((3, 5), (1, 2), colspan=2, rowspan=2)                  # velocity overlaid with spectrogram
     ax9 = ax8.twinx()                                       # spectrogram overlaid with velocity
-    ax10 = plt.subplot2grid((3, 5), (0, 4))                  # velocity and spall points
-    ax11 = plt.subplot2grid((3, 5), (1, 4), colspan=1, rowspan=2)       # table 1
+    ax10 = plt.subplot2grid((3, 5), (1, 4))                  # velocity and spall points
+    ax11 = plt.subplot2grid((3, 5), (0, 4))                 # noise fraction
+    ax12 = ax11.twinx()                                     # velocity uncertainty
+    ax13 = plt.subplot2grid((3, 5), (2, 4), colspan=1, rowspan=1)       # table 1
     # ax9 = plt.subplot2grid((4, 2), (3, 1), colspan=1)       # table 2
 
 
@@ -195,6 +200,26 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax10.set_xlim([-inputs['t_before'] / 1e-9, (vc_out['time_f'][-1] - sdf_out['t_start_corrected']) / 1e-9])
     ax10.set_ylim([np.min(vc_out['velocity_f_smooth'])-100, np.max(vc_out['velocity_f_smooth']) + 100])
 
+
+    ax11.plot(vc_out['time_f'] / 1e-9, iua_out['inst_noise'] * 100, 'r', linewidth=3)
+    ax11.set_xlabel('Time (ns)')
+    ax11.set_ylabel('Noise Fraction (%)')
+    ax11.set_xlim([vc_out['time_f'][0] / 1e-9, vc_out['time_f'][-1] / 1e-9])
+    ax11.minorticks_on()
+    ax11.grid(axis='both', which='both')
+
+    ax12.plot(vc_out['time_f'] / 1e-9, iua_out['vel_uncert'], linewidth=3)
+    ax12.set_ylabel('Velocity Uncertainty (m/s)')
+    ax12.minorticks_on()
+
+
+    if np.max(iua_out['inst_noise']) > 1.0:
+        ax11.set_ylim([0, 100])
+        ax12.set_ylim([0, iua_out['freq_uncert_scaling']*(inputs['lam']/2)])
+
+
+
+
     # # table 1 to show general information on the run
     # run_data1 = {'Name': ['Date',
     #                       'Time',
@@ -226,15 +251,15 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     df1 = pd.DataFrame(data=run_data1)
     cellLoc1 = 'center'
     loc1 = 'center'
-    table1 = ax11.table(cellText=df1.values,
+    table1 = ax13.table(cellText=df1.values,
                        colLabels=df1.columns,
                        cellLoc=cellLoc1,
                        loc=loc1)
     table1.auto_set_font_size(False)
     table1.set_fontsize(10)
-    table1.scale(1.1, 3.25)
-    ax11.axis('tight')
-    ax11.axis('off')
+    table1.scale(1, 1)
+    ax13.axis('tight')
+    ax13.axis('off')
 
     '''
     # table 2 to show important results from the run

@@ -1,5 +1,9 @@
 import numpy as np
 
+
+# TODO switch out numerical differentiation for the findiff package
+
+
 # function to take the numerical derivative of input array phas (central difference with a 9-point stencil).
 # phas is padded so that after smoothing the final velocity trace matches the length of the domain of interest.
 # this avoids issues with handling the boundaries in the derivative and later in smoothing.

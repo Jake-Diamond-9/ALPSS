@@ -70,6 +70,9 @@ plot_dpi:                   float; dpi for the final plots
 
 from alpss_main import *
 
+# TODO add in the new input params
+# TODO clean up code and add comments
+# TODO run new code version on all the old ECAE data used in the alpss paper
 
 alpss_main(filename="F2--20211018--00015.txt",
            save_data='no',
@@ -119,4 +122,4 @@ alpss_main(filename="F2--20211018--00015.txt",
            out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
            display_plots='yes',
            plot_figsize=(30, 10),
-           plot_dpi=200)
+           plot_dpi=300)
