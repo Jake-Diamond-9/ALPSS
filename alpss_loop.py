@@ -1,5 +1,5 @@
 # script to loop over multiple files and run them with previously used input parameters
-
+'''
 from alpss_main import *
 import pandas as pd
 from datetime import datetime
@@ -18,7 +18,7 @@ df_tally = pd.read_excel(tally_path, index_col=0)
 results_path = '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/ECAE_ALPSS_Results_500neighbors'
 
 # loop over all the files
-for i, file in enumerate(df_tally.Filename[0:10]):
+for i, file in enumerate(df_tally.Filename):
     # start timer for single file
     fstart = datetime.now()
 
@@ -31,7 +31,7 @@ for i, file in enumerate(df_tally.Filename[0:10]):
 
     # run the new uncertainty version of alpss with the same previous inputs
     alpss_main(filename=inp_df.loc['filename', 'Value'],
-               save_data='yes',
+               save_data='no',
                start_time_user=inp_df.loc['start_time_user', 'Value'],
                header_lines=int(inp_df.loc['header_lines', 'Value']),
                time_to_skip=float(inp_df.loc['time_to_skip', 'Value']),
@@ -83,3 +83,82 @@ for i, file in enumerate(df_tally.Filename[0:10]):
     print(f"Completed {i + 1}/{len(df_tally.Filename)},    Run Time: {datetime.now() - fstart}")
 
 print(f'Full Program Run Time: {datetime.now() - pstart}')
+'''
+
+# script to calculate the average noise seen in successfully processed signals.
+# key for tallied data: Correct Time [1], Correct Spall [2], Both [3], Failed [4]
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import warnings
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
+# get the data from the excel sheet with the tallied ALPSS results
+tally_path = '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/ECAE_tally_500neighbors.xlsx'
+df_tally = pd.read_excel(tally_path, index_col=0)
+
+# path to the pdv analysis results for all the files calculated with uncertainty
+results_path = '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/ECAE_ALPSS_Results_500neighbors_w_uncertainty'
+
+# list to store the extracted noise data
+noise_list = np.array([])
+
+# list to store the medians of the individual signals
+median_list = np.array([])
+
+# variable to store the name of the best signal
+best_sig = ''
+
+# count the number of files processed
+j = 0
+
+# loop over all the files
+for i, file in enumerate(df_tally.Filename):
+
+    if df_tally.loc[i, 'Success'] == 3:
+        j += 1
+        # extract the filename and get the results file
+        fname = file[0:-len('--plots.png')]
+        res_name = results_path + '/' + fname + '--results.csv'
+        res_df = pd.read_csv(res_name, index_col=0, names=['Value'])
+
+        # get the signal start time from the results
+        t_start = float(res_df.loc['Signal Start Time', 'Value'])
+
+        # get the spall time from the results
+        t_spall = float(res_df.loc['Time at Max Tension', 'Value'])
+
+        # read in the noise data
+        noise_name = results_path + '/' + fname + '--noisefrac.csv'
+        noise_df = pd.read_csv(noise_name, names=['time', 'noise'])
+        time = noise_df['time'].to_numpy()
+        noise = noise_df['noise'].to_numpy()
+
+        # find the index nearest to the start and spall times
+        t_start_idx = np.argmin(np.abs(t_start - time))
+        t_spall_idx = np.argmin(np.abs(t_spall - time))
+
+        # pull out the noise data for the time from t_start to t_spall and store it
+        noise_cut = noise[t_start_idx: t_spall_idx]
+        noise_list = np.append(noise_list, noise_cut)
+
+        # calculate the median noise for the individual signal
+        sig_med = np.median(noise_cut)
+        median_list = np.append(median_list, sig_med)
+
+        if sig_med <= np.min(median_list):
+            best_sig = file
+
+
+print(f'Median: {np.median(noise_list)}')
+print(f'Mean: {np.mean(noise_list)}')
+print(f'Standard Deviation: {np.std(noise_list)}')
+print(f'Average of the Medians: {np.mean(median_list)}')
+print(f'Standard Deviation of the Medians: {np.std(median_list)}')
+print(f'Best Signal, {best_sig}, had a median noise fraction of {np.min(median_list)}')
+
+# fig, ax = plt.subplots(1, 1)
+# ax.violinplot(median_list)
+# plt.tight_layout()
+# plt.show()

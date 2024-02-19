@@ -72,10 +72,9 @@ from alpss_main import *
 
 # TODO add in the new input params
 # TODO clean up code and add comments
-# TODO run new code version on all the old ECAE data used in the alpss paper
 
 alpss_main(filename="F2--20211018--00015.txt",
-           save_data='yes',
+           save_data='no',
            start_time_user='none',
            header_lines=5,
            time_to_skip=50e-6,
