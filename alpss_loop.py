@@ -1,5 +1,5 @@
 # script to loop over multiple files and run them with previously used input parameters
-
+'''
 from alpss_main import *
 import pandas as pd
 from datetime import datetime
@@ -24,7 +24,8 @@ out_dir = "/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 
 table_path = "/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis"
 
 # list of smoothing parameters to check
-windows = np.array([101, 201, 301, 401, 451, 501, 551, 601, 701, 801, 901, 1001, 1101, 1201])
+#windows = np.array([101, 201, 301, 401, 451, 501, 551, 601, 701, 801, 901, 1001, 1101, 1201])
+windows = np.array([1201])
 
 # preallocate storage for a table that will hold the results for the spall strengths for different smoothing params
 results = np.zeros([df_tally.shape[0], windows.shape[0]])
@@ -100,7 +101,7 @@ for j, win in enumerate(windows):
                    out_files_dir=out_dir,
                    display_plots='no',
                    plot_figsize=(30, 10),
-                   plot_dpi=100)
+                   plot_dpi=50)
 
         # extract the spall strength and save to the table
         res_dir = out_dir
@@ -123,14 +124,55 @@ for j, win in enumerate(windows):
         # calculate estimated time remaining
         time_remaining = runs_remaining * np.mean(run_times)
 
-        print(f"Completed {runs}/{num_run}, Run Time: {ftime}, Estimated Time Remaining: {time_remaining}, Estimated Finish Time: {pstart + time_remaining}")
+        print(f"Completed {runs}/{num_run}, Run Time: {ftime}, Estimated Time Remaining: {time_remaining}, Estimated Finish Time: {datetime.now() + time_remaining}")
 
     # write the results to an excel file after each smoothing window has been completed
     df_results_table = pd.DataFrame(results, columns=windows)
-    results_table_path = table_path + '/smoothing_study_results.xlsx'
-    df_results_table.to_excel(results_table_path, index=False)
+    results_table_path = table_path + '/smoothing_study_results1201.xlsx'
+    #df_results_table.to_excel(results_table_path, index=False)
 
 print(f'Full Program Run Time: {datetime.now() - pstart}')
+'''
+
+# script to plot the average spall strength as a function of smoothing window duration
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# get the tallied ecae data
+tally_df = pd.read_excel(
+    '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/ECAE_tally_500neighbors.xlsx',
+    index_col=0)
+
+# get th spall strength results of the smoothing study
+res_df = pd.read_excel(
+    '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/smoothing_study_results.xlsx')
+
+# combine the dataframes
+df = pd.concat([tally_df, res_df], axis=1)
+
+# only take the runs that found the correct spall strengths for the initial ecae runs
+df = df[(df['Success'] == 2) | (df['Success'] == 3)]
+
+# drop the filename and success columns to do averaging
+df = df.drop(['Filename', 'Success', 101, 201, 301, 401, 451, 501, 551], axis=1)
+
+# convert results to numpy arrays to find the average and std
+res = df.to_numpy()
+windows = df.columns.to_numpy()
+ss_mean = np.nanmean(res, axis=0)
+ss_std = np.nanstd(res, axis=0)
+
+# plot results
+fig, ax = plt.subplots(1, 1)
+# ax.errorbar(windows*(1/80), ss_mean/1e9, yerr=ss_std/1e9, ls='-', marker='o', c='k')
+ax.plot(windows * (1 / 80), ss_mean / 1e9, ls='-', marker='o', c='k')
+ax.set_xlabel('Smoothing Window (ns)')
+ax.set_ylabel('Average Spall Strength (GPa)')
+ax.set_ylim([1, 1.5])
+plt.tight_layout()
+plt.show()
 
 # script to calculate the average noise seen in successfully processed signals.
 '''
