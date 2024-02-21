@@ -16,7 +16,7 @@
 GNU General Public License v3.0
 
 ## Overview
-ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;signals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
+ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
 
 ## Citing ALPSS
 For use in published works, ALPSS can be cited from its original paper _ALPSS: A program for automated analysis of photonic Doppler velocimetry spall signals, in prep._ 
