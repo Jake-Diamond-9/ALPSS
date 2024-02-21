@@ -78,15 +78,13 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     # voltage_cut = voltage[0:steps_take]
     voltage_filt_early = voltage_filt[0:steps_take]
 
-    # TODO find a better way to handle failure of the curve fitting
     try:
         # fit a sinusoid to the data
         popt, pcov = curve_fit(sin_func, time_cut, voltage_filt_early, p0=[0.1, cen, 0, 0])
     except Exception:
         print(traceback.format_exc())
-        popt = [0.1, 2e9, 0, 0]
+        popt = [0, 0, 0, 0]
         pcov = [0, 0, 0, 0]
-
 
     # calculate the fitted curve
     volt_fit = sin_func(time_cut, popt[0], popt[1], popt[2], popt[3])

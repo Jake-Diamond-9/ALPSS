@@ -166,11 +166,11 @@ ss_std = np.nanstd(res, axis=0)
 
 # plot results
 fig, ax = plt.subplots(1, 1)
-# ax.errorbar(windows*(1/80), ss_mean/1e9, yerr=ss_std/1e9, ls='-', marker='o', c='k')
-ax.plot(windows * (1 / 80), ss_mean / 1e9, ls='-', marker='o', c='k')
+#ax.errorbar(windows*(1/80), ss_mean/1e9, yerr=ss_std/1e9, ls='-', marker='o', c='k')
+ax.plot(windows * (1 / 80), ss_mean / 1e9, 'ko-')
 ax.set_xlabel('Smoothing Window (ns)')
 ax.set_ylabel('Average Spall Strength (GPa)')
-ax.set_ylim([1, 1.5])
+ax.set_ylim([1.1, 1.35])
 plt.tight_layout()
 plt.show()
 
