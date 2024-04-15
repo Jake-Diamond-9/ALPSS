@@ -34,11 +34,11 @@ def alpss_main(**inputs):
         # function to calculate the velocity from the filtered voltage signal
         vc_out = velocity_calculation(sdf_out, cen, cf_out, **inputs)
 
-        # function to find points of interest on the velocity trace
-        sa_out = spall_analysis(vc_out, **inputs)
-
         # function to estimate the instantaneous uncertainty for all points in time
         iua_out = instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs)
+
+        # function to find points of interest on the velocity trace
+        sa_out = spall_analysis(vc_out, iua_out, **inputs)
 
         # function to calculate uncertainties in the spall strength and strain rate due to external uncertainties
         fua_out = full_uncertainty_analysis(cen, sa_out, iua_out, **inputs)

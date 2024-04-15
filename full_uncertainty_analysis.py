@@ -20,8 +20,8 @@ def full_uncertainty_analysis(cen, sa_out, iua_out, **inputs):
     delta_lam = inputs['delta_lam']
     theta = inputs['theta']
     delta_theta = inputs['delta_theta']
-    delta_freq_tb = inputs['delta_freq_tb']
-    delta_freq_td = inputs['delta_freq_td']
+    delta_freq_tb = sa_out['peak_velocity_freq_uncert']
+    delta_freq_td = sa_out['max_ten_freq_uncert']
     delta_time_c = iua_out['tau']
     delta_time_d = iua_out['tau']
     freq_tb = (sa_out['v_max_comp'] * 2) / lam + cen

@@ -4,7 +4,7 @@ import traceback
 
 
 # function to pull out important points on the spall signal
-def spall_analysis(vc_out, **inputs):
+def spall_analysis(vc_out, iua_out, **inputs):
 
     # unpack dictionary values in to individual variables
     time_f = vc_out['time_f']
@@ -15,9 +15,26 @@ def spall_analysis(vc_out, **inputs):
     rc_idx_correction = inputs['pb_idx_correction']
     C0 = inputs['C0']
     density = inputs['density']
+    freq_uncert = iua_out['freq_uncert']
+    vel_uncert = iua_out['vel_uncert']
 
     # get the global peak velocity
-    peak_velocity = np.max(velocity_f_smooth)
+    peak_velocity_idx = np.argmax(velocity_f_smooth)
+    peak_velocity = velocity_f_smooth[peak_velocity_idx]
+
+
+
+    peak_velocity_freq_uncert = freq_uncert[peak_velocity_idx]
+    peak_velocity_vel_uncert = vel_uncert[peak_velocity_idx]
+
+
+
+
+
+    print(peak_velocity, peak_velocity_freq_uncert, peak_velocity_vel_uncert)
+
+
+
 
     # attempt to get the fist local minimum after the peak velocity to get the pullback
     # velocity. 'order' is the number of points on each side to compare to.
@@ -30,7 +47,24 @@ def spall_analysis(vc_out, **inputs):
         extrema_min.sort()
         max_ten_idx = extrema_min[np.where(extrema_min == np.argmax(velocity_f_smooth))[0][0] + 1 + pb_idx_correction]
 
+
+
+        max_ten_freq_uncert = freq_uncert[max_ten_idx]
+        max_ten_vel_uncert = vel_uncert[max_ten_idx]
+
+
+
         max_tension_velocity = velocity_f_smooth[max_ten_idx]
+
+
+
+
+
+        print(max_tension_velocity, max_ten_freq_uncert, max_ten_vel_uncert)
+
+
+
+
 
         pullback_velocity = peak_velocity - max_tension_velocity
 
@@ -53,6 +87,8 @@ def spall_analysis(vc_out, **inputs):
         v_max_ten = np.nan
         strain_rate_est = np.nan
         spall_strength_est = np.nan
+        max_ten_freq_uncert = np.nan
+        max_ten_vel_uncert = np.nan
 
     # try to get the recompression peak that occurs after pullback
     try:
@@ -80,7 +116,11 @@ def spall_analysis(vc_out, **inputs):
         'v_max_ten': v_max_ten,
         'v_rc': v_rc,
         'spall_strength_est': spall_strength_est,
-        'strain_rate_est': strain_rate_est
+        'strain_rate_est': strain_rate_est,
+        'peak_velocity_freq_uncert': peak_velocity_freq_uncert,
+        'peak_velocity_vel_uncert': peak_velocity_vel_uncert,
+        'max_ten_freq_uncert': max_ten_freq_uncert,
+        'max_ten_vel_uncert': max_ten_vel_uncert
     }
 
     return sa_out
