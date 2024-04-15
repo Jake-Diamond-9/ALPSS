@@ -142,12 +142,14 @@ import numpy as np
 
 # get the tallied ecae data
 tally_df = pd.read_excel(
-    '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/ECAE_tally_500neighbors.xlsx',
+    '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput '
+    'Testing/ALPSS/Data_Analysis/ECAE_tally_500neighbors.xlsx',
     index_col=0)
 
 # get th spall strength results of the smoothing study
 res_df = pd.read_excel(
-    '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS/Data_Analysis/smoothing_study_results.xlsx')
+    '/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput '
+    'Testing/ALPSS/Data_Analysis/smoothing_study_results.xlsx')
 
 # combine the dataframes
 df = pd.concat([tally_df, res_df], axis=1)
@@ -164,15 +166,21 @@ windows = df.columns.to_numpy()
 ss_mean = np.nanmean(res, axis=0)
 ss_std = np.nanstd(res, axis=0)
 
+fwhm_wins = np.array([2.929875, 3.40485714, 3.904875, 4.37986111, 4.879875, 5.35486364, 5.854875])
+
 # plot results
-fig, ax = plt.subplots(1, 1)
-#ax.errorbar(windows*(1/80), ss_mean/1e9, yerr=ss_std/1e9, ls='-', marker='o', c='k')
-ax.plot(windows * (1 / 80), ss_mean / 1e9, 'ko-')
-ax.set_xlabel('Smoothing Window (ns)')
+fig, ax = plt.subplots(1, 1, dpi=500, figsize=(5, 4))
+# ax.errorbar(windows*(1/80), ss_mean/1e9, yerr=ss_std/1e9, ls='-', marker='o', c='k')
+#ax.plot(windows * (1 / 80), ss_mean / 1e9, 'ko-')
+ax.plot(fwhm_wins, ss_mean / 1e9, 'ko-')
+ax.set_xlabel('Smoothing Window FWHM (ns)')
 ax.set_ylabel('Average Spall Strength (GPa)')
 ax.set_ylim([1.1, 1.35])
 plt.tight_layout()
 plt.show()
+
+save_path = "/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper"
+#fig.savefig(fname=(save_path + '/smoothing.png'), dpi='figure', format='png', facecolor='w')
 
 # script to calculate the average noise seen in successfully processed signals.
 '''

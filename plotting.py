@@ -177,6 +177,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
               vc_out['velocity_f_smooth'], 'k-', linewidth=3)
     ax12.set_xlabel('Time (ns)')
     ax12.set_ylabel('Velocity (m/s)')
+
     if not np.isnan(sa_out['t_max_comp']):
         ax12.plot((sa_out['t_max_comp'] - sdf_out['t_start_corrected']) / 1e-9, sa_out['v_max_comp'], 'bs',
                   label=f'Velocity at Max Compression: {int(round(sa_out["v_max_comp"]))}')
@@ -187,6 +188,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
         ax12.plot((sa_out['t_rc'] - sdf_out['t_start_corrected']) / 1e-9, sa_out['v_rc'], 'gD',
                   label=f'Velocity at Recompression: {int(round(sa_out["v_rc"]))}')
     # ax10.set_title('Free Surface Velocity')
+
     if not np.isnan(sa_out['t_max_comp']) or not np.isnan(sa_out['t_max_ten']) or not np.isnan(sa_out['t_rc']):
         ax12.legend(loc='lower right', fontsize=9)
 
