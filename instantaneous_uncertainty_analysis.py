@@ -46,12 +46,43 @@ def hl_envelopes_idx(s, dmin=1, dmax=1, split=False):
 
     return lmin, lmax
 
+# gaussian distribution
+def gauss(x, amp, sigma, mu):
+    f = (amp / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+    return f
+
+# calculate the fwhm of a gaussian distribution
+def fwhm(smoothing_window, smoothing_wid, smoothing_amp, smoothing_sigma, smoothing_mu, fs):
+    # x points for the gaussian weights
+    x = np.linspace(-smoothing_wid, smoothing_wid, smoothing_window)
+
+    # calculate the gaussian weights
+    weights = gauss(x, smoothing_amp, smoothing_sigma, smoothing_mu)
+
+    # calculate the half max
+    half_max = ((np.max(weights) - np.min(weights)) / 2) + np.min(weights)
+
+    # calculate the fwhm of the gaussian weights for the normalized x points
+    fwhm_norm = 2 * np.abs(x[np.argmin(np.abs(weights - half_max))])
+
+    # scale the fwhm to the number of points being used for the smoothing window
+    fwhm_pts = (fwhm_norm / (smoothing_wid * 2)) * smoothing_window
+
+    # calculate the time span of the fwhm of the gaussian weights
+    fwhm = fwhm_pts/fs
+
+    return fwhm
+
 
 # function to estimate the instantaneous uncertainty for all points in time
 def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     # unpack needed variables
     lam = inputs['lam']
     smoothing_window = inputs['smoothing_window']
+    smoothing_wid = inputs['smoothing_wid']
+    smoothing_amp = inputs['smoothing_amp']
+    smoothing_sigma = inputs['smoothing_sigma']
+    smoothing_mu = inputs['smoothing_mu']
     fs = sdf_out['fs']
     time = sdf_out['time']
     time_f = vc_out['time_f']
@@ -111,8 +142,8 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     inst_noise = np.std(noise) / (inst_amp / 2)
 
     # calculate the frequency and velocity uncertainty
-    # tau = smoothing_window / fs
-    tau = 9 / fs  # 9 is the number of points in the differentiation stencil
+    # take the characteristic time to be the fwhm of the gaussian weights used for smoothing the velocity signal
+    tau = fwhm(smoothing_window, smoothing_wid, smoothing_amp, smoothing_sigma, smoothing_mu, fs)
     freq_uncert_scaling = (1 / np.pi) * (np.sqrt(6 / (fs * (tau ** 3))))
     freq_uncert = inst_noise * freq_uncert_scaling
     vel_uncert = freq_uncert * (lam / 2)

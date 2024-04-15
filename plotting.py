@@ -126,9 +126,9 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax8.plot((vc_out['time_f']) / 1e-9,
              vc_out['velocity_f_smooth'], 'k-', linewidth=3, label='Smoothed Velocity')
 
-    ax8.plot(vc_out['time_f'] / 1e-9, vc_out['velocity_f_smooth'] + iua_out['vel_uncert'], 'r-', alpha=0.5,
-             label=r'$1\sigma$ Uncertainty')
-    ax8.plot(vc_out['time_f'] / 1e-9, vc_out['velocity_f_smooth'] - iua_out['vel_uncert'], 'r-', alpha=0.5)
+    ax8.plot(vc_out['time_f'] / 1e-9, vc_out['velocity_f_smooth'] + iua_out['vel_uncert']*inputs['uncert_mult'], 'r-', alpha=0.5,
+             label=fr'$1\sigma$ Uncertainty (x{inputs["uncert_mult"]})')
+    ax8.plot(vc_out['time_f'] / 1e-9, vc_out['velocity_f_smooth'] - iua_out['vel_uncert']*inputs['uncert_mult'], 'r-', alpha=0.5)
     ax8.set_xlabel('Time (ns)')
     ax8.set_ylabel('Velocity (m/s)')
     ax8.legend(loc='lower right', fontsize=9, framealpha=1)
@@ -157,20 +157,20 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     # plotting the final smoothed velocity trace with spall point markers (if they were found on the signal)
     ax12.fill_between(
         (vc_out['time_f'] - sdf_out['t_start_corrected']) / 1e-9,
-        vc_out['velocity_f_smooth'] + 2 * iua_out['vel_uncert'],
-        vc_out['velocity_f_smooth'] - 2 * iua_out['vel_uncert'],
+        vc_out['velocity_f_smooth'] + 2 * iua_out['vel_uncert']*inputs['uncert_mult'],
+        vc_out['velocity_f_smooth'] - 2 * iua_out['vel_uncert']*inputs['uncert_mult'],
         color='mistyrose',
-        label=r'$2\sigma$ Uncertainty'
+        label=fr'$2\sigma$ Uncertainty (x{inputs["uncert_mult"]})'
     )
 
     ax12.fill_between(
         (vc_out['time_f'] - sdf_out['t_start_corrected']) / 1e-9,
-        vc_out['velocity_f_smooth'] + iua_out['vel_uncert'],
-        vc_out['velocity_f_smooth'] - iua_out['vel_uncert'],
+        vc_out['velocity_f_smooth'] + iua_out['vel_uncert']*inputs['uncert_mult'],
+        vc_out['velocity_f_smooth'] - iua_out['vel_uncert']*inputs['uncert_mult'],
         color='lightcoral',
         alpha=0.5,
         ec='none',
-        label=r'$1\sigma$ Uncertainty'
+        label=fr'$1\sigma$ Uncertainty (x{inputs["uncert_mult"]})'
     )
 
     ax12.plot((vc_out['time_f'] - sdf_out['t_start_corrected']) / 1e-9,
