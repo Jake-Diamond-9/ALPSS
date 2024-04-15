@@ -41,7 +41,7 @@ def alpss_main(**inputs):
         iua_out = instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs)
 
         # function to calculate uncertainties in the spall strength and strain rate due to external uncertainties
-        fua_out = full_uncertainty_analysis(cen, sa_out, **inputs)
+        fua_out = full_uncertainty_analysis(cen, sa_out, iua_out, **inputs)
 
         # end the program timer
         end_time = datetime.now()

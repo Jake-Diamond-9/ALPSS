@@ -225,7 +225,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
                           'Time',
                           'File Name',
                           'Run Time',
-                          'Velocity Max Compression (m/s)',
+                          'Smoothing FWHM (ns)',
                           'Peak Shock Stress (GPa)',
                           'Strain Rate (x1e6)',
                           'Spall Strength (GPa)'],
@@ -233,10 +233,10 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
                            start_time.strftime('%I:%M %p'),
                            inputs['filename'],
                            (end_time - start_time),
-                           round(sa_out['v_max_comp'], 2),
+                           round(iua_out['tau']*1e9, 2),
                            round((.5 * inputs['density'] * inputs['C0'] * sa_out['v_max_comp']) / 1e9, 6),
-                           f"{round(sa_out['strain_rate_est'] / 1e6, 6)}",
-                           f"{round(sa_out['spall_strength_est'] / 1e9, 6)}"]}
+                           fr"{round(sa_out['strain_rate_est'] / 1e6, 6)} $\pm$ {round(fua_out['strain_rate_uncert'] / 1e6, 6)}",
+                           fr"{round(sa_out['spall_strength_est'] / 1e9, 6)} $\pm$ {round(fua_out['spall_uncert'] / 1e9, 6)}"]}
 
     df1 = pd.DataFrame(data=run_data1)
     cellLoc1 = 'center'

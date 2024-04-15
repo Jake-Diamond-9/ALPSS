@@ -9,7 +9,7 @@ import numpy as np
 
 
 # program to calculate the uncertainty in the spall strength and strain rate
-def full_uncertainty_analysis(cen, sa_out, **inputs):
+def full_uncertainty_analysis(cen, sa_out, iua_out, **inputs):
 
     # unpack dictionary values in to individual variables
     rho = inputs['density']
@@ -22,8 +22,8 @@ def full_uncertainty_analysis(cen, sa_out, **inputs):
     delta_theta = inputs['delta_theta']
     delta_freq_tb = inputs['delta_freq_tb']
     delta_freq_td = inputs['delta_freq_td']
-    delta_time_c = inputs['delta_time_c']
-    delta_time_d = inputs['delta_time_d']
+    delta_time_c = iua_out['tau']
+    delta_time_d = iua_out['tau']
     freq_tb = (sa_out['v_max_comp'] * 2) / lam + cen
     freq_td = (sa_out['v_max_ten'] * 2) / lam + cen
     time_c = sa_out['t_max_comp']
@@ -38,7 +38,7 @@ def full_uncertainty_analysis(cen, sa_out, **inputs):
     delta_theta = delta_theta * (np.pi / 180)
 
     # calculate the individual terms for spall uncertainty
-    term1 = -0.5 * rho * C0 * (lam / 2) * np.tan(theta) * (1 / np.cos(theta)) * (freq_tb - freq_td)
+    term1 = -0.5 * rho * C0 * (lam / 2) * np.tan(theta) * (1 / np.cos(theta)) * (freq_tb - freq_td) * delta_theta
     term2 = 0.5 * rho * C0 * (lam / (2 * np.cos(theta))) * delta_freq_tb
     term3 = -0.5 * rho * C0 * (lam / (2 * np.cos(theta))) * delta_freq_td
     term4 = 0.5 * rho * C0 * (1 / (2 * np.cos(theta))) * (freq_tb - freq_td) * delta_lam
