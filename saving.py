@@ -56,7 +56,8 @@ def saving(sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time,
                                 'Spect Time Res',
                                 'Spect Freq Res',
                                 'Spect Velocity Res',
-                                'Signal Start Time'],
+                                'Signal Start Time',
+                                'Smoothing Characteristic Time'],
                        'Value': [start_time.strftime('%b %d %Y'),
                                  start_time.strftime('%I:%M %p'),
                                  inputs['filename'],
@@ -76,7 +77,8 @@ def saving(sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time,
                                  sdf_out['t_res'],
                                  sdf_out['f_res'],
                                  0.5 * (inputs['lam'] * sdf_out['f_res']),
-                                 sdf_out['t_start_corrected']]}
+                                 sdf_out['t_start_corrected'],
+                                 iua_out['tau']]}
     results_df = pd.DataFrame(data=results_to_save)
     results_df.to_csv(inputs['filename'][0:-4] + '--results' + '.csv', index=False, header=False)
 

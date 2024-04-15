@@ -211,6 +211,7 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
         'env_min_interp': env_min_interp,
         'inst_amp': inst_amp,
         'inst_noise': inst_noise,
+        'tau': tau,
         'freq_uncert_scaling': freq_uncert_scaling,
         'freq_uncert': freq_uncert,
         'vel_uncert': vel_uncert
