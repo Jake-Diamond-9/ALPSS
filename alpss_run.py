@@ -117,5 +117,6 @@ alpss_main(filename="F2--20211018--00015.txt",
            exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
            out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
            display_plots='yes',
+           spall_calculation='yes',
            plot_figsize=(30, 10),
            plot_dpi=300)
