@@ -38,7 +38,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax2.set_ylabel('Counts')
 
     # plotting the imported data and a rectangle to show the ROI
-    plt3 = ax3.imshow(20 * np.log10(sdf_out['mag'] ** 2), aspect='auto', origin='lower',
+    plt3 = ax3.imshow(10 * np.log10(sdf_out['mag'] ** 2), aspect='auto', origin='lower',
                       interpolation='none',
                       extent=[sdf_out['t'][0] / 1e-9, sdf_out['t'][-1] / 1e-9,
                               sdf_out['f'][0] / 1e9, sdf_out['f'][-1] / 1e9],
@@ -77,7 +77,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax4.minorticks_on()
 
     # plotting the spectrogram ROI with the start time line to see how well it lines up
-    plt5 = ax5.imshow(20 * np.log10(sdf_out['mag'] ** 2), aspect='auto', origin='lower',
+    plt5 = ax5.imshow(10 * np.log10(sdf_out['mag'] ** 2), aspect='auto', origin='lower',
                       interpolation='none',
                       extent=[sdf_out['t'][0] / 1e-9, sdf_out['t'][-1] / 1e-9,
                               sdf_out['f'][0] / 1e9, sdf_out['f'][-1] / 1e9],

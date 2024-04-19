@@ -48,7 +48,7 @@ def carrier_filter(sdf_out, cen, **inputs):
     f_filt, t_filt, Zxx_filt = stft(np.real(voltage_filt), fs, **inputs)
 
     # calculate the power
-    power_filt = 20 * np.log10(np.abs(Zxx_filt) ** 2)
+    power_filt = 10 * np.log10(np.abs(Zxx_filt) ** 2)
 
     # cut the data to the domain of interest
     f_min_idx = np.argmin(np.abs(f_filt - f_min))

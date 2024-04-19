@@ -5,7 +5,6 @@ from scipy import signal
 import cv2 as cv
 from stft import *
 
-# TODO replace scipy 'stft' with 'ShortTimeFFT' - 'stft' may be depreciated
 
 # function to find the specific domain of interest in the larger signal
 def spall_doi_finder(**inputs):
@@ -58,7 +57,7 @@ def spall_doi_finder(**inputs):
     f_doi = f[freq_min_idx:freq_max_idx]
 
     # calculate spectrogram power
-    power_cut = 20 * np.log10(mag_cut ** 2)
+    power_cut = 10 * np.log10(mag_cut ** 2)
 
     # convert spectrogram powers to uint8 for image processing
     smin = np.min(power_cut)
@@ -126,7 +125,7 @@ def spall_doi_finder(**inputs):
         t_doi_start_spec_idx = np.argmin(np.abs(t - t_doi_start))
         t_doi_end_spec_idx = np.argmin(np.abs(t - t_doi_end))
         mag_doi = mag_cut[:, t_doi_start_spec_idx:t_doi_end_spec_idx]
-        power_doi = 20 * np.log10(mag_doi ** 2)
+        power_doi = 10 * np.log10(mag_doi ** 2)
 
 
     # if using a user input for the signal start time
@@ -147,7 +146,7 @@ def spall_doi_finder(**inputs):
         t_doi_start_spec_idx = np.argmin(np.abs(t - t_doi_start))
         t_doi_end_spec_idx = np.argmin(np.abs(t - t_doi_end))
         mag_doi = mag_cut[:, t_doi_start_spec_idx:t_doi_end_spec_idx]
-        power_doi = 20 * np.log10(mag_doi ** 2)
+        power_doi = 10 * np.log10(mag_doi ** 2)
 
     # dictionary to return outputs
     sdf_out = {

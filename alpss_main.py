@@ -108,7 +108,7 @@ def alpss_main(**inputs):
             ax1.plot(time / 1e-9, voltage / 1e-3)
             ax1.set_xlabel('Time (ns)')
             ax1.set_ylabel('Voltage (mV)')
-            ax2.imshow(20 * np.log10(mag ** 2), aspect='auto', origin='lower',
+            ax2.imshow(10 * np.log10(mag ** 2), aspect='auto', origin='lower',
                        interpolation='none', extent=[t[0] / 1e-9, t[-1] / 1e-9,
                                                      f[0] / 1e9, f[-1] / 1e9],
                        cmap=inputs['cmap'])
