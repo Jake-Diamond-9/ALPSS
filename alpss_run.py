@@ -1,6 +1,6 @@
 """
 ALPSS
-Jake Diamond (2023)
+Jake Diamond (2024)
 Johns Hopkins University
 Hopkins Extreme Materials Institute (HEMI)
 Please report any bugs or comments to jdiamo15@jhu.edu
@@ -46,6 +46,8 @@ blur_sigy:                  float; standard deviation of the gaussian blur kerne
 carrier_band_time:          float; length of time from the beginning of the imported data window to average
                                    the frequency of the top of the carrier band in the thresholded spectrogram
 cmap:                       str; colormap for the spectrograms (recommend 'viridis')
+uncert_mult:                float; factor to multiply the velocity uncertainty by when plotting - allows for easier
+                                   visulaization when uncertainties are small
 order:                      int; order for the gaussian notch filter used to remove the carrier band (recommend 6)
 wid:                        float; width of the gaussian notch filter used to remove the carrier band (recommend 1e8)
 lam:                        float; wavelength of the target laser
@@ -56,14 +58,12 @@ delta_C0:                   float; uncertainty in the bulk wavespeed of the samp
 delta_lam:                  float; uncertainty in the wavelength of the target laser
 theta:                      float; angle of incidence of the PDV probe
 delta_theta:                float; uncertainty in the angle of incidence of the PDV probe
-delta_freq_tb:              float; uncertainty in the frequency at time b
-delta_freq_td:              float; uncertainty in the frequency at time d
-delta_time_c:               float; uncertainty in time c
-delta_time_d:               float; uncertainty in time d
 exp_data_dir:               str; directory from which to read the experimental data file
 out_files_dir:              str; directory to save output data to
 display_plots:              str; 'yes' to display the final plots and 'no' to not display them. if save_data='yes'
                                      and and display_plots='no' the plots will be saved but not displayed
+spall_calculation:          str; 'yes' to run the calculations for the spall analysis and 'no' to extract the velocity
+                                  without doing the spall analysis
 plot_figsize:               tuple; figure size for the final plots
 plot_dpi:                   float; dpi for the final plots
 """
