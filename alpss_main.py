@@ -204,12 +204,12 @@ def carrier_frequency(spall_doi_finder_outputs, **inputs):
 
 # program to calculate the uncertainty in the spall strength and strain rate
 def full_uncertainty_analysis(cen, sa_out, iua_out, **inputs):
-    """
+    '''
     Based on the work of Mallick et al.
 
     Mallick, D.D., Zhao, M., Parker, J. et al. Laser-Driven Flyers and Nanosecond-Resolved Velocimetry for Spall Studies
     in Thin Metal Foils. Exp Mech 59, 611–628 (2019). https://doi.org/10.1007/s11340-019-00519-x
-    """
+    '''
 
     # unpack dictionary values in to individual variables
     rho = inputs['density']
@@ -288,14 +288,14 @@ def sin_func(x, a, b, c, d):
 # get the indices for the upper and lower envelope of the voltage signal
 # https://stackoverflow.com/questions/34235530/how-to-get-high-and-low-envelope-of-a-signal
 def hl_envelopes_idx(s, dmin=1, dmax=1, split=False):
-    """
+    '''
     Input :
     s: 1d-array, data signal from which to extract high and low envelopes
     dmin, dmax: int, optional, size of chunks, use this if the size of the input signal is too big
     split: bool, optional, if True, split the signal in half along its mean, might help to generate the envelope in some cases
     Output :
     lmin,lmax : high/low envelope idx of input signal s
-    """
+    '''
 
     # locals min
     lmin = (np.diff(np.sign(np.diff(s))) > 0).nonzero()[0] + 1
