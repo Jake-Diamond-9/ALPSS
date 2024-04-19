@@ -70,8 +70,6 @@ plot_dpi:                   float; dpi for the final plots
 
 from alpss_main import *
 
-# TODO add in the new input params
-# TODO clean up code and add comments
 
 alpss_main(filename="F2--20211018--00015.txt",
            save_data='no',

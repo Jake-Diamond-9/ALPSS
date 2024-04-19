@@ -7,16 +7,14 @@ import matplotlib.pyplot as plt
 import traceback
 
 
-
-# general function for for a sinusoid
+# general function for a sinusoid
 def sin_func(x, a, b, c, d):
     return a * np.sin(2 * np.pi * b * x + c) + d
 
 
 # get the indices for the upper and lower envelope of the voltage signal
+# https://stackoverflow.com/questions/34235530/how-to-get-high-and-low-envelope-of-a-signal
 def hl_envelopes_idx(s, dmin=1, dmax=1, split=False):
-    # https://stackoverflow.com/questions/34235530/how-to-get-high-and-low-envelope-of-a-signal
-
     """
     Input :
     s: 1d-array, data signal from which to extract high and low envelopes
@@ -46,10 +44,12 @@ def hl_envelopes_idx(s, dmin=1, dmax=1, split=False):
 
     return lmin, lmax
 
+
 # gaussian distribution
 def gauss(x, amp, sigma, mu):
     f = (amp / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
     return f
+
 
 # calculate the fwhm of a gaussian distribution
 def fwhm(smoothing_window, smoothing_wid, smoothing_amp, smoothing_sigma, smoothing_mu, fs):
@@ -69,7 +69,7 @@ def fwhm(smoothing_window, smoothing_wid, smoothing_amp, smoothing_sigma, smooth
     fwhm_pts = (fwhm_norm / (smoothing_wid * 2)) * smoothing_window
 
     # calculate the time span of the fwhm of the gaussian weights
-    fwhm = fwhm_pts/fs
+    fwhm = fwhm_pts / fs
 
     return fwhm
 
@@ -86,16 +86,10 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     fs = sdf_out['fs']
     time = sdf_out['time']
     time_f = vc_out['time_f']
-    # voltage = sdf_out['voltage']
     voltage_filt = vc_out['voltage_filt']
     time_start_idx = vc_out['time_start_idx']
     time_end_idx = vc_out['time_end_idx']
-    # t_doi_start = sdf_out['t_doi_start']
-    # t_doi_end = sdf_out['t_doi_end']
     carrier_band_time = inputs['carrier_band_time']
-    # t_start_corrected = sdf_out['t_start_corrected']
-    # t_before = inputs['t_before']
-    # t_after = inputs['t_after']
 
     # take only real component of the filtered voltage signal
     voltage_filt = np.real(voltage_filt)
@@ -106,13 +100,13 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
 
     # get the data for only the beginning section of the signal
     time_cut = time[0:steps_take]
-    # voltage_cut = voltage[0:steps_take]
     voltage_filt_early = voltage_filt[0:steps_take]
 
     try:
         # fit a sinusoid to the data
         popt, pcov = curve_fit(sin_func, time_cut, voltage_filt_early, p0=[0.1, cen, 0, 0])
     except Exception:
+        # if sin fitting doesn't work set the fitting parameters to be zeros
         print(traceback.format_exc())
         popt = [0, 0, 0, 0]
         pcov = [0, 0, 0, 0]
@@ -134,7 +128,7 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     env_max_interp = np.interp(time_f, time_f[lmax], voltage_filt_doi[lmax])
     env_min_interp = np.interp(time_f, time_f[lmin], voltage_filt_doi[lmin])
 
-    # calculate the estimated amplitude at every time
+    # calculate the estimated peak to peak amplitude at every time
     inst_amp = env_max_interp - env_min_interp
 
     # calculate the estimated noise fraction at every time
@@ -142,63 +136,12 @@ def instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs):
     inst_noise = np.std(noise) / (inst_amp / 2)
 
     # calculate the frequency and velocity uncertainty
+    # https://doi.org/10.1063/12.0000870
     # take the characteristic time to be the fwhm of the gaussian weights used for smoothing the velocity signal
     tau = fwhm(smoothing_window, smoothing_wid, smoothing_amp, smoothing_sigma, smoothing_mu, fs)
     freq_uncert_scaling = (1 / np.pi) * (np.sqrt(6 / (fs * (tau ** 3))))
     freq_uncert = inst_noise * freq_uncert_scaling
     vel_uncert = freq_uncert * (lam / 2)
-
-    # find max noise on the domain of interest
-    # t_doi_start_idx = np.argmin(np.abs(time - t_doi_start))
-    # t_doi_end_idx = np.argmin(np.abs(time - t_doi_end))
-    # doi_max_noise = np.max(inst_noise[t_doi_start_idx:t_doi_end_idx])
-
-    # print(inst_noise)
-    # print(tau)
-    # print(freq_uncert)
-    # print(vel_uncert)
-
-    '''
-    # plotting
-    fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, dpi=300)
-    ax1.plot(time_cut / 1e-9, voltage_filt_early * 1e3, c='tab:blue')
-    ax1.plot(time_cut / 1e-9, volt_fit * 1e3, c='tab:orange')
-    ax1.set_xlabel('Time (ns)')
-    ax1.set_ylabel('Voltage (mV)')
-
-    ax2.hist(noise * 1e3, bins=30, rwidth=0.8)
-    ax2.set_xlabel('Noise (V)')
-    ax2.set_ylabel('Counts')
-
-    ax3.plot(time_f / 1e-9, voltage_filt_doi * 1e3, c='tab:blue')
-    ax3.plot(time_f / 1e-9, env_max_interp * 1e3, c='tab:red')
-    ax3.plot(time_f / 1e-9, env_min_interp * 1e3, c='tab:red')
-    ax3.set_xlabel('Time (ns)')
-    ax3.set_ylabel('Voltage (mV)')
-    # ax3.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
-
-    ax4.plot(time_f / 1e-9, inst_noise * 100)
-    ax4.set_xlabel('Time (ns)')
-    ax4.set_ylabel('Noise Fraction (%)')
-    # ax4.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
-    # ax4.set_ylim([0, doi_max_noise * 110])
-    # ax4.set_ylim([0, 100])
-
-    ax5.plot(time_f / 1e-9, freq_uncert / 1e9)
-    ax5.set_xlabel('Time (ns)')
-    ax5.set_ylabel('Frequency Uncert (GHz)')
-    # ax5.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
-    # ax5.set_ylim([0, (doi_max_noise * freq_uncert_scaling * 1.1) / 1e9])
-
-    ax6.plot(time_f / 1e-9, vel_uncert)
-    ax6.set_xlabel('Time (ns)')
-    ax6.set_ylabel('Velocity Uncert (m/s)')
-    # ax6.set_xlim([t_doi_start / 1e-9, t_doi_end / 1e-9])
-    # ax6.set_ylim([0, (doi_max_noise * freq_uncert_scaling * (lam / 2) * 1.1)])
-
-    plt.tight_layout()
-    plt.show()
-    '''
 
     # dictionary to return outputs
     iua_out = {

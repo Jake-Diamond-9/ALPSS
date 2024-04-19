@@ -89,15 +89,6 @@ def alpss_main(**inputs):
             fs = 1 / np.mean(np.diff(time))
 
             # calculate the short time fourier transform
-            '''
-            f, t, Zxx = signal.stft(voltage,
-                                    fs=fs,
-                                    window=inputs['window'],
-                                    nperseg=inputs['nperseg'],
-                                    noverlap=inputs['noverlap'],
-                                    nfft=inputs['nfft'],
-                                    boundary=None)
-            '''
             f, t, Zxx = stft(voltage, fs, **inputs)
 
             # calculate magnitude of Zxx

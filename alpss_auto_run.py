@@ -10,6 +10,8 @@ from alpss_main import *
 
 
 class Watcher:
+
+    # this is the directory where you will add the files to
     DIRECTORY_TO_WATCH = "/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data"
 
     def __init__(self):
@@ -44,6 +46,7 @@ class Handler(FileSystemEventHandler):
             fname = event.src_path[-23:]
             print(f"File Created:  {fname}")
 
+            # use these function inputs the same as for the non-automated function alpss_run.py
             alpss_main(filename=fname,
                        save_data='no',
                        start_time_user='none',

@@ -1,14 +1,11 @@
 import os
 import pandas as pd
-import numpy as np
-from scipy import signal
 import cv2 as cv
 from stft import *
 
 
 # function to find the specific domain of interest in the larger signal
 def spall_doi_finder(**inputs):
-
     # import the desired data. Convert the time to skip and turn into number of rows
     t_step = 1 / inputs['sample_rate']
     rows_to_skip = inputs['header_lines'] + inputs['time_to_skip'] / t_step  # skip the 5 header lines too
@@ -30,15 +27,6 @@ def spall_doi_finder(**inputs):
     fs = 1 / np.mean(np.diff(time))
 
     # calculate the short time fourier transform
-    '''
-    f, t, Zxx = signal.stft(voltage,
-                            fs=fs,
-                            window=inputs['window'],
-                            nperseg=inputs['nperseg'],
-                            noverlap=inputs['noverlap'],
-                            nfft=inputs['nfft'],
-                            boundary=None)
-    '''
     f, t, Zxx = stft(voltage, fs, **inputs)
 
     # calculate magnitude of Zxx

@@ -1,7 +1,9 @@
 from scipy.signal import ShortTimeFFT
 import numpy as np
 
-
+# function to calculate the short time fourier transform (stft) of a signal. ALPSS was originally built with a scipy
+# STFT function that may now be deprecated in the future. This function seeks to roughly replicate the behavior of the
+# legacy stft function, specifically how the time windows are calculated and how the boundaries are handled
 def stft(voltage, fs, **inputs):
     # calculate stft with the new scipy library function and zero padding the boundaries
     SFT = ShortTimeFFT.from_window(inputs['window'], fs=fs, nperseg=inputs['nperseg'], noverlap=inputs['noverlap'],

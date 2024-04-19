@@ -7,7 +7,6 @@ from smoothing import *
 
 # function to calculate the velocity from the filtered voltage signal
 def velocity_calculation(spall_doi_finder_outputs, cen, carrier_filter_outputs, **inputs):
-
     # unpack dictionary values in to individual variables
     fs = spall_doi_finder_outputs['fs']
     time = spall_doi_finder_outputs['time']
