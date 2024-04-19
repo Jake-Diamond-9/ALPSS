@@ -45,13 +45,13 @@ class Handler(FileSystemEventHandler):
             print(f"File Created:  {fname}")
 
             alpss_main(filename=fname,
-                       save_data='yes',
+                       save_data='no',
                        start_time_user='none',
                        header_lines=5,
                        time_to_skip=50e-6,
                        time_to_take=2e-6,
-                       t_before=5e-9,
-                       t_after=50e-9,
+                       t_before=10e-9,
+                       t_after=100e-9,
                        start_time_correction=0e-9,
                        freq_min=1.5e9,
                        freq_max=4e9,
@@ -74,6 +74,7 @@ class Handler(FileSystemEventHandler):
                        blur_sigy=0,
                        carrier_band_time=250e-9,
                        cmap='viridis',
+                       uncert_mult=100,
                        order=6,
                        wid=5e7,
                        lam=1547.461e-9,
@@ -83,15 +84,12 @@ class Handler(FileSystemEventHandler):
                        delta_C0=23,
                        delta_lam=8e-18,
                        theta=0,
-                       delta_theta=2.5,
-                       delta_freq_tb=20e6,
-                       delta_freq_td=20e6,
-                       delta_time_c=2.5e-9,
-                       delta_time_d=2.5e-9,
+                       delta_theta=5,
                        exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
                        out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
                        display_plots='yes',
-                       plot_figsize=(12, 10),
+                       spall_calculation='yes',
+                       plot_figsize=(30, 10),
                        plot_dpi=300)
 
 
