@@ -33,7 +33,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax1.set_xlim([sdf_out['time'][0] / 1e-9, sdf_out['time'][-1] / 1e-9])
     ax1.legend(loc='upper right')
 
-    ax2.hist(iua_out['noise'] * 1e3, bins=30, rwidth=0.8)
+    ax2.hist(iua_out['noise'] * 1e3, bins=50, rwidth=0.8)
     ax2.set_xlabel('Noise (mV)')
     ax2.set_ylabel('Counts')
 
