@@ -31,8 +31,6 @@ def spall_analysis(vc_out, iua_out, **inputs):
 
 
 
-    print(peak_velocity, peak_velocity_freq_uncert, peak_velocity_vel_uncert)
-
 
 
 
@@ -59,8 +57,6 @@ def spall_analysis(vc_out, iua_out, **inputs):
 
 
 
-
-        print(max_tension_velocity, max_ten_freq_uncert, max_ten_vel_uncert)
 
 
 

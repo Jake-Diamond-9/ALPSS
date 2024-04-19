@@ -3,6 +3,7 @@ from scipy.fft import fft
 from scipy.fft import ifft
 from scipy.fftpack import fftshift
 from scipy import signal
+from stft import *
 
 
 # function to filter out the carrier frequency
@@ -36,12 +37,15 @@ def carrier_filter(sdf_out, cen, **inputs):
     voltage_filt = np.concatenate((voltage[0:sig_start_idx], voltage_filt))
 
     # perform a stft on the filtered voltage data. Only the real part as to not get a two sided spectrogram
+    '''
     f_filt, t_filt, Zxx_filt = signal.stft(np.real(voltage_filt),
                                            fs=fs,
                                            nperseg=nperseg,
                                            noverlap=noverlap,
                                            nfft=nfft,
                                            boundary=None)
+    '''
+    f_filt, t_filt, Zxx_filt = stft(np.real(voltage_filt), fs, **inputs)
 
     # calculate the power
     power_filt = 20 * np.log10(np.abs(Zxx_filt) ** 2)

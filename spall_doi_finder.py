@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from scipy import signal
 import cv2 as cv
+from stft import *
 
 # TODO replace scipy 'stft' with 'ShortTimeFFT' - 'stft' may be depreciated
 
@@ -30,6 +31,7 @@ def spall_doi_finder(**inputs):
     fs = 1 / np.mean(np.diff(time))
 
     # calculate the short time fourier transform
+    '''
     f, t, Zxx = signal.stft(voltage,
                             fs=fs,
                             window=inputs['window'],
@@ -37,6 +39,8 @@ def spall_doi_finder(**inputs):
                             noverlap=inputs['noverlap'],
                             nfft=inputs['nfft'],
                             boundary=None)
+    '''
+    f, t, Zxx = stft(voltage, fs, **inputs)
 
     # calculate magnitude of Zxx
     mag = np.abs(Zxx)

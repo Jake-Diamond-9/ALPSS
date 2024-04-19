@@ -7,6 +7,7 @@ from spall_analysis import *
 from instantaneous_uncertainty_analysis import *
 from full_uncertainty_analysis import *
 from saving import *
+from stft import *
 from datetime import datetime
 import traceback
 import matplotlib.pyplot as plt
@@ -88,6 +89,7 @@ def alpss_main(**inputs):
             fs = 1 / np.mean(np.diff(time))
 
             # calculate the short time fourier transform
+            '''
             f, t, Zxx = signal.stft(voltage,
                                     fs=fs,
                                     window=inputs['window'],
@@ -95,6 +97,8 @@ def alpss_main(**inputs):
                                     noverlap=inputs['noverlap'],
                                     nfft=inputs['nfft'],
                                     boundary=None)
+            '''
+            f, t, Zxx = stft(voltage, fs, **inputs)
 
             # calculate magnitude of Zxx
             mag = np.abs(Zxx)
