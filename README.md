@@ -91,7 +91,7 @@ A sample file is available for download from the Johns Hopkins OneDrive [here](h
 Additional data files are available through the paper by [DiMarco et al.](https://doi.org/10.3390/met13030454) and can be accessed [here](https://craedl.org/pubs?p=6348&t=3&c=187&s=hemi&d=https:%2F%2Ffs.craedl.org#publications).
 
 ### Running a Single Signal
-Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. If using the sample file provided above, no input parameters need to be changed from the original repository file. The program will run the example file in the _input_data_ folder.
+Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. No input parameters need to be changed from the original repository file. The program will run the example file in the _input_data_ folder.
 
 In the toolbar click _Run -> Run_ and ALPSS will run the sample file. At the conclusion of the run, a figure that shows the sub processes will be displayed in the **Plots** window and a results table will be displayed in the **Console** window. Output files will be saved in the _output_data_ folder. 
 
