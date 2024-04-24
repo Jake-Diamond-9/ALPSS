@@ -503,11 +503,13 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax1.set_ylabel('Voltage (mV)')
     ax1.set_xlim([sdf_out['time'][0] / 1e-9, sdf_out['time'][-1] / 1e-9])
     ax1.legend(loc='upper right')
+    ax1.set_title('Voltage Data')
 
     # noise distribution histogram
     ax2.hist(iua_out['noise'] * 1e3, bins=50, rwidth=0.8)
     ax2.set_xlabel('Noise (mV)')
     ax2.set_ylabel('Counts')
+    ax2.set_title('Voltage Noise')
 
     # imported voltage spectrogram and a rectangle to show the ROI
     plt3 = ax3.imshow(10 * np.log10(sdf_out['mag'] ** 2), aspect='auto', origin='lower',
@@ -515,7 +517,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
                       extent=[sdf_out['t'][0] / 1e-9, sdf_out['t'][-1] / 1e-9,
                               sdf_out['f'][0] / 1e9, sdf_out['f'][-1] / 1e9],
                       cmap=inputs['cmap'])
-    fig.colorbar(plt3, ax=ax3, label='Power (dB)')
+    fig.colorbar(plt3, ax=ax3, label='Power (dBm)')
     anchor = [sdf_out['t_doi_start'] / 1e-9, sdf_out['f_doi'][0] / 1e9]
     width = sdf_out['t_doi_end'] / 1e-9 - sdf_out['t_doi_start'] / 1e-9
     height = sdf_out['f_doi'][-1] / 1e9 - sdf_out['f_doi'][0] / 1e9
@@ -530,6 +532,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax3.set_xlabel('Time (ns)')
     ax3.set_ylabel('Frequency (GHz)')
     ax3.minorticks_on()
+    ax3.set_title('Spectrogram Original Signal')
 
     # plotting the thresholded spectrogram on the ROI to show how the signal start time is found
     ax4.imshow(sdf_out['th3'], aspect='auto', origin='lower', interpolation='none',
@@ -545,6 +548,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax4.set_xlabel('Time (ns)')
     ax4.set_ylabel('Frequency (GHz)')
     ax4.minorticks_on()
+    ax4.set_title('Thresholded Spectrogram')
 
     # plotting the spectrogram of the ROI with the start-time line to see how well it lines up
     plt5 = ax5.imshow(10 * np.log10(sdf_out['mag'] ** 2), aspect='auto', origin='lower',
@@ -552,7 +556,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
                       extent=[sdf_out['t'][0] / 1e-9, sdf_out['t'][-1] / 1e-9,
                               sdf_out['f'][0] / 1e9, sdf_out['f'][-1] / 1e9],
                       cmap=inputs['cmap'])
-    fig.colorbar(plt5, ax=ax5, label='Power (dB)')
+    fig.colorbar(plt5, ax=ax5, label='Power (dBm)')
     ax5.axvline(sdf_out['t_start_detected'] / 1e-9, ls='--', c='r')
     ax5.axvline(sdf_out['t_start_corrected'] / 1e-9, ls='-', c='r')
     if inputs['start_time_user'] == 'none':
@@ -563,6 +567,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax5.set_xlabel('Time (ns)')
     ax5.set_ylabel('Frequency (GHz)')
     ax5.minorticks_on()
+    ax5.set_title('Spectrogram ROI')
 
     # plotting the filtered spectrogram of the ROI
     plt6 = ax6.imshow(cf_out['power_filt'], aspect='auto', origin='lower',
@@ -570,7 +575,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
                       extent=[cf_out['t_filt'][0] / 1e-9, cf_out['t_filt'][-1] / 1e-9,
                               cf_out['f_filt'][0] / 1e9, cf_out['f_filt'][-1] / 1e9],
                       cmap=inputs['cmap'])
-    fig.colorbar(plt6, ax=ax6, label='Power (dB)')
+    fig.colorbar(plt6, ax=ax6, label='Power (dBm)')
     ax6.axvline(sdf_out['t_start_detected'] / 1e-9, ls='--', c='r')
     ax6.axvline(sdf_out['t_start_corrected'] / 1e-9, ls='-', c='r')
     ax6.set_ylim([inputs['freq_min'] / 1e9, inputs['freq_max'] / 1e9])
@@ -579,6 +584,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax6.set_xlabel('Time (ns)')
     ax6.set_ylabel('Frequency (GHz)')
     ax6.minorticks_on()
+    ax6.set_title('Filtered Spectrogram ROI')
 
     # voltage in the ROI and the signal envelope
     ax7.plot(sdf_out['time'] / 1e-9, np.real(vc_out['voltage_filt']) * 1e3, label='Filtered Signal', c='tab:blue')
@@ -588,6 +594,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax7.set_ylabel('Voltage (mV)')
     ax7.set_xlim([sdf_out['t_doi_start'] / 1e-9, sdf_out['t_doi_end'] / 1e-9])
     ax7.legend(loc='upper right')
+    ax7.set_title('Voltage ROI')
 
     # plotting the velocity and smoothed velocity curves to be overlaid on top of the spectrogram
     ax8.plot((vc_out['time_f']) / 1e-9,
@@ -604,6 +611,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax8.legend(loc='lower right', fontsize=9, framealpha=1)
     ax8.set_zorder(1)
     ax8.patch.set_visible(False)
+    ax8.set_title('Filtered Spectrogram ROI with Velocity')
 
     # plotting the final spectrogram to go with the velocity curves
     plt9 = ax9.imshow(cf_out['power_filt'],
@@ -630,6 +638,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
     ax10.set_xlim([vc_out['time_f'][0] / 1e-9, vc_out['time_f'][-1] / 1e-9])
     ax10.minorticks_on()
     ax10.grid(axis='both', which='both')
+    ax10.set_title('Noise Fraction and Velocity Uncertainty')
 
     # plot the velocity uncertainty on the ROI
     ax11.plot(vc_out['time_f'] / 1e-9, iua_out['vel_uncert'], linewidth=2)
@@ -660,6 +669,7 @@ def plotting(sdf_out, cen, cf_out, vc_out, sa_out, iua_out, fua_out, start_time,
               vc_out['velocity_f_smooth'], 'k-', linewidth=3, label='Smoothed Velocity')
     ax12.set_xlabel('Time (ns)')
     ax12.set_ylabel('Velocity (m/s)')
+    ax12.set_title('Velocity with Uncertainty Bounds')
 
     if not np.isnan(sa_out['t_max_comp']):
         ax12.plot((sa_out['t_max_comp'] - sdf_out['t_start_corrected']) / 1e-9, sa_out['v_max_comp'], 'bs',
