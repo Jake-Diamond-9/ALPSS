@@ -86,16 +86,14 @@ Alternatively, if the _ALPSS\_env.yml_ install does not work, the packages can b
 ## Running ALPSS
 With your ALPSS environment selected, return to the Anaconda home screen and launch the Spyder application. Once Spyder opens, click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
 
-A sample file is available for download from the Johns Hopkins OneDrive [here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt). ALPSS has only been tested with input files in the form of a two column _.txt_ file containing the time in column 1 and voltage in column 2 as seen in the sample file. I expect that the import would work fine for a _.csv_, but again, this has not been tested.
+A sample file is available for download from the Johns Hopkins OneDrive [here](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/jdiamo15_jh_edu/EqdZ-pO-VehLkZhAY-UEVKUBBaoSvjqlMYaBigH7vllgTA?e=y3yuQt). Input data should always be in the form of a two column _.txt_ or _.csv_ file.
 
 Additional data files are available through the paper by [DiMarco et al.](https://doi.org/10.3390/met13030454) and can be accessed [here](https://craedl.org/pubs?p=6348&t=3&c=187&s=hemi&d=https:%2F%2Ffs.craedl.org#publications).
 
 ### Running a Single Signal
-Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. If using the sample file provided above, only two input parameters need to be changed from the original repository file. 
-1. _exp\_data\_dir_ should be changed to the directory where you have stored the sample file.
-2. _out\_files_dir_ should be changed to the directory where you would like to save the output files.
+Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. If using the sample file provided above, no input parameters need to be changed from the original repository file. The program will run the example file in the _input_data_ folder.
 
-In the toolbar click _Run -> Run_ and ALPSS will run the sample file. At the conclusion of the run, a figure that shows the sub processes will be displayed in the **Plots** window and a results table will be displayed in the **Console** window. Output files will be saved in the directory specified in _out\_files_dir_. 
+In the toolbar click _Run -> Run_ and ALPSS will run the sample file. At the conclusion of the run, a figure that shows the sub processes will be displayed in the **Plots** window and a results table will be displayed in the **Console** window. Output files will be saved in the _output_data_ folder. 
 
 ### Running a Signal with Automatic File Detection
 Open the file _alpss\_auto\_run.py_. If using the sample file provided above, only three changes need to be changed from the original repository file.

@@ -73,7 +73,7 @@ import os
 
 
 alpss_main(filename="example_file.csv",
-           save_data='no',
+           save_data='yes',
            start_time_user='none',
            header_lines=1,
            time_to_skip=2e-6,
