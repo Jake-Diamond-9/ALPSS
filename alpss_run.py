@@ -69,13 +69,14 @@ plot_dpi:                   float; dpi for the final plots
 """
 
 from alpss_main import *
+import os
 
 
-alpss_main(filename="F2--20211018--00015.txt",
+alpss_main(filename="example_file.csv",
            save_data='no',
            start_time_user='none',
-           header_lines=5,
-           time_to_skip=50e-6,
+           header_lines=1,
+           time_to_skip=2e-6,
            time_to_take=2e-6,
            t_before=10e-9,
            t_after=100e-9,
@@ -112,8 +113,8 @@ alpss_main(filename="F2--20211018--00015.txt",
            delta_lam=8e-18,
            theta=0,
            delta_theta=5,
-           exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
-           out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
+           exp_data_dir=(os.getcwd() + '/input_data'),
+           out_files_dir=(os.getcwd() + '/output_data'),
            display_plots='yes',
            spall_calculation='yes',
            plot_figsize=(30, 10),
