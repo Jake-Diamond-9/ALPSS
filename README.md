@@ -55,11 +55,12 @@ ALPSS requires the following packages:
 - [pandas](https://pandas.pydata.org/)
 - [opencv](https://docs.opencv.org/4.x/d7/dbd/group__imgproc.html)
 - [watchdog](https://pythonhosted.org/watchdog/)
+- [findiff](https://findiff.readthedocs.io/en/latest/)
 
 The simplest way to install these packages is to use the prepared Anaconda environment in the file _ALPSS\_env.yml_. To do this:
 1. Open Anaconda and navigate to the **_Environments_** tab on the left-hand side underneath **_Home_**.
 2. Towards the bottom of the window click **_Import_**.
-3. From your local drive, select the file _ALPSS\_env.yml_. Then click the green **_Import_** button. Note this process may take a few minutes as all the required packages are being imported.
+3. From your local drive, select the file _ALPSS\_env.yml_. Then click the green **_Import_** button. Note this process may take a little while as all the required packages are being imported. Give it at least 10-15 minutes. 
 
 Alternatively, if the _ALPSS\_env.yml_ install does not work, the packages can be installed individually via the Anaconda Navigator interface.
 1. Open Anaconda and navigate to the **_Environments_** tab on the left hand side underneath **_Home_**.
@@ -72,6 +73,7 @@ Alternatively, if the _ALPSS\_env.yml_ install does not work, the packages can b
 8. In the **_Search Packages_** bar type "pandas". Select the box next to the package with the name **_pandas_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 9. In the **_Search Packages_** bar type "opencv". Select the 3 boxes next to the packages with the names **_libopencv, opencv, and, py-opencv_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 10. In the **_Search Packages_** bar type "watchdog". Select the box next to the package with the name **_watchdog_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
+11. In the **_Search Packages_** bar type "findiff". Select the box next to the package with the name **_findiff_** and click the green **_Apply_** button in the bottom right. In the new package install window click the green **_Apply_** button.
 
 ## Running ALPSS
 With your ALPSS environment selected, return to the Anaconda home screen and launch the Spyder application. Once Spyder opens, click _File_ -> _Open_, navigate to the directory with the ALPSS program files, and open the file _alpss\_run.py_ to run a single signal or _alpss\_auto\_run.py_ to use automatic file detection.
@@ -102,6 +104,7 @@ The authors would like to acknowledge the following people for their many helpfu
 - Dr. Debjoy Mallcik
 - Dr. Maggie Eminizer
 - Dr. David Elbert
+- Professor Mark Foster
 - Samuel Salander
 
 Research was sponsored by the Army Research Laboratory and was accomplished under Cooperative Agreement Number W911NF-22-2-0014. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
