@@ -818,6 +818,7 @@ def saving(sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time,
     results_df['Value'][9] = results_df['Value'][9] / 1e-9
     results_df['Value'][16] = results_df['Value'][16] / 1e-9
     results_df['Value'][19] = results_df['Value'][19] / 1e-9
+    results_df['Value'][20] = results_df['Value'][20] / 1e-9
     display(results_df)
 
 
