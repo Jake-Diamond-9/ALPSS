@@ -7,12 +7,13 @@ import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from alpss_main import *
+import os
 
 
 class Watcher:
 
     # this is the directory where you will add the files to
-    DIRECTORY_TO_WATCH = "/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data"
+    DIRECTORY_TO_WATCH = (os.getcwd() + '/input_data')
 
     def __init__(self):
         self.observer = Observer()
@@ -43,15 +44,15 @@ class Handler(FileSystemEventHandler):
             # Take any action here when a file is first created.
             print("Received created event - %s." % event.src_path)
 
-            fname = event.src_path[-23:]
+            fname = os.path.split(event.src_path)[1]
             print(f"File Created:  {fname}")
 
             # use these function inputs the same as for the non-automated function alpss_run.py
             alpss_main(filename=fname,
-                       save_data='no',
+                       save_data='yes',
                        start_time_user='none',
-                       header_lines=5,
-                       time_to_skip=50e-6,
+                       header_lines=1,
+                       time_to_skip=2e-6,
                        time_to_take=2e-6,
                        t_before=10e-9,
                        t_after=100e-9,
@@ -88,8 +89,8 @@ class Handler(FileSystemEventHandler):
                        delta_lam=8e-18,
                        theta=0,
                        delta_theta=5,
-                       exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
-                       out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
+                       exp_data_dir=(os.getcwd() + '/input_data'),
+                       out_files_dir=(os.getcwd() + '/output_data'),
                        display_plots='yes',
                        spall_calculation='yes',
                        plot_figsize=(30, 10),
