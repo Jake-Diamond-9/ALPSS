@@ -21,6 +21,14 @@ GNU General Public License v3.0
 ## Overview
 ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Note that the wiki has not yet been updated for v1.2 and is still based on v1.1, although the program functionalities are largely the same. Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
 
+## Example Figure
+<!---
+![F2--20211018--00015--plots](https://github.com/Jake-Diamond-9/ALPSS/assets/83182690/b1e10324-27a1-4415-b294-fd93b21a75ae)
+-->
+<p align="center">
+<img src="https://github.com/Jake-Diamond-9/ALPSS/assets/83182690/b1e10324-27a1-4415-b294-fd93b21a75ae" width="600"/>
+</p>
+
 ## What's new in v1.2?
 Time resolved uncertainty estimates have been added in v1.2. E.g. for any given point in time on the final velocity trace, the program will output the estimated velocity uncertainty. All other functions are essentially the same. 
 
