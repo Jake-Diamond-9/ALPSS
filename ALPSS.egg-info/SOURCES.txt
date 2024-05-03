@@ -1,6 +1,5 @@
 LICENSE.md
 README.md
-pyproject.toml
 setup.py
 ALPSS/__init__.py
 ALPSS/alpss_auto_run.py

@@ -1,2 +1,11 @@
 findiff
 scipy
+ipython
+matplotlib
+pandas
+numpy
+watchdog
+# libopencv
+opencv-python
+# py-opencv
+spyder

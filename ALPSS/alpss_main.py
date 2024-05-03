@@ -1,6 +1,7 @@
 from datetime import datetime
 import traceback
 from IPython.display import display
+import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import pandas as pd
@@ -13,6 +14,8 @@ from scipy import signal
 import findiff
 import cv2 as cv
 from scipy.signal import ShortTimeFFT
+
+matplotlib.use("agg")
 
 
 # main function to link together all the sub-functions
