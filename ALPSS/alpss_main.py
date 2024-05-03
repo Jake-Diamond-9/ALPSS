@@ -15,8 +15,6 @@ import findiff
 import cv2 as cv
 from scipy.signal import ShortTimeFFT
 
-matplotlib.use("agg")
-
 
 # main function to link together all the sub-functions
 def alpss_main(**inputs):
@@ -1061,12 +1059,18 @@ def saving(
 
     # display the final results table in nanoseconds to make it more readable
     # the data in the saved file is still in seconds
-    results_df["Value"][5] = results_df["Value"][5] / 1e-9
-    results_df["Value"][7] = results_df["Value"][7] / 1e-9
-    results_df["Value"][9] = results_df["Value"][9] / 1e-9
-    results_df["Value"][16] = results_df["Value"][16] / 1e-9
-    results_df["Value"][19] = results_df["Value"][19] / 1e-9
-    results_df["Value"][20] = results_df["Value"][20] / 1e-9
+    # results_df["Value"][5] = results_df["Value"][5] / 1e-9
+    # results_df["Value"][7] = results_df["Value"][7] / 1e-9
+    # results_df["Value"][9] = results_df["Value"][9] / 1e-9
+    # results_df["Value"][16] = results_df["Value"][16] / 1e-9
+    # results_df["Value"][19] = results_df["Value"][19] / 1e-9
+    # results_df["Value"][20] = results_df["Value"][20] / 1e-9
+    results_df.loc[5, "Value"] /= 1e-9
+    results_df.loc[7, "Value"] /= 1e-9
+    results_df.loc[9, "Value"] /= 1e-9
+    results_df.loc[16, "Value"] /= 1e-9
+    results_df.loc[19, "Value"] /= 1e-9
+    results_df.loc[20, "Value"] /= 1e-9
     display(results_df)
 
 
