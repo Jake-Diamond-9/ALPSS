@@ -114,3 +114,12 @@ The authors would like to acknowledge the following people for their many helpfu
 - Samuel Salander
 
 Research was sponsored by the Army Research Laboratory and was accomplished under Cooperative Agreement Number W911NF-22-2-0014. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
+
+
+update requirements.txt if necessary
+run tests
+update readme, pyproject.toml and setup.py
+- version
+update doi of the github repo on the readme and the wiki
+push to pypi
+tag the github repo with the version of the package
