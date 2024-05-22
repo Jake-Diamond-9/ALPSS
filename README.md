@@ -12,7 +12,7 @@
  
 <div align="center">
 
-[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/github/license/Jake-Diamond-9/ALPSS) ![GitHub Release Date](https://img.shields.io/github/release-date/Jake-Diamond-9/ALPSS) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=yellow)
+[![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/github/license/Jake-Diamond-9/ALPSS?color=green) ![GitHub Release Date](https://img.shields.io/github/release-date/Jake-Diamond-9/ALPSS?color=red) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=yellow)
 
 </div>
 
@@ -20,7 +20,7 @@
 GNU General Public License v3.0
 
 ## Overview
-ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Note that the wiki has not yet been updated for v1.2 and is still based on v1.1, although the program functionalities are largely the same. Any suggestions or bugs can be reported to <jdiamo15@jhu.edu>.
+ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Note that the wiki has not yet been updated for v1.2 and is still based on v1.1, although the program functionalities are largely the same. Any questions, suggestions, or bugs can be reported to <jdiamo15@jhu.edu>.
 
 ## Example Figure
 <!---
@@ -84,10 +84,6 @@ Instructions on how to run your own data can be found in the repository [wiki](h
 
 ### Running a Signal with Automatic File Detection
 SECTION ON RUNNING WITH WATCHDOG
-
-## Contact and Questions
-Any questions on the program can be sent to Jake Diamond at <jdiamo15@jhu.edu>. Bugs or suggestions for improvements can be reported here as well.
-
 
 ## Acknowledgements and Funding
 The authors would like to acknowledge the following people for their many helpful conversations and advice:
