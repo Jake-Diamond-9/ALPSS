@@ -68,6 +68,8 @@ plot_figsize:               tuple; figure size for the final plots
 plot_dpi:                   float; dpi for the final plots
 """
 
+#%%
+
 from alpss_main import *
 import os
 

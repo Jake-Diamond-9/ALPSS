@@ -17,6 +17,10 @@ from scipy.signal import ShortTimeFFT
 
 # main function to link together all the sub-functions
 def alpss_main(**inputs):
+
+    # get the current working directory
+    cwd = os.getcwd()
+
     # attempt to run the program in full
     try:
 
@@ -113,6 +117,9 @@ def alpss_main(**inputs):
         # if that also fails then print the traceback and stop running the program
         except Exception:
             print(traceback.format_exc())
+
+    # move back to the original working directory
+    os.chdir(cwd)
 
 
 # function to filter out the carrier frequency
@@ -811,15 +818,17 @@ def saving(sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time,
     results_df = pd.DataFrame(data=results_to_save)
     results_df.to_csv(inputs['filename'][0:-4] + '--results' + '.csv', index=False, header=False)
 
+    '''
     # display the final results table in nanoseconds to make it more readable
     # the data in the saved file is still in seconds
-    results_df['Value'][5] = results_df['Value'][5] / 1e-9
-    results_df['Value'][7] = results_df['Value'][7] / 1e-9
-    results_df['Value'][9] = results_df['Value'][9] / 1e-9
-    results_df['Value'][16] = results_df['Value'][16] / 1e-9
-    results_df['Value'][19] = results_df['Value'][19] / 1e-9
-    results_df['Value'][20] = results_df['Value'][20] / 1e-9
+    results_df.loc[5, "Value"] /= 1e-9
+    results_df.loc[7, "Value"] /= 1e-9
+    results_df.loc[9, "Value"] /= 1e-9
+    results_df.loc[16, "Value"] /= 1e-9
+    results_df.loc[19, "Value"] /= 1e-9
+    results_df.loc[20, "Value"] /= 1e-9
     display(results_df)
+    '''
 
 
 # function for smoothing the padded velocity data; padded data is used so the program can return

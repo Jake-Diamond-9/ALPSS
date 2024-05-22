@@ -39,8 +39,8 @@ delta_C0,23
 delta_lam,8e-18
 theta,0
 delta_theta,5
-exp_data_dir,/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/ALPSS/input_data
-out_files_dir,/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/ALPSS/output_data
+exp_data_dir,/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_DUMMY/ALPSS/input_data
+out_files_dir,/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_DUMMY/ALPSS/output_data
 display_plots,yes
 spall_calculation,yes
 plot_figsize,"(30, 10)"
