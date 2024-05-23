@@ -32,7 +32,7 @@ Time resolved uncertainty estimates have been added in v1.2. E.g. for any given 
 ## Citing ALPSS
 For use in published works, ALPSS can be cited from its original paper _Automated analysis of photonic Doppler velocimetry spall signals, in submission._ 
 
-The repository itself can be cited using its DOI 10.5281/zenodo.7603823 (v1.1 only) or with the bibtex 
+The repository itself for v1.1 can be cited using its DOI 10.5281/zenodo.7603823 or with the bibtex 
 
 ~~~
 @software{Diamond_ALPSS_2023,
