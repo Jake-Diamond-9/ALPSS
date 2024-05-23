@@ -47,7 +47,7 @@ The repository for v1.2.4 can be cited using its DOI [10.5281/zenodo.11266560](h
 ~~~
 
 ## Installation
-For users that are familiar with python you can simply clone the repo, create a virtual environment, and install the requirements in the file _requirements.txt_.
+For users that are familiar with python you can simply clone the repo, create a virtual environment, and install the requirements in the file _requirements.txt_. I recommend using VS Code because the Jupyter extension allows for nice in-line plotting. If you use a different IDE the figures may not format correctly out of the box depending on your IDE settings. In that case, you may have to make adjustments to your IDE settings or the [matplotlib backend](https://matplotlib.org/stable/users/explain/figure/backends.html).
 
 For users who are not familiar with Python, you can follow the steps below.
 
