@@ -1,5 +1,4 @@
-# <div align="center">_**README STILL IN PROGRESS!**_</div>
-
+## <div align="center">**README STILL IN PROGRESS**</div>
 
 # <div align="center">ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals</div>
 #### <div align="center">***v1.2.4***</div>
@@ -15,9 +14,6 @@
 [![DOI](https://zenodo.org/badge/592923543.svg)](https://zenodo.org/badge/latestdoi/592923543) ![GitHub](https://img.shields.io/github/license/Jake-Diamond-9/ALPSS?color=green) ![GitHub Release Date](https://img.shields.io/github/release-date/Jake-Diamond-9/ALPSS?color=red) ![GitHub](https://img.shields.io/github/repo-size/Jake-Diamond-9/ALPSS?color=yellow)
 
 </div>
-
-## Copyright
-GNU General Public License v3.0
 
 ## Overview
 ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Note that the wiki has not yet been updated for v1.2 and is still based on v1.1, although the program functionalities are largely the same. Any questions, suggestions, or bugs can be reported to <jdiamo15@jhu.edu>.
@@ -60,11 +56,11 @@ For users who are not familiar with Python, you can follow the steps below.
 
 2. Install [VS Code](https://code.visualstudio.com/).
 
-3. Install the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions in VS Code.
+3. Install the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions in VS Code. Installation instructions can be found [here](https://code.visualstudio.com/docs/editor/extension-marketplace).
 
-4. Clone the ALPSS repo to the directory of your choice using the link https://github.com/Jake-Diamond-9/ALPSS.git. 
+4. Clone the ALPSS repo to the directory of your choice using the link <https://github.com/Jake-Diamond-9/ALPSS.git>. Instructions on cloning a repo can be found [here](https://code.visualstudio.com/docs/sourcecontrol/intro-to-git).
 
-5. Create a [virtual environment](https://code.visualstudio.com/docs/python/environments) and install the packages in _requirements.txt_ by copying the following line into the terminal.
+5. Create a virtual environment and install the packages in _requirements.txt_ by copying the following line into the terminal. Instructions on creating a virtual environment can be found [here](https://code.visualstudio.com/docs/python/environments).
 
 ~~~
 pip install -r requirements.txt
@@ -93,7 +89,10 @@ Instructions on how to run your own data can be found in the repository [wiki](h
 
 
 ### Running a Signal with Automatic File Detection
-SECTION ON RUNNING WITH WATCHDOG
+SECTION ON RUNNING SIGNALS WITH _alpss_auto_run.py_
+
+## Copyright
+GNU General Public License v3.0
 
 ## Acknowledgements and Funding
 The authors would like to acknowledge the following people for their many helpful conversations and advice:
