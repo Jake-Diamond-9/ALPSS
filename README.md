@@ -2,7 +2,7 @@
 
 
 # <div align="center">ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals</div>
-#### <div align="center">***v1.2***</div>
+#### <div align="center">***v1.2.4***</div>
 
 #### <div align="center">Jacob M. Diamond<sup>1,2*</sup>, K. T. Ramesh<sup>1,2</sup></div>
 <div align="center"><sup>1</sup> Department of Mechanical Engineering, Johns Hopkins University, Baltimore, MD, USA </div>
@@ -51,14 +51,20 @@ The repository itself can be cited using its DOI 10.5281/zenodo.7603823 (v1.1 on
 ~~~
 
 ## Installation
-It is recommended for users new to python to use [Visual Studio Code](https://code.visualstudio.com/). For users that are familiar with python you can simply clone the repo.
+For users that are familiar with python you can simply clone the repo, create a virtual environment, and install the requirements in the file _requirements.txt_.
+
+For users who are not familiar with Python, you can follow the steps below.
 
 ### Getting Started
-SECTION ON INSTALLING PYTHON
+1. If you do not already have Python installed, begin by installing [Miniconda](https://docs.anaconda.com/free/miniconda/index.html).
 
-SECTION ON INSTALLING VS CODE
+2. Install [VS Code](https://code.visualstudio.com/).
 
-SECTION ON SETTING UP VS CODE
+3. Install the Python and Jupyter extensions in VS Code.
+
+4. Clone the ALPSS repo using the link https://github.com/Jake-Diamond-9/ALPSS.git
+
+5. Create a virtual environment and install the packages in _requirements.txt_.
 
 VIDEO TUTORIAL?
 
