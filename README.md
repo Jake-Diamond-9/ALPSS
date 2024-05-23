@@ -66,8 +66,6 @@ For users who are not familiar with Python, you can follow the steps below.
 pip install -r requirements.txt
 ~~~
 
-ADD VIDEO TUTORIAL?
-
 ## Running ALPSS
 
 ### Running a Single Signal
