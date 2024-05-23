@@ -60,18 +60,22 @@ For users who are not familiar with Python, you can follow the steps below.
 
 2. Install [VS Code](https://code.visualstudio.com/).
 
-3. Install the Python and Jupyter extensions in VS Code.
+3. Install the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions in VS Code.
 
-4. Clone the ALPSS repo using the link https://github.com/Jake-Diamond-9/ALPSS.git
+4. Clone the ALPSS repo to the directory of your choice using the link https://github.com/Jake-Diamond-9/ALPSS.git. 
 
-5. Create a virtual environment and install the packages in _requirements.txt_.
+5. Create a [virtual environment](https://code.visualstudio.com/docs/python/environments) and install the packages in _requirements.txt_ by copying the following line into the terminal.
 
-VIDEO TUTORIAL?
+~~~
+pip install -r requirements.txt
+~~~
+
+ADD VIDEO TUTORIAL?
 
 ## Running ALPSS
 
 ### Running a Single Signal
-Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. No input parameters need to be changed from the original repository file. The program will run the example file in the _input_data_ folder.
+Open the file _alpss\_run.py_. In the file there is a docstring that describes the input variables followed by the function **_alpss_main_**. No input parameters need to be changed from the original repository file to run the demo. The program will run the example file in the _input_data_ folder.
 
 In the _alpss\_run_ file there is a section that reads
 
