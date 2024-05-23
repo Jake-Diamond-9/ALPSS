@@ -79,7 +79,11 @@ from alpss_main import *
 import os
 ~~~
 
-Just above these lines there should be small font options that read "Run Cell | Run Below | Debug Cell". Click the "Run Cell" button and the program will execute in an interactive notebook window.
+Just above these lines there should be small font options that read "Run Cell | Run Below | Debug Cell" (see image below). Click the "Run Cell" button and the program will execute in an interactive notebook window.
+
+<p align="center">
+<img src="https://github.com/Jake-Diamond-9/ALPSS/assets/83182690/ad3e0d22-4080-4eef-bf86-5c1c93822e30" width="300"/>
+</p>
 
 Additional example data files are available through the paper by [DiMarco et al.](https://doi.org/10.3390/met13030454) and can be accessed [here](https://craedl.org/pubs?p=6348&t=3&c=187&s=hemi&d=https:%2F%2Ffs.craedl.org#publications).
 
