@@ -16,7 +16,7 @@
 </div>
 
 ## Overview
-ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Note that the wiki has not yet been updated for v1.2 and is still based on v1.1, although the program functionalities are largely the same. Any questions, suggestions, or bugs can be reported to <jdiamo15@jhu.edu>.
+ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Note that the wiki has not yet been updated for v1.2.x and is still based on v1.1, although the program functionalities are largely the same. Any questions, suggestions, or bugs can be reported to <jdiamo15@jhu.edu>.
 
 ## Example Figure
 <!---
@@ -27,22 +27,22 @@ ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#82
 </p>
 
 ## What's new in v1.2?
-Time resolved uncertainty estimates have been added in v1.2. E.g. for any given point in time on the final velocity trace, the program will output the estimated velocity uncertainty. All other functions are essentially the same. 
+Time-resolved uncertainty estimates have been added in v1.2.x. E.g. for any given point in time on the final velocity trace, the program will output the estimated velocity uncertainty. All other functions are essentially the same. 
 
 ## Citing ALPSS
 For use in published works, ALPSS can be cited from its original paper _Automated analysis of photonic Doppler velocimetry spall signals, in submission._ 
 
-The repository itself for v1.1 can be cited using its DOI 10.5281/zenodo.7603823 or with the bibtex 
+The repository for v1.2.4 can be cited using its DOI [10.5281/zenodo.11266560](https://doi.org/10.5281/zenodo.11266560) or with the following bibtex. 
 
 ~~~
-@software{Diamond_ALPSS_2023,
+@software{Diamond_ALPSS_2024,
   author = {Diamond, Jacob M. and Ramesh, K.T.},
-  doi = {10.5281/zenodo.7603823},
-  month = {02},
+  doi = {10.5281/zenodo.11266560},
+  month = {05},
   title = {{ALPSS}},
   url = {https://github.com/Jake-Diamond-9/ALPSS},
-  version = {1.1},
-  year = {2023}
+  version = {1.2.4},
+  year = {2024}
 }
 ~~~
 
