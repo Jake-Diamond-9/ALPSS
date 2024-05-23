@@ -1,6 +1,6 @@
 """
 ALPSS
-Jake Diamond (2023)
+Jake Diamond (2024)
 Johns Hopkins University
 Hopkins Extreme Materials Institute (HEMI)
 Please report any bugs or comments to jdiamo15@jhu.edu
@@ -46,6 +46,8 @@ blur_sigy:                  float; standard deviation of the gaussian blur kerne
 carrier_band_time:          float; length of time from the beginning of the imported data window to average
                                    the frequency of the top of the carrier band in the thresholded spectrogram
 cmap:                       str; colormap for the spectrograms (recommend 'viridis')
+uncert_mult:                float; factor to multiply the velocity uncertainty by when plotting - allows for easier
+                                   visulaization when uncertainties are small
 order:                      int; order for the gaussian notch filter used to remove the carrier band (recommend 6)
 wid:                        float; width of the gaussian notch filter used to remove the carrier band (recommend 1e8)
 lam:                        float; wavelength of the target laser
@@ -56,67 +58,67 @@ delta_C0:                   float; uncertainty in the bulk wavespeed of the samp
 delta_lam:                  float; uncertainty in the wavelength of the target laser
 theta:                      float; angle of incidence of the PDV probe
 delta_theta:                float; uncertainty in the angle of incidence of the PDV probe
-delta_freq_tb:              float; uncertainty in the frequency at time b
-delta_freq_td:              float; uncertainty in the frequency at time d
-delta_time_c:               float; uncertainty in time c
-delta_time_d:               float; uncertainty in time d
 exp_data_dir:               str; directory from which to read the experimental data file
 out_files_dir:              str; directory to save output data to
 display_plots:              str; 'yes' to display the final plots and 'no' to not display them. if save_data='yes'
                                      and and display_plots='no' the plots will be saved but not displayed
+spall_calculation:          str; 'yes' to run the calculations for the spall analysis and 'no' to extract the velocity
+                                  without doing the spall analysis
 plot_figsize:               tuple; figure size for the final plots
 plot_dpi:                   float; dpi for the final plots
 """
 
+# %%
 from alpss_main import *
+import os
 
 
-alpss_main(filename="F2--20211018--00015.txt",
-           save_data='yes',
-           start_time_user='none',
-           header_lines=5,
-           time_to_skip=50e-6,
-           time_to_take=2e-6,
-           t_before=5e-9,
-           t_after=50e-9,
-           start_time_correction=0e-9,
-           freq_min=1.5e9,
-           freq_max=4e9,
-           smoothing_window=401,
-           smoothing_wid=3,
-           smoothing_amp=1,
-           smoothing_sigma=1,
-           smoothing_mu=0,
-           pb_neighbors=400,
-           pb_idx_correction=0,
-           rc_neighbors=400,
-           rc_idx_correction=0,
-           sample_rate=80e9,
-           nperseg=512,
-           noverlap=435,
-           nfft=5120,
-           window='hann',
-           blur_kernel=(5, 5),
-           blur_sigx=0,
-           blur_sigy=0,
-           carrier_band_time=250e-9,
-           cmap='viridis',
-           order=6,
-           wid=5e7,
-           lam=1547.461e-9,
-           C0=4540,
-           density=1730,
-           delta_rho=9,
-           delta_C0=23,
-           delta_lam=8e-18,
-           theta=0,
-           delta_theta=2.5,
-           delta_freq_tb=20e6,
-           delta_freq_td=20e6,
-           delta_time_c=2.5e-9,
-           delta_time_d=2.5e-9,
-           exp_data_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Sample_Data",
-           out_files_dir="/Users/jakediamond/Desktop/Hopkins School Work/HEMI Research/Project 2 - High Throughput Testing/ALPSS_Paper/Code_Beta_Test/Output_Files",
-           display_plots='yes',
-           plot_figsize=(12, 10),
-           plot_dpi=300)
+alpss_main(
+    filename="example_file.csv",
+    save_data="yes",
+    start_time_user="none",
+    header_lines=1,
+    time_to_skip=2e-6,
+    time_to_take=2e-6,
+    t_before=10e-9,
+    t_after=100e-9,
+    start_time_correction=0e-9,
+    freq_min=1.5e9,
+    freq_max=4e9,
+    smoothing_window=401,
+    smoothing_wid=3,
+    smoothing_amp=1,
+    smoothing_sigma=1,
+    smoothing_mu=0,
+    pb_neighbors=400,
+    pb_idx_correction=0,
+    rc_neighbors=400,
+    rc_idx_correction=0,
+    sample_rate=80e9,
+    nperseg=512,
+    noverlap=435,
+    nfft=5120,
+    window="hann",
+    blur_kernel=(5, 5),
+    blur_sigx=0,
+    blur_sigy=0,
+    carrier_band_time=250e-9,
+    cmap="viridis",
+    uncert_mult=100,
+    order=6,
+    wid=5e7,
+    lam=1547.461e-9,
+    C0=4540,
+    density=1730,
+    delta_rho=9,
+    delta_C0=23,
+    delta_lam=8e-18,
+    theta=0,
+    delta_theta=5,
+    exp_data_dir=(os.getcwd() + "/input_data"),
+    out_files_dir=(os.getcwd() + "/output_data"),
+    display_plots="yes",
+    spall_calculation="yes",
+    plot_figsize=(30, 10),
+    plot_dpi=300,
+)
