@@ -30,7 +30,16 @@ ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#82
 Time-resolved uncertainty estimates have been added in v1.2.x. E.g. for any given point in time on the final velocity trace, the program will output the estimated velocity uncertainty. All other functions are essentially the same. 
 
 ## Citing ALPSS
-For use in published works, ALPSS can be cited from its original paper _Automated analysis of photonic Doppler velocimetry spall signals, in submission._ 
+For use in published works, ALPSS can be cited from its original paper _Automated Analysis of Photonic Doppler Velocimetry Spall Signals_. J. dynamic behavior mater. (2024). <https://doi.org/10.1007/s40870-024-00427-9> or with the following bibtex
+~~~
+@Article{diamond_automated_2024,
+  author  = {Diamond, Jacob M. and Ramesh, K.T.},
+  title   = {Automated Analysis of Photonic Doppler Velocimetry Spall Signals},
+  journal = {Journal of Dynamic Behavior of Materials},
+  year    = {2024},
+  doi     = {10.1007/s40870-024-00427-9}
+}
+~~~
 
 The repository for v1.2.4 can be cited using its DOI [10.5281/zenodo.11266560](https://doi.org/10.5281/zenodo.11266560) or with the following bibtex. 
 
