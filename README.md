@@ -26,6 +26,20 @@ ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#82
 <img src="https://github.com/Jake-Diamond-9/ALPSS/assets/83182690/b1e10324-27a1-4415-b294-fd93b21a75ae" width="600"/>
 </p>
 
+## Is ALPSS Right for You?
+ALPSS may work well for your application if:
+1. Your signal contains only a single velocity (like a typical spall shot).
+2. You already have a good idea of what the signal should look like and its expected frequency range.
+3. You expect to have a good signal-to-noise ratio.
+4. You have large amounts of relatively similar PDV signals.
+
+ALPSS will not work well for your application if:
+1. Your signal contains multiple velocities (like a typical RMI shot).
+2. You are unsure of what the signal will look like and its expected frequency range.
+3. You expect to have poor or inconsistent signal-to-noise ratios.
+
+If ALPSS is not suited for your application you can try [SIRHEN](https://github.com/SMASHtoolbox/release/tree/master/programs/SIRHEN2), [HiFiPDV](https://github.com/sandialabs/HiFiPDV2), or [QVPRO](https://gitlab.osti.gov/doecode/dc-31683) to name a few other programs.
+
 ## What's new in v1.2?
 Time-resolved uncertainty estimates have been added in v1.2.x. E.g. for any given point in time on the final velocity trace, the program will output the estimated velocity uncertainty. All other functions are essentially the same. 
 
