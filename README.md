@@ -114,7 +114,9 @@ Instructions on how to run your own data can be found in the repository wiki [he
 
 
 ### Running a Signal with Automatic File Detection
-SECTION ON RUNNING SIGNALS WITH _alpss_auto_run.py_
+1. Move example_file.csv out of the input_data directory and into some other temporary directory of your choosing. It does not matter where this temporary directory is located on your machine.
+2. Open the _alpss_auto_run.py_ file and click "Run Cell", similar to the example above. This will open an interactive notebook and the program will execute. The program is now waiting for a file to be moved into the directory that it is monitoring, the  input_data directory.
+3. Click and drag example_file.csv out of your temporary directory and into the input_data directory. The program will automatically detect that a file has been added and run it through the ALPSS program.
 
 ## Copyright
 GNU General Public License v3.0
