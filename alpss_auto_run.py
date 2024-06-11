@@ -3,6 +3,8 @@ Credit to Michael Cho
 https://michaelcho.me/article/using-pythons-watchdog-to-monitor-changes-to-a-directory
 """
 
+# %%
+
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
