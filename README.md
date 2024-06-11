@@ -1,5 +1,3 @@
-## <div align="center">**README STILL IN PROGRESS**</div>
-
 # <div align="center">ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals</div>
 #### <div align="center">***v1.2.4***</div>
 
@@ -122,13 +120,4 @@ Instructions on how to run your own data can be found in the repository wiki [he
 GNU General Public License v3.0
 
 ## Acknowledgements and Funding
-The authors would like to acknowledge the following people for their many helpful conversations and advice:
-- Dr. Chris DiMarco
-- Dr. Velat Killic
-- Dr. Debjoy Mallcik
-- Dr. Maggie Eminizer
-- Dr. David Elbert
-- Professor Mark Foster
-- Samuel Salander
-
-Research was sponsored by the Army Research Laboratory and was accomplished under Cooperative Agreement Number W911NF-22-2-0014. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
+The authors would like to acknowledge the following people for their many helpful conversations and advice, Chris DiMarco, Velat Killic, Debjoy Mallcik, Maggie Eminizer, David Elbert, Mark Foster, and Samuel Salander. Research was sponsored by the Army Research Laboratory and was accomplished under Cooperative Agreement Number W911NF-22-2-0014. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the Army Research Office or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation herein.
