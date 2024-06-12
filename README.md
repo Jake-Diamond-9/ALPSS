@@ -14,7 +14,7 @@
 </div>
 
 ## Overview
-ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki). Note that the wiki has not yet been updated for v1.2.x and is still based on v1.1, although the program functionalities are largely the same. Any questions, suggestions, or bugs can be reported to <jdiamo15@jhu.edu>.
+ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#8202;hotonic Doppler velocimetry <b><i>S</i></b>&#8202;ignals of <b><i>S</i></b>&#8202;pall) was developed to automate the processing of PDV spall signals. This readme is a simple quick-start guide. For comprehensive documentation please refer to the repository [wiki](https://github.com/Jake-Diamond-9/ALPSS/wiki), which includes [tutorials](https://github.com/Jake-Diamond-9/ALPSS/wiki/3.-Tutorials) and instructions on how to [import your own data](https://github.com/Jake-Diamond-9/ALPSS/wiki/3.-Tutorials#importing-your-own-data). Any questions, suggestions, or bugs can be reported to <jdiamo15@jhu.edu>.
 
 ## Example Figure
 <!---
