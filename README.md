@@ -26,15 +26,17 @@ ALPSS (<b><i>A</i></b>&#8202;na<b><i>L</i></b>&#8202;ysis of <b><i>P</i></b>&#82
 
 ## Is ALPSS Right for You?
 ALPSS may work well for your application if:
-1. Your signal contains only a single velocity (like a typical spall shot).
-2. You already have a good idea of what the signal should look like and its expected frequency range.
-3. You expect to have a good signal-to-noise ratio.
-4. You have large amounts of relatively similar PDV signals.
+1. Your signal is upshifted. This is a requirement.
+2. Your signal contains only a single velocity (like a typical spall shot).
+3. You already have a good idea of what the signal should look like and its expected frequency range.
+4. You expect to have a good signal-to-noise ratio.
+5. You have large amounts of relatively similar PDV signals.
 
 ALPSS will not work well for your application if:
-1. Your signal contains multiple velocities (like a typical RMI shot).
-2. You are unsure of what the signal will look like and its expected frequency range.
-3. You expect to have poor or inconsistent signal-to-noise ratios.
+1. Your signal is not upshifted. ALPSS will not work for a non-upshifted signal.
+2. Your signal contains multiple velocities (like a typical RMI shot).
+3. You are unsure of what the signal will look like and its expected frequency range.
+4. You expect to have poor or inconsistent signal-to-noise ratios.
 
 If ALPSS is not suited for your application you can try [SIRHEN](https://github.com/SMASHtoolbox/release/tree/master/programs/SIRHEN2), [HiFiPDV](https://github.com/sandialabs/HiFiPDV2), or [QVPRO](https://gitlab.osti.gov/doecode/dc-31683) to name a few other programs.
 
