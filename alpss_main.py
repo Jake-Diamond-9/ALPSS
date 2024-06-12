@@ -991,13 +991,13 @@ def saving(
     # save the noise fraction
     noise_data = np.stack((vc_out["time_f"], iua_out["inst_noise"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--noisefrac" + ".csv", noise_data, delimiter=","
+        inputs["filename"][0:-4] + "--noise--frac" + ".csv", noise_data, delimiter=","
     )
 
     # save the velocity uncertainty
     vel_uncert_data = np.stack((vc_out["time_f"], iua_out["vel_uncert"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--veluncert" + ".csv",
+        inputs["filename"][0:-4] + "--vel--uncert" + ".csv",
         vel_uncert_data,
         delimiter=",",
     )
