@@ -46,12 +46,16 @@ Time-resolved uncertainty estimates have been added in v1.2.x. E.g. for any give
 ## Citing ALPSS
 For use in published works, ALPSS can be cited from its original paper _Automated Analysis of Photonic Doppler Velocimetry Spall Signals_. J. dynamic behavior mater. (2024). <https://doi.org/10.1007/s40870-024-00427-9> or with the following bibtex
 ~~~
-@Article{diamond_automated_2024,
-  author  = {Diamond, Jacob M. and Ramesh, K.T.},
-  title   = {Automated Analysis of Photonic Doppler Velocimetry Spall Signals},
+@article{Diamond_automated_2024,
+  title = {Automated Analysis of Photonic Doppler Velocimetry Spall Signals},
+  ISSN = {2199-7454},
+  url = {http://dx.doi.org/10.1007/s40870-024-00427-9},
+  DOI = {10.1007/s40870-024-00427-9},
   journal = {Journal of Dynamic Behavior of Materials},
-  year    = {2024},
-  doi     = {10.1007/s40870-024-00427-9}
+  publisher = {Springer Science and Business Media LLC},
+  author = {Diamond,  J. M. and Ramesh,  K. T.},
+  year = {2024},
+  month = jun 
 }
 ~~~
 
