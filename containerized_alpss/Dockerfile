@@ -9,6 +9,11 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/Jake-Diamond-9/ALPSS.git
 
-RUN git checkout processor
+WORKDIR ${ROOT}/ALPSS
 
-RUN pip install -e ALPSS/
+RUN git fetch --all && git checkout processor2
+
+RUN pip install -e .
+
+RUN pip install -r requirements.txt
+
