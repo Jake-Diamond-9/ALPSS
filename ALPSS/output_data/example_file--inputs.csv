@@ -4,8 +4,8 @@ start_time_user,none
 header_lines,1
 time_to_skip,2e-06
 time_to_take,2e-06
-t_before,1e-08
-t_after,1e-07
+t_before,5e-09
+t_after,5e-08
 start_time_correction,0.0
 freq_min,1500000000.0
 freq_max,4000000000.0
@@ -28,7 +28,6 @@ blur_sigx,0
 blur_sigy,0
 carrier_band_time,2.5e-07
 cmap,viridis
-uncert_mult,100
 order,6
 wid,50000000.0
 lam,1.547461e-06
@@ -38,10 +37,13 @@ delta_rho,9
 delta_C0,23
 delta_lam,8e-18
 theta,0
-delta_theta,5
-exp_data_dir,/Users/alirachidi/Documents/HEMI/ALPSS/ALPSS/input_data
-out_files_dir,/Users/alirachidi/Documents/HEMI/ALPSS/ALPSS/output_data
+delta_theta,2.5
+delta_freq_tb,20000000.0
+delta_freq_td,20000000.0
+delta_time_c,2.5e-09
+delta_time_d,2.5e-09
+exp_data_dir,/srv/hemi01-j01/original_alpss/ALPSS/ALPSS/input_data
+out_files_dir,/srv/hemi01-j01/original_alpss/ALPSS/ALPSS/output_data
 display_plots,yes
-spall_calculation,yes
-plot_figsize,"(30, 10)"
+plot_figsize,"(12, 10)"
 plot_dpi,300
