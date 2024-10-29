@@ -5,18 +5,26 @@ from carrier_filter import *
 from velocity_calculation import *
 from spall_analysis import *
 from full_uncertainty_analysis import *
+from instantaneous_uncertainty_analysis import *
 from saving import *
 from datetime import datetime
 import traceback
 import matplotlib.pyplot as plt
 import pandas as pd
 
+def validate_inputs(inputs):
+    if inputs["t_after"] > inputs["time_to_take"]:
+        raise ValueError("'t_after' must be less than 'time_to_take'. ")
 
 # main function to link together all the sub-functions
 def alpss_main(**inputs):
+    # validate the inputs for the run
+    validate_inputs(inputs)
+
     # attempt to run the program in full
     try:
         # begin the program timer
+
         start_time = datetime.now()
 
         # function to find the spall signal domain of interest
@@ -31,11 +39,14 @@ def alpss_main(**inputs):
         # function to calculate the velocity from the filtered voltage signal
         vc_out = velocity_calculation(sdf_out, cen, cf_out, **inputs)
 
-        # function to find points of interest on the velocity trace
-        sa_out = spall_analysis(vc_out, **inputs)
+        # function to estimate the instantaneous uncertainty for all points in time
+        iua_out = instantaneous_uncertainty_analysis(sdf_out, vc_out, cen, **inputs)
 
-        # function to calculate uncertainties in the spall strength and strain rate
-        fua_out = full_uncertainty_analysis(cen, sa_out, **inputs)
+        # function to find points of interest on the velocity trace
+        sa_out = spall_analysis(vc_out, iua_out, **inputs)
+
+        # function to calculate uncertainties in the spall strength and strain rate due to external uncertainties
+        fua_out = full_uncertainty_analysis(cen, sa_out, iua_out, **inputs)
 
         # end the program timer
         end_time = datetime.now()
@@ -47,6 +58,7 @@ def alpss_main(**inputs):
             cf_out,
             vc_out,
             sa_out,
+            iua_out,
             fua_out,
             start_time,
             end_time,
@@ -60,6 +72,7 @@ def alpss_main(**inputs):
                 cen,
                 vc_out,
                 sa_out,
+                iua_out,
                 fua_out,
                 start_time,
                 end_time,
@@ -70,7 +83,7 @@ def alpss_main(**inputs):
         # end final timer and display full runtime
         end_time2 = datetime.now()
         print(
-            f"\nFull program runtime (including plotting and saving):\n{end_time2-start_time}\n"
+            f"\nFull program runtime (including plotting and saving):\n{end_time2 - start_time}\n"
         )
 
     # in case the program throws an error
@@ -88,19 +101,10 @@ def alpss_main(**inputs):
             nrows = inputs["time_to_take"] / t_step
 
             # change directory to where the data is stored
-            # print(os.getcwd())
-            # print(os.listdir('/alpss_processor'))
-            if "bytestring_data" in inputs:
-                data = pd.read_csv(
-                    inputs["bytestring_data"],
-                    skiprows=int(rows_to_skip),
-                    nrows=int(nrows),
-                )
-            else:
-                os.chdir(inputs["exp_data_dir"])
-                data = pd.read_csv(
-                    inputs["filename"], skiprows=int(rows_to_skip), nrows=int(nrows)
-                )
+            os.chdir(inputs["exp_data_dir"])
+            data = pd.read_csv(
+                inputs["filename"], skiprows=int(rows_to_skip), nrows=int(nrows)
+            )
 
             # rename the columns of the data
             data.columns = ["Time", "Ampl"]
@@ -114,15 +118,7 @@ def alpss_main(**inputs):
             fs = 1 / np.mean(np.diff(time))
 
             # calculate the short time fourier transform
-            f, t, Zxx = signal.stft(
-                voltage,
-                fs=fs,
-                window=inputs["window"],
-                nperseg=inputs["nperseg"],
-                noverlap=inputs["noverlap"],
-                nfft=inputs["nfft"],
-                boundary=None,
-            )
+            f, t, Zxx = stft(voltage, fs, **inputs)
 
             # calculate magnitude of Zxx
             mag = np.abs(Zxx)
@@ -133,7 +129,7 @@ def alpss_main(**inputs):
             ax1.set_xlabel("Time (ns)")
             ax1.set_ylabel("Voltage (mV)")
             ax2.imshow(
-                20 * np.log10(mag**2),
+                10 * np.log10(mag**2),
                 aspect="auto",
                 origin="lower",
                 interpolation="none",
