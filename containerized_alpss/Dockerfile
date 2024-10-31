@@ -1,7 +1,4 @@
-FROM python:3.8-slim
-# FROM openmsi/openmsistream:latest
-
-# CMD ["bash"]
+FROM python:3.9-slim
 
 USER root
 
@@ -20,5 +17,6 @@ RUN pip install -e .
 
 RUN pip install -r requirements.txt
 
-# CMD ['sleep', 'infinity']
-CMD ["/usr/local/bin/python", "ALPSS/alpss_stream_processor.py", "--topic_name", "pdv_data_stieff", "--config", "config.config", "--output_dir", "output_dir/", "--out_files_dir", "out_files_dir/", "--mode", "disk"]
+CMD ["/bin/bash", "-c", "/usr/local/bin/python ALPSS/alpss_stream_processor.py --topic_name pdv_data_stieff --config /home/openmsi/config.config --output_dir output_dir --out_files_dir out_files_dir --mode disk"]
+# CMD ["/usr/local/bin/python", "ALPSS/alpss_stream_processor.py", "--topic_name", "pdv_data_stieff", "--config", "/home/openmsi/config.config", "--output_dir", "output_dir", "--out_files_dir", "out_files_dir", "--mode", "disk"]
+# CMD ["sleep", "infinity"]
