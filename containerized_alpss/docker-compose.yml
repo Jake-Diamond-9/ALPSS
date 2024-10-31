@@ -12,6 +12,6 @@ services:
       python ALPSS/alpss_stream_processor.py
       --topic_name pdv_data_stieff
       --config /home/openmsi/config
-      --output_dir output_dir
-      --out_files_dir out_files_dir
+      --output_dir ALPSS/output_dir
+      --out_files_dir ALPSS/out_files_dir
       --mode disk
