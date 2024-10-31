@@ -1,5 +1,5 @@
-# FROM python:3.8-slim
-FROM openmsi/openmsistream:latest
+FROM python:3.8-slim
+# FROM openmsi/openmsistream:latest
 
 # CMD ["bash"]
 
@@ -8,7 +8,7 @@ USER root
 ARG ROOT=/home/openmsi
 WORKDIR ${ROOT}
 
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y git libsodium23 libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/Jake-Diamond-9/ALPSS.git
 

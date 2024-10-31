@@ -1,5 +1,5 @@
 findiff
-scipy
+scipy>=1.12.0
 ipython
 matplotlib
 pandas
