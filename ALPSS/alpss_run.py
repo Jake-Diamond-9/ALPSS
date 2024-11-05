@@ -73,7 +73,7 @@ import os
 
 
 alpss_main(
-    filename="C2-20241029-00003.csv",
+    filename="example_file.csv",
     save_data="yes",
     start_time_user="none",
     header_lines=0,
@@ -114,10 +114,10 @@ alpss_main(
     delta_lam=8e-18,
     theta=0,
     delta_theta=5,
-    # exp_data_dir=(os.getcwd() + "/input_data"),
-    # out_files_dir=(os.getcwd() + "/output_data"),
-    exp_data_dir="/Users/Administrator/Desktop/PDV_DATA",
-    out_files_dir="/Users/Administrator/Desktop/ALPSS_output/custom",
+    exp_data_dir=(os.getcwd() + "/input_data"),
+    out_files_dir=(os.getcwd() + "/output_data"),
+    # exp_data_dir="/Users/Administrator/Desktop/PDV_DATA",
+    # out_files_dir="/Users/Administrator/Desktop/ALPSS_output/custom",
     display_plots="yes",
     spall_calculation="yes",
     plot_figsize=(30, 10),
