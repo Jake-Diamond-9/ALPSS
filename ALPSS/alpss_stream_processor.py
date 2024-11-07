@@ -59,6 +59,7 @@ class ALPSStreamProcessor(DataFileStreamProcessor):
         download_regex,
         **kwargs,
     ):
+
         super().__init__(config_file, topic_name, **kwargs)
         self.out_files_dir = out_files_dir
         self.output_dir = kwargs['output_dir']
