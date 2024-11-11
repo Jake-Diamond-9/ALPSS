@@ -85,12 +85,8 @@ class ALPSStreamProcessor(DataFileStreamProcessor):
         """
 
         print(f"Processing {datafile.filename}...")
-        if len(datafile.bytestring) > 1000000000: # > 1GBs
-            print(f"File {datafile.filename} is skipped due to large size ({len(datafile.bytestring)} bytes). ")
-            return
         alpss_main(
             filename=datafile.filename,
-            bytestring_data=BytesIO(datafile.bytestring),
             save_data="yes",
             start_time_user="none",
             header_lines=0,
