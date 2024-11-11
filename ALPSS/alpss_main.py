@@ -53,7 +53,7 @@ def alpss_main(**inputs):
         end_time = datetime.now()
 
         # function to generate the final figure
-        fig = plotting(
+        plotting(
             sdf_out,
             cen,
             cf_out,
@@ -67,20 +67,7 @@ def alpss_main(**inputs):
         )
 
         # function to save the output files if desired
-        if inputs["save_data"] == "yes":
-            saving(
-                sdf_out,
-                cen,
-                vc_out,
-                sa_out,
-                iua_out,
-                fua_out,
-                start_time,
-                end_time,
-                fig,
-                **inputs,
-            )
-
+        # MOVED to plotting
         # end final timer and display full runtime
         end_time2 = datetime.now()
         print(
