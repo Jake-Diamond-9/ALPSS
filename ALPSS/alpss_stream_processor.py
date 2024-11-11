@@ -132,7 +132,7 @@ class ALPSStreamProcessor(DataFileStreamProcessor):
             # delta_time_d=2.5e-9,
             exp_data_dir=self.output_dir,
             out_files_dir=self.out_files_dir,
-            display_plots="yes",
+            display_plots="no",
             spall_calculation="yes",
             uncert_mult=100,
             plot_figsize=(30, 10),
