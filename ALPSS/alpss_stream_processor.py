@@ -1,16 +1,10 @@
 """A DataFileStreamHandler that triggers some arbitrary local code when full files are available"""
 
-from abc import ABC, abstractmethod
 import datetime
+
 from openmsistream.data_file_io.actor.data_file_stream_processor import (
     DataFileStreamProcessor,
 )
-
-from openmsistream.utilities.config import RUN_CONST
-
-import re
-import sys
-from io import BytesIO
 
 from ALPSS.alpss_main import alpss_main
 
@@ -59,10 +53,9 @@ class ALPSStreamProcessor(DataFileStreamProcessor):
         download_regex,
         **kwargs,
     ):
-
         super().__init__(config_file, topic_name, **kwargs)
         self.out_files_dir = out_files_dir
-        self.output_dir = kwargs['output_dir']
+        self.output_dir = kwargs["output_dir"]
         # either create an engine to interact with a DB, or store the path to the output file
         self._engine = None
         self._output_file = None
@@ -84,62 +77,61 @@ class ALPSStreamProcessor(DataFileStreamProcessor):
         :return: None if processing was successful, an Exception otherwise
         """
 
-        print(f"Processing {datafile.filename}...")
-        alpss_main(
-            filename=datafile.filename,
-            save_data="yes",
-            start_time_user="none",
-            header_lines=0,
-            time_to_skip=0e-6,
-            time_to_take=10e-6,
-            t_before=10e-9,
-            t_after=200e-9,
-            start_time_correction=0e-9,
-            freq_min=1e9,
-            freq_max=5e9,
-            smoothing_window=1001,
-            smoothing_wid=3,
-            smoothing_amp=1,
-            smoothing_sigma=1,
-            smoothing_mu=0,
-            pb_neighbors=400,
-            pb_idx_correction=0,
-            rc_neighbors=400,
-            rc_idx_correction=0,
-            sample_rate=128e9,
-            nperseg=512,
-            noverlap=435,
-            nfft=5120,
-            window="hann",
-            blur_kernel=(5, 5),
-            blur_sigx=0,
-            blur_sigy=0,
-            carrier_band_time=250e-9,
-            cmap="viridis",
-            order=6,
-            wid=15e7,
-            lam=1550.016e-9,
-            C0=4540,
-            density=1730,
-            delta_rho=9,
-            delta_C0=23,
-            delta_lam=8e-18,
-            theta=0,
-            delta_theta=5,
-            # delta_freq_tb=20e6,
-            # delta_freq_td=20e6,
-            # delta_time_c=2.5e-9,
-            # delta_time_d=2.5e-9,
-            exp_data_dir=self.output_dir,
-            out_files_dir=self.out_files_dir,
-            display_plots="no",
-            spall_calculation="yes",
-            uncert_mult=100,
-            plot_figsize=(30, 10),
-            plot_dpi=300,
-        )
-        # except Exception as exc:
-        #     return exc
+        with lock:
+            print(f"Processing {datafile.filename}...")
+            alpss_main(
+                filename=datafile.filename,
+                save_data="yes",
+                start_time_user="none",
+                header_lines=0,
+                time_to_skip=0e-6,
+                time_to_take=10e-6,
+                t_before=10e-9,
+                t_after=200e-9,
+                start_time_correction=0e-9,
+                freq_min=1e9,
+                freq_max=5e9,
+                smoothing_window=1001,
+                smoothing_wid=3,
+                smoothing_amp=1,
+                smoothing_sigma=1,
+                smoothing_mu=0,
+                pb_neighbors=400,
+                pb_idx_correction=0,
+                rc_neighbors=400,
+                rc_idx_correction=0,
+                sample_rate=128e9,
+                nperseg=512,
+                noverlap=435,
+                nfft=5120,
+                window="hann",
+                blur_kernel=(5, 5),
+                blur_sigx=0,
+                blur_sigy=0,
+                carrier_band_time=250e-9,
+                cmap="viridis",
+                order=6,
+                wid=15e7,
+                lam=1550.016e-9,
+                C0=4540,
+                density=1730,
+                delta_rho=9,
+                delta_C0=23,
+                delta_lam=8e-18,
+                theta=0,
+                delta_theta=5,
+                # delta_freq_tb=20e6,
+                # delta_freq_td=20e6,
+                # delta_time_c=2.5e-9,
+                # delta_time_d=2.5e-9,
+                exp_data_dir=self.output_dir,
+                out_files_dir=self.out_files_dir,
+                display_plots="no",
+                spall_calculation="yes",
+                uncert_mult=100,
+                plot_figsize=(30, 10),
+                plot_dpi=300,
+            )
 
     @classmethod
     def run_from_command_line(cls, args=None):
