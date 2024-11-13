@@ -1,29 +1,27 @@
-from datetime import datetime
-import traceback
-from IPython.display import display
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
-import pandas as pd
-import numpy as np
 import os
-from scipy.fft import fft, ifft, fftfreq
+import traceback
+from datetime import datetime
+
+import cv2 as cv
+import findiff
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from matplotlib.patches import Rectangle
+from scipy import signal
+from scipy.fft import fft, fftfreq, ifft
 from scipy.fftpack import fftshift
 from scipy.optimize import curve_fit
-from scipy import signal
-import findiff
-import cv2 as cv
 from scipy.signal import ShortTimeFFT
 
 
 # main function to link together all the sub-functions
 def alpss_main(**inputs):
-
     # get the current working directory
     cwd = os.getcwd()
 
     # attempt to run the program in full
     try:
-
         # begin the program timer
         start_time = datetime.now()
 
@@ -88,13 +86,11 @@ def alpss_main(**inputs):
 
     # in case the program throws an error
     except Exception:
-
         # print the traceback for the error
         print(traceback.format_exc())
 
         # attempt to plot the voltage signal from the imported data
         try:
-
             # import the desired data. Convert the time to skip and turn into number of rows
             t_step = 1 / inputs["sample_rate"]
             rows_to_skip = (
@@ -1111,7 +1107,6 @@ def smoothing(
 def spall_analysis(vc_out, iua_out, **inputs):
     # if user wants to pull out the spall points
     if inputs["spall_calculation"] == "yes":
-
         # unpack dictionary values in to individual variables
         time_f = vc_out["time_f"]
         velocity_f_smooth = vc_out["velocity_f_smooth"]
@@ -1135,7 +1130,6 @@ def spall_analysis(vc_out, iua_out, **inputs):
         # attempt to get the fist local minimum after the peak velocity to get the pullback
         # velocity. 'order' is the number of points on each side to compare to.
         try:
-
             # get all the indices for relative minima in the domain, order them, and take the first one that occurs
             # after the peak velocity
             rel_min_idx = signal.argrelmin(velocity_f_smooth, order=pb_neighbors)[0]
@@ -1302,7 +1296,6 @@ def spall_doi_finder(**inputs):
 
     # if not using a user input value for the signal start time
     if inputs["start_time_user"] == "none":
-
         # Find the position/row of the top of the binary spectrogram for each time/column
         col_len = th3.shape[1]  # number of columns
         row_len = th3.shape[0]  # number of columns
@@ -1313,7 +1306,6 @@ def spall_doi_finder(**inputs):
 
         for col_idx in range(col_len):  # loop over every column
             for row_idx in range(row_len):  # loop over every row
-
                 # moving from the top down, if the pixel is 255 then store the index and break to move to the next column
                 idx_top = row_len - row_idx - 1
 
@@ -1358,7 +1350,6 @@ def spall_doi_finder(**inputs):
 
     # if using a user input for the signal start time
     else:
-
         # these params become nan because they are only needed if the program
         # is finding the signal start time automatically
         f_doi_top_line_clean = np.nan
