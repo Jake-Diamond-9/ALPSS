@@ -1,9 +1,0 @@
-numpy
-pandas
-matplotlib
-scipy
-watchdog
-opencv-python
-findiff
-ipython
-ipykernel
