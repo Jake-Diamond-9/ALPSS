@@ -16,7 +16,166 @@ from scipy.signal import ShortTimeFFT
 
 
 # main function to link together all the sub-functions
-def alpss_main(**inputs):
+def alpss_main(
+    filename=None,
+    save_data="yes",
+    start_time_user="none",
+    header_lines=1,
+    time_to_skip=2.3e-6,
+    time_to_take=1.5e-6,
+    t_before=5e-9,
+    t_after=50e-9,
+    start_time_correction=0e-9,
+    freq_min=1.5e9,
+    freq_max=4e9,
+    smoothing_window=601,
+    smoothing_wid=3,
+    smoothing_amp=1,
+    smoothing_sigma=1,
+    smoothing_mu=0,
+    pb_neighbors=400,
+    pb_idx_correction=0,
+    rc_neighbors=400,
+    rc_idx_correction=0,
+    sample_rate=80e9,
+    nperseg=512,
+    noverlap=435,
+    nfft=5120,
+    window="hann",
+    blur_kernel=(5, 5),
+    blur_sigx=0,
+    blur_sigy=0,
+    carrier_band_time=250e-9,
+    cmap="viridis",
+    uncert_mult=100,
+    order=6,
+    wid=5e7,
+    lam=1547.461e-9,
+    C0=4540,
+    density=1730,
+    delta_rho=9,
+    delta_C0=23,
+    delta_lam=8e-18,
+    theta=0,
+    delta_theta=5,
+    exp_data_dir=(os.getcwd() + "/input_data"),
+    out_files_dir=(os.getcwd() + "/output_data"),
+    display_plots="yes",
+    spall_calculation="yes",
+    plot_figsize=(30, 10),
+    plot_dpi=300,
+):
+    """Main alpss function to run the full program
+
+    Parameters
+    ----------
+    filename : :obj:`str`
+        filename for the data to run
+    save_data : str
+        'yes' or 'no' to save output data
+    start_time_user : :obj:`str` or float
+        if 'none' the program will attempt to find the signal start time automatically.
+        if float then the program will use that as the signal start time
+    header_lines : int
+        number of header lines to skip in the data file
+    time_to_skip : float
+        the amount of time to skip in the full data file before beginning to read in data
+    time_to_take : float
+        the amount of time to take in the data file after skipping time_to_skip
+    t_before : float
+        amount of time before the signal start time to include in the velocity calculation
+    t_after : float
+        amount of time after the signal start time to include in the velocity calculation
+    start_time_correction : float
+        amount of time to adjust the signal start time by
+    freq_min : float
+        minimum frequency for the region of interest
+    freq_max : float
+        maximum frequency for the region of interest
+    smoothing_window : int
+        number of points to use for the smoothing window. must be an odd number
+    smoothing_wid : float
+        half the width of the normal distribution used to calculate
+        the smoothing weights (recommend 3)
+    smoothing_amp : float
+        amplitude of the normal distribution used to calculate the smoothing weights (recommend 1)
+    smoothing_sigma : float
+        standard deviation of the normal distribution used to calculate the smoothing weights
+        (recommend 1)
+    smoothing_mu : float
+        mean of the normal distribution used to calculate the smoothing weights (recommend 0)
+    pb_neighbors : int
+        number of neighbors to compare to when searching for the pullback local minimum
+    pb_idx_correction : int
+        number of local minima to adjust by if the program grabs the wrong one
+    rc_neighbors : int
+        number of neighbors to compare to when searching for the recompression local maximum
+    rc_idx_correction : int
+        number of local maxima to adjust by if the program grabs the wrong one
+    sample_rate : float
+		sample rate of the oscilloscope used in the experiment
+    nperseg : int
+		number of points to use per segment of the stft
+    noverlap : int
+		number of points to overlap per segment of the stft
+    nfft : int
+		number of points to zero pad per segment of the stft
+    window : str or tuple or array_like
+		window function to use for the stft (recommend 'hann')
+    blur_kernel : tuple
+		kernel size for gaussian blur smoothing (recommend (5, 5))
+    blur_sigx : float
+		standard deviation of the gaussian blur kernel in the x direction (recommend 0)
+    blur_sigy : float
+		standard deviation of the gaussian blur kernel in the y direction (recommend 0)
+    carrier_band_time : float
+		length of time from the beginning of the imported data window to average
+        the frequency of the top of the carrier band in the thresholded spectrogram
+    cmap : str
+		colormap for the spectrograms (recommend 'viridis')
+    uncert_mult : float
+		factor to multiply the velocity uncertainty by when plotting - allows for easier
+        visulaization when uncertainties are small
+    order : int
+		order for the gaussian notch filter used to remove the carrier band (recommend 6)
+    wid : float
+		width of the gaussian notch filter used to remove the carrier band (recommend 1e8)
+    lam : float
+		wavelength of the target laser
+    C0 : float
+		bulk wavespeed of the sample
+    density : float
+		density of the sample
+    delta_rho : float
+		uncertainty in density of the sample
+    delta_C0 : float
+		uncertainty in the bulk wavespeed of the sample
+    delta_lam : float
+		uncertainty in the wavelength of the target laser
+    theta : float
+		angle of incidence of the PDV probe
+    delta_theta : float
+		uncertainty in the angle of incidence of the PDV probe
+    exp_data_dir : str
+		directory from which to read the experimental data file
+    out_files_dir : str
+		directory to save output data to
+    display_plots : str
+		'yes' to display the final plots and 'no' to not display them. if save_data='yes'
+        and and display_plots='no' the plots will be saved but not displayed
+    spall_calculation : str
+		'yes' to run the calculations for the spall analysis and 'no' to extract the velocity
+        without doing the spall analysis
+    plot_figsize : tuple
+		figure size for the final plots
+    plot_dpi : float
+		dpi for the final plots
+
+    Returns
+    -------
+    None
+    """
+    inputs = locals()
     # get the current working directory
     cwd = os.getcwd()
 
@@ -98,10 +257,10 @@ def alpss_main(**inputs):
             )  # skip the header lines too
             nrows = inputs["time_to_take"] / t_step
 
-            # change directory to where the data is stored
-            os.chdir(inputs["exp_data_dir"])
             data = pd.read_csv(
-                inputs["filename"], skiprows=int(rows_to_skip), nrows=int(nrows)
+                os.path.join(inputs["exp_data_dir"], inputs["filename"]),
+                skiprows=int(rows_to_skip),
+                nrows=int(nrows)
             )
 
             # rename the columns of the data
@@ -122,7 +281,7 @@ def alpss_main(**inputs):
             mag = np.abs(Zxx)
 
             # plotting
-            fig, (ax1, ax2) = plt.subplots(1, 2, num=2, figsize=(11, 4), dpi=300)
+            fig, (ax1, ax2) = plt.subplots(1, 2, num=2, figsize=(11, 4), dpi=300, clear=True)
             ax1.plot(time / 1e-9, voltage / 1e-3)
             ax1.set_xlabel("Time (ns)")
             ax1.set_ylabel("Voltage (mV)")
@@ -139,14 +298,16 @@ def alpss_main(**inputs):
             fig.suptitle("ERROR: Program Failed", c="r", fontsize=16)
 
             plt.tight_layout()
-            plt.show()
+            if inputs["display_plots"] == "yes":
+                plt.show()
+            if inputs["save_data"] == "yes":
+                fig.savefig(
+                    os.path.join(inputs["out_files_dir"], inputs["filename"][0:-4]) + "_error.png"
+                )
 
         # if that also fails then print the traceback and stop running the program
         except Exception:
             print(traceback.format_exc())
-
-    # move back to the original working directory
-    os.chdir(cwd)
 
 
 # function to filter out the carrier frequency
@@ -548,7 +709,7 @@ def plotting(
     **inputs,
 ):
     # create the figure and axes
-    fig = plt.figure(num=1, figsize=inputs["plot_figsize"], dpi=inputs["plot_dpi"])
+    fig = plt.figure(num=1, figsize=inputs["plot_figsize"], dpi=inputs["plot_dpi"], clear=True)
     ax1 = plt.subplot2grid((3, 5), (0, 0))  # voltage data
     ax2 = plt.subplot2grid((3, 5), (0, 1))  # noise distribution histogram
     ax3 = plt.subplot2grid((3, 5), (1, 0))  # imported voltage spectrogram
@@ -939,11 +1100,11 @@ def saving(
     sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time, fig, **inputs
 ):
     # change to the output files directory
-    os.chdir(inputs["out_files_dir"])
+    fname = os.path.join(inputs["out_files_dir"], inputs["filename"][0:-4])
 
     # save the plots
     fig.savefig(
-        fname=(inputs["filename"][0:-4] + "--plots.png"),
+        fname=fname + "--plots.png",
         dpi="figure",
         format="png",
         facecolor="w",
@@ -952,13 +1113,13 @@ def saving(
     # save the function inputs used for this run
     inputs_df = pd.DataFrame.from_dict(inputs, orient="index", columns=["Input"])
     inputs_df.to_csv(
-        inputs["filename"][0:-4] + "--inputs" + ".csv", index=True, header=False
+        fname + "--inputs.csv", index=True, header=False
     )
 
     # save the noisy velocity trace
     velocity_data = np.stack((vc_out["time_f"], vc_out["velocity_f"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--velocity" + ".csv", velocity_data, delimiter=","
+        fname + "--velocity.csv", velocity_data, delimiter=","
     )
 
     # save the smoothed velocity trace
@@ -966,7 +1127,7 @@ def saving(
         (vc_out["time_f"], vc_out["velocity_f_smooth"]), axis=1
     )
     np.savetxt(
-        inputs["filename"][0:-4] + "--velocity--smooth" + ".csv",
+        fname + "--velocity--smooth.csv",
         velocity_data_smooth,
         delimiter=",",
     )
@@ -981,19 +1142,19 @@ def saving(
         axis=1,
     )
     np.savetxt(
-        inputs["filename"][0:-4] + "--voltage" + ".csv", voltage_data, delimiter=","
+        fname + "--voltage.csv", voltage_data, delimiter=","
     )
 
     # save the noise fraction
     noise_data = np.stack((vc_out["time_f"], iua_out["inst_noise"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--noise--frac" + ".csv", noise_data, delimiter=","
+        fname + "--noise--frac.csv", noise_data, delimiter=","
     )
 
     # save the velocity uncertainty
     vel_uncert_data = np.stack((vc_out["time_f"], iua_out["vel_uncert"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--vel--uncert" + ".csv",
+        fname + "--vel--uncert.csv",
         vel_uncert_data,
         delimiter=",",
     )
@@ -1049,7 +1210,7 @@ def saving(
     }
     results_df = pd.DataFrame(data=results_to_save)
     results_df.to_csv(
-        inputs["filename"][0:-4] + "--results" + ".csv", index=False, header=False
+        fname + "--results.csv", index=False, header=False
     )
 
     """
@@ -1242,9 +1403,11 @@ def spall_doi_finder(**inputs):
     )  # skip the 5 header lines too
     nrows = inputs["time_to_take"] / t_step
 
-    # change directory to where the data is stored
-    os.chdir(inputs["exp_data_dir"])
-    data = pd.read_csv(inputs["filename"], skiprows=int(rows_to_skip), nrows=int(nrows))
+    data = pd.read_csv(
+        os.path.join(inputs["exp_data_dir"], inputs["filename"]),
+        skiprows=int(rows_to_skip),
+        nrows=int(nrows)
+    )
 
     # rename the columns of the data
     data.columns = ["Time", "Ampl"]
