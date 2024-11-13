@@ -8,12 +8,11 @@ from IPython.display import display
 def saving(
     sdf_out, cen, vc_out, sa_out, iua_out, fua_out, start_time, end_time, fig, **inputs
 ):
-    # change to the output files directory
-    os.chdir(inputs["out_files_dir"])
+    fname = os.path.join(inputs["out_files_dir"], inputs["filename"][0:-4])
 
     # save the plots
     fig.savefig(
-        fname=(inputs["filename"][0:-4] + "--plots.png"),
+        fname=fname + "--plots.png",
         dpi="figure",
         format="png",
         facecolor="w",
@@ -22,13 +21,13 @@ def saving(
     # save the function inputs used for this run
     inputs_df = pd.DataFrame.from_dict(inputs, orient="index", columns=["Input"])
     inputs_df.to_csv(
-        inputs["filename"][0:-4] + "--inputs" + ".csv", index=True, header=False
+        fname + "--inputs" + ".csv", index=True, header=False
     )
 
     # save the noisy velocity trace
     velocity_data = np.stack((vc_out["time_f"], vc_out["velocity_f"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--velocity" + ".csv", velocity_data, delimiter=","
+        fname + "--velocity" + ".csv", velocity_data, delimiter=","
     )
 
     # save the smoothed velocity trace
@@ -36,7 +35,7 @@ def saving(
         (vc_out["time_f"], vc_out["velocity_f_smooth"]), axis=1
     )
     np.savetxt(
-        inputs["filename"][0:-4] + "--velocity--smooth" + ".csv",
+        fname + "--velocity--smooth" + ".csv",
         velocity_data_smooth,
         delimiter=",",
     )
@@ -51,19 +50,19 @@ def saving(
         axis=1,
     )
     np.savetxt(
-        inputs["filename"][0:-4] + "--voltage" + ".csv", voltage_data, delimiter=","
+        fname + "--voltage" + ".csv", voltage_data, delimiter=","
     )
 
     # save the noise fraction
     noise_data = np.stack((vc_out["time_f"], iua_out["inst_noise"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--noisefrac" + ".csv", noise_data, delimiter=","
+        fname + "--noisefrac" + ".csv", noise_data, delimiter=","
     )
 
     # save the velocity uncertainty
     vel_uncert_data = np.stack((vc_out["time_f"], iua_out["vel_uncert"]), axis=1)
     np.savetxt(
-        inputs["filename"][0:-4] + "--veluncert" + ".csv",
+        fname + "--veluncert" + ".csv",
         vel_uncert_data,
         delimiter=",",
     )
@@ -119,7 +118,7 @@ def saving(
     }
     results_df = pd.DataFrame(data=results_to_save)
     results_df.to_csv(
-        inputs["filename"][0:-4] + "--results" + ".csv", index=False, header=False
+        fname + "--results" + ".csv", index=False, header=False
     )
 
     # display the final results table in nanoseconds to make it more readable

@@ -1,3 +1,4 @@
+import os
 from spall_doi_finder import *
 from plotting import *
 from carrier_frequency import *
@@ -52,7 +53,7 @@ def alpss_main(**inputs):
         end_time = datetime.now()
 
         # function to generate the final figure
-        fig = plotting(
+        plotting(
             sdf_out,
             cen,
             cf_out,
@@ -66,20 +67,7 @@ def alpss_main(**inputs):
         )
 
         # function to save the output files if desired
-        if inputs["save_data"] == "yes":
-            saving(
-                sdf_out,
-                cen,
-                vc_out,
-                sa_out,
-                iua_out,
-                fua_out,
-                start_time,
-                end_time,
-                fig,
-                **inputs,
-            )
-
+        # MOVED to plotting
         # end final timer and display full runtime
         end_time2 = datetime.now()
         print(
@@ -101,9 +89,8 @@ def alpss_main(**inputs):
             nrows = inputs["time_to_take"] / t_step
 
             # change directory to where the data is stored
-            os.chdir(inputs["exp_data_dir"])
             data = pd.read_csv(
-                inputs["filename"], skiprows=int(rows_to_skip), nrows=int(nrows)
+                os.path.join(inputs["exp_data_dir"], inputs["filename"]), skiprows=int(rows_to_skip), nrows=int(nrows)
             )
 
             # rename the columns of the data
@@ -124,7 +111,7 @@ def alpss_main(**inputs):
             mag = np.abs(Zxx)
 
             # plotting
-            fig, (ax1, ax2) = plt.subplots(1, 2, num=2, figsize=(11, 4), dpi=300)
+            fig, (ax1, ax2) = plt.subplots(1, 2, num=2, figsize=(11, 4), dpi=300, clear=True)
             ax1.plot(time / 1e-9, voltage / 1e-3)
             ax1.set_xlabel("Time (ns)")
             ax1.set_ylabel("Voltage (mV)")
@@ -141,7 +128,11 @@ def alpss_main(**inputs):
             fig.suptitle("ERROR: Program Failed", c="r", fontsize=16)
 
             plt.tight_layout()
-            plt.show()
+            if inputs["save_data"] == "yes":
+                fname = os.path.join(inputs["out_files_dir"], inputs["filename"][0:-4])
+                fig.savefig(f"{fname}--error_plot.png")
+            if inputs["display_plots"] == "yes":
+                plt.show()
 
         # if that also fails then print the traceback and stop running the program
         except Exception:

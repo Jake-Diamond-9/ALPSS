@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Rectangle
 import pandas as pd
+from saving import saving
 
 # # function to generate the final figure
 # def plotting(sdf_out, cen, cf_out, vc_out, sa_out, fua_out, start_time, end_time, **inputs):
@@ -212,7 +213,7 @@ def plotting(
     **inputs,
 ):
     # create the figure and axes
-    fig = plt.figure(num=1, figsize=inputs["plot_figsize"], dpi=inputs["plot_dpi"])
+    fig = plt.figure(num=1, figsize=inputs["plot_figsize"], dpi=inputs["plot_dpi"], clear=True)
     ax1 = plt.subplot2grid((3, 5), (0, 0))  # voltage data
     ax2 = plt.subplot2grid((3, 5), (0, 1))  # noise distribution histogram
     ax3 = plt.subplot2grid((3, 5), (1, 0))  # imported voltage spectrogram
@@ -595,4 +596,19 @@ def plotting(
         plt.show()
 
     # return the figure so it can be saved if desired
-    return fig
+    # function to save the output files if desired
+    if inputs["save_data"] == "yes":
+        saving(
+            sdf_out,
+            cen,
+            vc_out,
+            sa_out,
+            iua_out,
+            fua_out,
+            start_time,
+            end_time,
+            fig,
+            **inputs,
+        )
+
+    # return fig
