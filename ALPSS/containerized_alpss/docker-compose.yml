@@ -5,3 +5,5 @@ services:
       - /srv/hemi01-j01/EZOpenMSIStream/config.config:/home/openmsi/config.config  # Mount local config folder to container
       - ./output_dir:/home/openmsi/ALPSS/ALPSS/output_dir  # Mount local output_dir to container
       - ./out_files_dir:/home/openmsi/ALPSS/ALPSS/out_files_dir  # Mount local out_files_dir to container
+    stdin_open: true
+    tty: true 
