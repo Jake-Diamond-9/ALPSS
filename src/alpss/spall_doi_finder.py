@@ -2,7 +2,8 @@ import os
 import pandas as pd
 import numpy as np
 import cv2 as cv
-from utils import stft
+from alpss.utils import stft
+
 
 # function to find the specific domain of interest in the larger signal
 def spall_doi_finder(**inputs):

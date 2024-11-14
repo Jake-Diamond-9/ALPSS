@@ -11,7 +11,7 @@ class test_inputs(unittest.TestCase):
                 save_data="yes",
                 start_time_user="none",
                 header_lines=1,
-                time_to_skip=2e-6,
+                time_to_skip=2e-6,  # time_to_skip can't equal time_to_take
                 time_to_take=2e-6,
                 t_before=10e-9,
                 t_after=100e-5,

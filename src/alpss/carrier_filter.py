@@ -2,7 +2,8 @@ import numpy as np
 from scipy.fft import fft
 from scipy.fft import ifft
 from scipy.fftpack import fftshift
-from utils import stft
+from alpss.utils import stft
+
 
 # function to filter out the carrier frequency
 def carrier_filter(sdf_out, cen, **inputs):
@@ -63,4 +64,3 @@ def carrier_filter(sdf_out, cen, **inputs):
     }
 
     return cf_out
-

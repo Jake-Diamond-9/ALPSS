@@ -1,21 +1,23 @@
 import os
-from spall_doi_finder import *
-from plotting import *
-from carrier_frequency import *
-from carrier_filter import *
-from velocity_calculation import *
-from spall_analysis import *
-from full_uncertainty_analysis import *
-from instantaneous_uncertainty_analysis import *
-from saving import *
+from alpss.spall_doi_finder import *
+from alpss.plotting import *
+from alpss.carrier_frequency import *
+from alpss.carrier_filter import *
+from alpss.velocity_calculation import *
+from alpss.spall_analysis import *
+from alpss.full_uncertainty_analysis import *
+from alpss.instantaneous_uncertainty_analysis import *
+from alpss.saving import *
 from datetime import datetime
 import traceback
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
 def validate_inputs(inputs):
     if inputs["t_after"] > inputs["time_to_take"]:
         raise ValueError("'t_after' must be less than 'time_to_take'. ")
+
 
 # main function to link together all the sub-functions
 def alpss_main(**inputs):
@@ -90,7 +92,9 @@ def alpss_main(**inputs):
 
             # change directory to where the data is stored
             data = pd.read_csv(
-                os.path.join(inputs["exp_data_dir"], inputs["filename"]), skiprows=int(rows_to_skip), nrows=int(nrows)
+                os.path.join(inputs["exp_data_dir"], inputs["filename"]),
+                skiprows=int(rows_to_skip),
+                nrows=int(nrows),
             )
 
             # rename the columns of the data
@@ -111,7 +115,9 @@ def alpss_main(**inputs):
             mag = np.abs(Zxx)
 
             # plotting
-            fig, (ax1, ax2) = plt.subplots(1, 2, num=2, figsize=(11, 4), dpi=300, clear=True)
+            fig, (ax1, ax2) = plt.subplots(
+                1, 2, num=2, figsize=(11, 4), dpi=300, clear=True
+            )
             ax1.plot(time / 1e-9, voltage / 1e-3)
             ax1.set_xlabel("Time (ns)")
             ax1.set_ylabel("Voltage (mV)")
