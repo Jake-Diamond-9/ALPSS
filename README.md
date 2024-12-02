@@ -1,5 +1,5 @@
 # <div align="center">ALPSS: A program for the automated analysis of photonic Doppler velocimetry spall signals</div>
-#### <div align="center">***v1.2.4***</div>
+#### <div align="center">***v1.2.5***</div>
 
 #### <div align="center">Jacob M. Diamond<sup>1,2*</sup>, K. T. Ramesh<sup>1,2</sup></div>
 <div align="center"><sup>1</sup> Department of Mechanical Engineering, Johns Hopkins University, Baltimore, MD, USA </div>
