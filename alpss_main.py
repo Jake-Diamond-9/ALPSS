@@ -224,6 +224,13 @@ def carrier_frequency(spall_doi_finder_outputs, **inputs):
     freq_min = inputs["freq_min"]
     freq_max = inputs["freq_max"]
 
+    # cut the time and voltage signals to only take the time during the user input "carrier_band_time".
+    # That way there is none of the actual target signal in the FFT.
+    # Need this because in some instances the target signal is stronger than the carrier, in which case the target signal may end up being filtered out.
+    # These two lines of code should prevent that from happening and make sure the carrier is filtered properly.
+    time = time[: int(round(inputs["carrier_band_time"] * fs))]
+    voltage = voltage[: int(round(inputs["carrier_band_time"] * fs))]
+
     # calculate frequency values for fft
     freq = fftfreq(int(fs * time[-1]) + 1, 1 / fs)
     freq2 = freq[: int(freq.shape[0] / 2) - 1]
