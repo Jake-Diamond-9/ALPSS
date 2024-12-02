@@ -59,16 +59,16 @@ For use in published works, ALPSS can be cited from its original paper _Automate
 }
 ~~~
 
-The repository for v1.2.4 can be cited using its DOI [10.5281/zenodo.11266560](https://doi.org/10.5281/zenodo.11266560) or with the following bibtex. 
+The repository for v1.2.5 can be cited using its DOI [10.5281/zenodo.14262459](https://doi.org/10.5281/zenodo.14262459) or with the following bibtex.
 
 ~~~
 @software{Diamond_ALPSS_2024,
   author = {Diamond, Jacob M. and Ramesh, K.T.},
-  doi = {10.5281/zenodo.11266560},
-  month = {05},
+  doi = {10.5281/zenodo.14262459},
+  month = {12},
   title = {{ALPSS}},
   url = {https://github.com/Jake-Diamond-9/ALPSS},
-  version = {1.2.4},
+  version = {1.2.5},
   year = {2024}
 }
 ~~~
