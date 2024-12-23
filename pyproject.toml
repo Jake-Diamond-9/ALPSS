@@ -29,7 +29,7 @@ classifiers = [
     "Natural Language :: English",
 ]
 dependencies = [
-    "numpy",
+    "numpy <2",
     "pandas",
     "matplotlib",
     "scipy",
