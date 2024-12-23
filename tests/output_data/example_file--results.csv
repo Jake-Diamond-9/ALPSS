@@ -1,21 +1,21 @@
-Date,Jun 12 2024
-Time,11:10 AM
+Date,Nov 14 2024
+Time,12:44 PM
 File Name,example_file.csv
-Run Time,0:00:00.494408
-Velocity at Max Compression,827.1305368578295
-Time at Max Compression,6.300750500023988e-07
-Velocity at Max Tension,463.5053272813227
-Time at Max Tension,6.476500600052781e-07
-Velocity at Recompression,573.0909977387186
-Time at Recompression,6.557375600013682e-07
-Carrier Frequency,2233351751.039816
-Spall Strength,1427992560.5278997
-Spall Strength Uncertainty,10692613.460097538
-Strain Rate,2278623.4114207104
-Strain Rate Uncertainty,537346.4502460198
-Peak Shock Stress,3248224331.294382
-Spect Time Res,9.625000834177745e-10
-Spect Freq Res,15624998.645815466
-Spect Velocity Res,12.089538014726124
-Signal Start Time,6.140750532205402e-07
-Smoothing Characteristic Time,2.9298752539258723e-09
+Run Time,0:00:06.289179
+Velocity at Max Compression,873.5450985331408
+Time at Max Compression,3.041925250003852e-06
+Velocity at Max Tension,359.74496364236944
+Time at Max Tension,3.073312760004665e-06
+Velocity at Recompression,364.3168301692125
+Time at Recompression,3.076412760004421e-06
+Carrier Frequency,2233199812.41015
+Spall Strength,2017744509.7295487
+Spall Strength Uncertainty,23609426.814541273
+Strain Rate,1802816.4049345185
+Strain Rate Uncertainty,396836.143378536
+Peak Shock Stress,3430498956.449497
+Spect Time Res,9.625000808504594e-10
+Spect Freq Res,15624998.687492654
+Spect Velocity Res,12.109498982796307
+Signal Start Time,2.9154127448960416e-06
+Smoothing Characteristic Time,4.879875409911828e-09

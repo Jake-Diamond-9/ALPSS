@@ -20,15 +20,11 @@ def saving(
 
     # save the function inputs used for this run
     inputs_df = pd.DataFrame.from_dict(inputs, orient="index", columns=["Input"])
-    inputs_df.to_csv(
-        fname + "--inputs" + ".csv", index=True, header=False
-    )
+    inputs_df.to_csv(fname + "--inputs" + ".csv", index=True, header=False)
 
     # save the noisy velocity trace
     velocity_data = np.stack((vc_out["time_f"], vc_out["velocity_f"]), axis=1)
-    np.savetxt(
-        fname + "--velocity" + ".csv", velocity_data, delimiter=","
-    )
+    np.savetxt(fname + "--velocity" + ".csv", velocity_data, delimiter=",")
 
     # save the smoothed velocity trace
     velocity_data_smooth = np.stack(
@@ -49,15 +45,11 @@ def saving(
         ),
         axis=1,
     )
-    np.savetxt(
-        fname + "--voltage" + ".csv", voltage_data, delimiter=","
-    )
+    np.savetxt(fname + "--voltage" + ".csv", voltage_data, delimiter=",")
 
     # save the noise fraction
     noise_data = np.stack((vc_out["time_f"], iua_out["inst_noise"]), axis=1)
-    np.savetxt(
-        fname + "--noisefrac" + ".csv", noise_data, delimiter=","
-    )
+    np.savetxt(fname + "--noisefrac" + ".csv", noise_data, delimiter=",")
 
     # save the velocity uncertainty
     vel_uncert_data = np.stack((vc_out["time_f"], iua_out["vel_uncert"]), axis=1)
@@ -117,9 +109,7 @@ def saving(
         ],
     }
     results_df = pd.DataFrame(data=results_to_save)
-    results_df.to_csv(
-        fname + "--results" + ".csv", index=False, header=False
-    )
+    results_df.to_csv(fname + "--results" + ".csv", index=False, header=False)
 
     # display the final results table in nanoseconds to make it more readable
     # the data in the saved file is still in seconds
@@ -136,3 +126,4 @@ def saving(
     results_df.loc[19, "Value"] /= 1e-9
     results_df.loc[20, "Value"] /= 1e-9
     display(results_df)
+    return results_to_save

@@ -1,5 +1,5 @@
 import unittest
-from ALPSS.alpss_main import alpss_main
+from alpss.alpss_main import alpss_main
 import os
 
 

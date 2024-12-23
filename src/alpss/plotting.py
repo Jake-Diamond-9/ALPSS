@@ -598,20 +598,4 @@ def plotting(
     if inputs["display_plots"] == "yes":
         plt.show()
 
-    # return the figure so it can be saved if desired
-    # function to save the output files if desired
-    if inputs["save_data"] == "yes":
-        saving(
-            sdf_out,
-            cen,
-            vc_out,
-            sa_out,
-            iua_out,
-            fua_out,
-            start_time,
-            end_time,
-            fig,
-            **inputs,
-        )
-
-    # return fig
+    return fig
