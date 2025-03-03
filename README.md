@@ -48,14 +48,17 @@ For use in published works, ALPSS can be cited from its original paper _Automate
 ~~~
 @article{Diamond_automated_2024,
   title = {Automated Analysis of Photonic Doppler Velocimetry Spall Signals},
+  volume = {11},
   ISSN = {2199-7454},
   url = {http://dx.doi.org/10.1007/s40870-024-00427-9},
   DOI = {10.1007/s40870-024-00427-9},
+  number = {1},
   journal = {Journal of Dynamic Behavior of Materials},
   publisher = {Springer Science and Business Media LLC},
   author = {Diamond,  J. M. and Ramesh,  K. T.},
   year = {2024},
-  month = jun 
+  month = jun,
+  pages = {70–79}
 }
 ~~~
 
